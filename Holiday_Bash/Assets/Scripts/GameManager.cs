@@ -11,18 +11,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public RoomFirstDungeonGenerator dungeon;
 
-    private List<RoomCollection> roomCollectionsList;
-
     void Start()
     {
         dungeon.GenerateDungeon();
-        var startingPosition = getStartingPosition(dungeon.roomBoundryList);
+        var startingPosition = getStartingPosition();
         player.transform.position = new Vector3(startingPosition.x, startingPosition.y, 0);
-        //Debug.Log(dungeon.getRoomsBoundries());
-        roomCollectionsList = RoomCollection.roomCollectionList;
 
         string text = "[ \n\n";
-        foreach (var collect in roomCollectionsList) {
+        foreach (var collect in RoomCollection.roomCollectionList) {
             text += collect.getData() + "\n\n";
         }
         text += "]";
@@ -31,22 +27,25 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        foreach(var room in RoomCollection.roomCollectionList) {
+            if (room.roomBound.Contains(player.getPosition()))
+            {
 
-    }
-    public Vector2Int getStartingPosition(List<BoundsInt> rooms) {
-        List<Vector2Int> roomCenters = new List<Vector2Int>();
-        List<BoundsInt> tempRoomList = new List<BoundsInt>();
+                if (room.status.Equals("empty"))
+                {
+                    Debug.Log("player is in this room: " + room.roomCenter);
+                }
 
-        Vector2Int start;
-        foreach (var room in rooms)
-        {
-            start = (Vector2Int)Vector3Int.RoundToInt(room.center);
-            tempRoomList.Add(room);
-            roomCenters.Add(start);
+
+            room.status = "occupied";
+            }
         }
-        int randInt = Random.Range(0, roomCenters.Count);
-        start = roomCenters[randInt];
+    }
+    public Vector2Int getStartingPosition() {
 
+        int randInt = Random.Range(0, RoomCollection.roomCollectionList.Count);
+        Vector2Int start = RoomCollection.roomCollectionList[randInt].roomCenter;
+        RoomCollection.roomCollectionList[randInt].roomType = "starting";
 
         return start;
     }

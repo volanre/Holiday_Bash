@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RoomCollection
 {
@@ -11,7 +13,36 @@ public class RoomCollection
     public HashSet<int> roomConnections;
     public HashSet<Vector2Int> roomFloor;
 
-    
+    public RoomCollection(int number, BoundsInt bound, Vector2Int center, HashSet<Vector2Int> floor)
+    {
+        roomNumber = number;
+        roomBound = bound;
+        roomCenter = center;
+        roomFloor = floor;
+        roomType = roomTypeList[Random.Range(0, roomTypeList.Count)];
+        roomConnections = new HashSet<int>();
+        
+        //roomCollectionList.Add(this);
+
+    }
+
+    /// <summary>
+    /// Possible types include: "starting", "fight", "treasure", "boss", "elite_fight"
+    /// </summary>
+    public string roomType;
+
+    /// <summary>
+    /// Possible statuses include: "empty", "occupied", "cleared"
+    /// </summary>
+    public string status = "empty";
+
+    /// <summary>
+    /// Ranges from 1 - 5
+    /// </summary>
+    public int difficulty = 1;
+
+
+    public static List<string> roomTypeList = new List<string>() { "fight", "treasure", "boss", "elite_fight" };
 
     public string getData()
     {

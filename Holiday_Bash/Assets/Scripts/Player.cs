@@ -2,10 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
+
+    [NonSerialized]
+    public int health = 500;
     public float moveSpeed = 5f;
     public float fireRate = 0.3f;
     public PlayerInputActions playerControls;
@@ -49,8 +53,8 @@ public class Player : MonoBehaviour
 
         moveDirection = move.ReadValue<Vector2>();
 
-        
-        
+
+
         if (attackTimer >= fireRate)
         {
             Shoot();
@@ -66,16 +70,13 @@ public class Player : MonoBehaviour
         {
             attackTimer = 0f;
             shootDirection = attackInput.normalized; // Last active direction
-            // Debug.Log("Shooting Positions: " + shootDirection.x + ", " + shootDirection.y);
-            Debug.Log("Player: " + transform.position.x + ", " + transform.position.y);
 
             Vector3 center = GetComponent<BoxCollider2D>().bounds.center;
-            Debug.Log("center: " + center.x + ", " + center.y);
-            Vector3 bulletPosition = new Vector3(center.x + LaunchOffset * shootDirection.x - .4f, center.y + LaunchOffset * shootDirection.y - .5f, 0);
+            Vector3 bulletPosition = new Vector3(center.x + LaunchOffset * shootDirection.x, center.y + (LaunchOffset+0.3f) * shootDirection.y, 0);
 
             var bullet = Instantiate(ProjectileItem, bulletPosition, transform.rotation);
-            bullet.direction = new Vector3(shootDirection.x, shootDirection.y, 0);
-            bullet.speed = 7.5f;
+            bullet.Initialize(new Vector3(shootDirection.x, shootDirection.y, 0));
+            Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
         }
     }
@@ -95,6 +96,11 @@ public class Player : MonoBehaviour
     private void updateTimers()
     {
         attackTimer += Time.deltaTime;
+    }
+
+    public Vector3Int getPosition()
+    {
+        return Vector3Int.FloorToInt(transform.position);
     }
 
 }

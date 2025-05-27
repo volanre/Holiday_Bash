@@ -3,15 +3,18 @@ using UnityEngine;
 
 public class FirespriteEnemy : AbstractEnemy
 {
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        fireRate = fireRate * 0.75f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        checkIfDead();
+        if (isDead) if (!deathExposion.isPlaying) suicide();
         updateTimers();
         if (inShootingRange())
         {

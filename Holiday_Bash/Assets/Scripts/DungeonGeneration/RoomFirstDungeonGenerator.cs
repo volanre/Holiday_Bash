@@ -95,12 +95,13 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
         for (int i = 0; i < tempRoomList.Count; i++)
         {
-            var thisCollection = new RoomCollection();
-            thisCollection.roomNumber = i;
-            thisCollection.roomBound = tempRoomList[i];
-            thisCollection.roomCenter = (Vector2Int)Vector3Int.RoundToInt(tempRoomList[i].center);
-            thisCollection.roomConnections = new HashSet<int>();
-            thisCollection.roomFloor = roomLayouts[i];
+            var thisCollection = new RoomCollection(i, tempRoomList[i], (Vector2Int)Vector3Int.RoundToInt(tempRoomList[i].center), roomLayouts[i]);
+            // thisCollection.roomNumber = i;
+            // thisCollection.roomBound = tempRoomList[i];
+            // thisCollection.roomCenter = (Vector2Int)Vector3Int.RoundToInt(tempRoomList[i].center);
+            // thisCollection.roomConnections = new HashSet<int>();
+            // thisCollection.roomFloor = roomLayouts[i];
+            // thisCollection.roomType = RoomCollection.roomTypeList[Random.Range(0,RoomCollection.roomTypeList.Count)];
             RoomCollection.roomCollectionList.Add(thisCollection);
         }
     }
