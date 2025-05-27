@@ -1,33 +1,51 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class ProjectileBehavior : MonoBehaviour
 {
-    public float speed = 7.5f;
-    public Vector3 direction = Vector3.zero;
+    private float speed = 7.5f;
 
-    public int damage = 100;
+    public float extraRotationDegrees = 0;
+    private Vector3 direction = Vector3.zero;
 
-    private Player player;
+    private int damage = 100;
+
+    [NonSerialized]
+    public bool targetEnemy = true, targetPlayer = true;
+
+    //private Player player;
+
+    Vector2 Rotate(Vector2 v, float degrees)
+    {
+        float radians = degrees * Mathf.Deg2Rad;
+        float sin = Mathf.Sin(radians);
+        float cos = Mathf.Cos(radians);
+        return new Vector2(v.x * cos - v.y * sin, v.x * sin + v.y * cos);
+    }
 
     void Start()
     {
+        gameObject.GetComponent<Rigidbody2D>().linearVelocity = direction * speed;
+        var velocity = gameObject.GetComponent<Rigidbody2D>().linearVelocity.normalized;
+        gameObject.transform.right = Rotate(velocity, extraRotationDegrees);
     }
 
     void Update()
     {
-        transform.position += direction * Time.deltaTime * speed;
+        // transform.position += direction * Time.deltaTime * speed;
+        //gameObject.GetComponent<Rigidbody2D>().linearVelocity = direction * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject other = collision.gameObject;
         Destroy(gameObject);
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && targetEnemy)
         {
             other.GetComponent<AbstractEnemy>().health -= damage;
         }
-        else if (other.CompareTag("Player"))
+        else if (other.CompareTag("Player") && targetPlayer)
         {
             other.GetComponent<Player>().health -= damage;
         }

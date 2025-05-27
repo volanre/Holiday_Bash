@@ -56,6 +56,7 @@ public class RoomCollection
     /// </summary>
     public void initializeFight()
     {
+        Portal.toggleActive(false);
         enemies = new List<AbstractEnemy>();
         wavesLeft = Random.Range(difficulty, difficulty + 2);
         spawnNextWave();

@@ -156,6 +156,8 @@ public abstract class AbstractEnemy : MonoBehaviour
         Vector3 bulletPosition = new Vector3(center.x + launchOffset * newDirection.x, center.y + launchOffset * newDirection.y, 0);
 
         var bullet = Instantiate(projectileItem, bulletPosition, transform.rotation);
+        bullet.targetPlayer = true;
+        bullet.targetEnemy = false;
         bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), damage, bulletSpeed);
         Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
