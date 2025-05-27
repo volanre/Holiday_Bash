@@ -34,10 +34,13 @@ public class GameManager : MonoBehaviour
                 if (room.status.Equals("empty"))
                 {
                     Debug.Log("player is in this room: " + room.roomCenter);
+                    room.initializeFight();
+                    room.status = "occupied";
+                    
                 }
 
-
-            room.status = "occupied";
+            room.spawnNextWave();
+            
             }
         }
     }

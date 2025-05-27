@@ -14,7 +14,14 @@ public class FirespriteEnemy : AbstractEnemy
     void Update()
     {
         checkIfDead();
-        if (isDead) if (!deathExposion.isPlaying) suicide();
+        if (isDead)
+        {
+            boomTimer -= Time.deltaTime;
+            if (boomTimer <= 0)
+            {
+                suicide();
+            }
+        }
         updateTimers();
         if (inShootingRange())
         {

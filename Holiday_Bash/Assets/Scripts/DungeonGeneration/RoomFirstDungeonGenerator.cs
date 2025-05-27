@@ -25,7 +25,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [Range(0, 20)]
     private int offset = 10;
 
-
+    [SerializeField]
+    private EnemyManager enemyManager;
 
     public List<HashSet<Vector2Int>> roomLayoutList;
     public List<BoundsInt> roomBoundryList;
@@ -95,7 +96,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
         for (int i = 0; i < tempRoomList.Count; i++)
         {
-            var thisCollection = new RoomCollection(i, tempRoomList[i], (Vector2Int)Vector3Int.RoundToInt(tempRoomList[i].center), roomLayouts[i]);
+            var thisCollection = new RoomCollection(i, tempRoomList[i], (Vector2Int)Vector3Int.RoundToInt(tempRoomList[i].center), roomLayouts[i], enemyManager);
             // thisCollection.roomNumber = i;
             // thisCollection.roomBound = tempRoomList[i];
             // thisCollection.roomCenter = (Vector2Int)Vector3Int.RoundToInt(tempRoomList[i].center);

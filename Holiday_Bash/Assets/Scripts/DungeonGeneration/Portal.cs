@@ -5,11 +5,15 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
     private static List<GameObject> masterPortalList;
+
+    
     private HashSet<GameObject> portalObjects = new HashSet<GameObject>();
     private Vector2Int destination = Vector2Int.zero;
 
     [NonSerialized]
     public int roomNumber;
+
+    public static bool isOn = false;
 
 
     void Start()
@@ -24,6 +28,15 @@ public class Portal : MonoBehaviour
     //         Vector2Int destination = RoomCollection.roomCollectionList
     //     }
     // }
+    public static void toggleActive(bool side)
+    {
+        isOn = side;
+
+        // foreach (var portal in masterPortalList)
+        // {
+        //     portal.GetComponent<SpriteRenderer>().color = isOn == true ? Color.white : Color.gray;
+        // }
+    }
 
     public void setDestination(Vector2Int place)
     {
@@ -39,7 +52,7 @@ public class Portal : MonoBehaviour
         // {
         //     destinationPortal.portalObjects.Add(collision.gameObject);
         // }
-        collision.transform.position = new Vector3(destination.x, destination.y, 0);
+        if(isOn) collision.transform.position = new Vector3(destination.x, destination.y, 0);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

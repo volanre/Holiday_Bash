@@ -24,7 +24,10 @@ public abstract class AbstractEnemy : MonoBehaviour
 
     protected bool isDead = false;
 
+    public float boomTimer = .3f;
+
     [SerializeField] protected ParticleSystem deathExposion;
+
 
     /// <summary>
     /// Checks if plyer is within detection range
@@ -116,11 +119,12 @@ public abstract class AbstractEnemy : MonoBehaviour
         if (isDead) return;
         if (health <= 0 && !isDead)
         {
-            isDead = true;
+
             gameObject.GetComponent<Collider2D>().enabled = false;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
 
             deathExposion.Play();
+            isDead = true;
         }
     }
     protected void suicide()
