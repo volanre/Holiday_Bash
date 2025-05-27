@@ -125,6 +125,7 @@ public abstract class AbstractEnemy : MonoBehaviour
 
             deathExposion.Play();
             isDead = true;
+            // Bryce Made this :)
         }
     }
     protected void suicide()
