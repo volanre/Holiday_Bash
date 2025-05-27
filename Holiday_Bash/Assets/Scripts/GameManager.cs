@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
 
     private List<RoomCollection> roomCollectionsList;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         dungeon.GenerateDungeon();
@@ -30,7 +29,6 @@ public class GameManager : MonoBehaviour
         Debug.Log(text);
     }
 
-    // Update is called once per frame
     void Update()
     {
 

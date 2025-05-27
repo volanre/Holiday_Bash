@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FirespriteEnemy : AbstractEnemy
@@ -12,14 +13,19 @@ public class FirespriteEnemy : AbstractEnemy
     void Update()
     {
         updateTimers();
-        if (playerDetected())
+        if (inShootingRange())
         {
             if (attackTimer >= fireRate)
             {
-                Debug.Log("Firesprite shoots");
+                // Debug.Log("Firesprite shoots");
                 Shoot();
             }
         }
     }
-    
+
+    private void FixedUpdate()
+    {
+        drift();
+        targetingPlayer();
+    }
 }
