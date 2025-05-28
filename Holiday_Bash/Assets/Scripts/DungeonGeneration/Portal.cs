@@ -44,15 +44,20 @@ public class Portal : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag != "Player")
+        {
+            return;
+        }
         if (portalObjects.Contains(collision.gameObject))
         {
             return;
         }
+        
         // if (destination.TryGetComponent(out Portal destinationPortal))
         // {
         //     destinationPortal.portalObjects.Add(collision.gameObject);
         // }
-        if(isOn) collision.transform.position = new Vector3(destination.x, destination.y, 0);
+        if (isOn) collision.transform.position = new Vector3(destination.x, destination.y, 0);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

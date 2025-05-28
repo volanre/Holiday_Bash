@@ -40,6 +40,8 @@ public class RoomCollection
     private List<AbstractEnemy> enemies = new List<AbstractEnemy>();
 
     public int wavesLeft;
+    public HashSet<Vector2Int> propPositions;
+    public List<GameObject> propReferences;
 
     public RoomCollection(int number, BoundsInt bound, Vector2Int center, HashSet<Vector2Int> floor, EnemyManager manager)
     {
@@ -50,6 +52,8 @@ public class RoomCollection
         roomType = roomTypeList[Random.Range(0, roomTypeList.Count)];
         roomConnections = new HashSet<int>();
         enemyManager = manager;
+        propPositions = new HashSet<Vector2Int>();
+        propReferences = new List<GameObject>();
         roomData = new RoomData(floor);
         //roomCollectionList.Add(this);
     }
