@@ -16,7 +16,7 @@ MonoBehaviour:
   propSize: {x: 2, y: 1}
   corner: 0
   nearUpWall: 0
-  nearDownWall: 1
+  nearDownWall: 0
   nearRightWall: 0
   nearLeftWall: 0
   innerMiddle: 1

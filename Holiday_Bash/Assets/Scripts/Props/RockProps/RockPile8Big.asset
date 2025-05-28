@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   propSprite: {fileID: -1214535140672770639, guid: bed75bacd53acc347b0bf04e565665ab, type: 3}
   propSize: {x: 2, y: 2}
-  corner: 1
+  corner: 0
   nearUpWall: 0
-  nearDownWall: 1
+  nearDownWall: 0
   nearRightWall: 0
   nearLeftWall: 0
-  innerMiddle: 0
+  innerMiddle: 1
   placementQuantityMin: 1
   placementQuantityMax: 2
   placeAsGroup: 0
