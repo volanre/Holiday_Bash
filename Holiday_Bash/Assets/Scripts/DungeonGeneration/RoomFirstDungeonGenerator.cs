@@ -28,10 +28,6 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField]
     private EnemyManager enemyManager;
 
-    public List<HashSet<Vector2Int>> roomLayoutList;
-    public List<BoundsInt> roomBoundryList;
-    public HashSet<Vector2Int> corridorHash;
-
     public List<HashSet<int>> wayRoomList;
 
 
@@ -44,14 +40,13 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     {
         WallGenerator.resetWallPositions();
         Portal.resetPortalList();
-        //var roomList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
-        roomBoundryList = ProceduralGenerationAlgorithms.PersonalGridSpaceGeneration(new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), maxRoomWidth, maxRoomHeight, maxRoomCount, minRoomCount);
-        HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
-        HashSet<Vector2Int> roomPositions = new HashSet<Vector2Int>();
-        roomLayoutList = CreateSimpleRooms(roomBoundryList, minRoomWidth, minRoomHeight, maxRoomWidth, maxRoomHeight);
 
-        foreach (var room in roomLayoutList) roomPositions.UnionWith(room);
-        floor.UnionWith(roomPositions);
+
+        var roomBoundryList = ProceduralGenerationAlgorithms.PersonalGridSpaceGeneration(new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), maxRoomWidth, maxRoomHeight, maxRoomCount, minRoomCount);
+        HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
+        var roomLayoutList = CreateSimpleRooms(roomBoundryList, minRoomWidth, minRoomHeight, maxRoomWidth, maxRoomHeight);
+
+        foreach (var room in roomLayoutList) floor.UnionWith(room);
         CreateRoomCollection(roomBoundryList, roomLayoutList);
 
         List<Vector2Int> roomCenters = new List<Vector2Int>();
@@ -60,12 +55,13 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
         }
 
-        corridorHash = ConnectRooms(roomCenters, roomBoundryList);
-        //floor.UnionWith(corridorHash);
+        var corridorHash = ConnectRooms(roomCenters, roomBoundryList);
 
+        //Create roomlinks and set path inside each room
         foreach (var roomColect in RoomCollection.roomCollectionList)//
         {
             roomColect.setConnections(wayRoomList);
+            roomColect.roomData.assignRoomPathing(roomColect.roomFloor, corridorHash);
         }
 
         //creates indiviudal roomlayout

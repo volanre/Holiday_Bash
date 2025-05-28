@@ -15,6 +15,8 @@ public class RoomCollection
     public HashSet<int> roomConnections;
     public HashSet<Vector2Int> roomFloor;
 
+    public RoomData roomData;
+
     /// <summary>
     /// Possible types include: "starting", "fight", "treasure", "boss", "elite_fight"
     /// </summary>
@@ -48,6 +50,7 @@ public class RoomCollection
         roomType = roomTypeList[Random.Range(0, roomTypeList.Count)];
         roomConnections = new HashSet<int>();
         enemyManager = manager;
+        roomData = new RoomData(floor);
         //roomCollectionList.Add(this);
     }
 
