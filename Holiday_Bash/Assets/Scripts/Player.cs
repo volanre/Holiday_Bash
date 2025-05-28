@@ -7,12 +7,15 @@ using UnityEngine.UIElements;
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
+    
 
     [NonSerialized]
     public int health = 500;
     public float moveSpeed = 5f;
     public float fireRate = 0.3f;
     public PlayerInputActions playerControls;
+
+    public float noiseTime = 0.175f;
 
 
     private Vector2 moveDirection = Vector2.zero, shootDirection = Vector2.zero;
@@ -21,6 +24,9 @@ public class Player : MonoBehaviour
     private float attackTimer = 0f;
 
     public ProjectileBehavior ProjectileItem;
+
+    [SerializeField]
+    private SoundEffectPlayer soundEffect;
     public float LaunchOffset;
 
     private Animator animator;
@@ -90,7 +96,7 @@ public class Player : MonoBehaviour
 
             Vector3 center = GetComponent<BoxCollider2D>().bounds.center;
             Vector3 bulletPosition = new Vector3(center.x + LaunchOffset * shootDirection.x, center.y + (LaunchOffset + 0.3f) * shootDirection.y, 0);
-
+            soundEffect.playSoundAtTime(noiseTime);
             var bullet = Instantiate(ProjectileItem, bulletPosition, transform.rotation);
             bullet.Initialize(new Vector3(shootDirection.x, shootDirection.y, 0));
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());

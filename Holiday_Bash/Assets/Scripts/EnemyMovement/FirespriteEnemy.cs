@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class FirespriteEnemy : AbstractEnemy
 {
+    [SerializeField]
+    private SoundEffectPlayer soundEffect;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,6 +31,11 @@ public class FirespriteEnemy : AbstractEnemy
             {
                 // Debug.Log("Firesprite shoots");
                 Shoot();
+                if (soundEffect != null)
+                {
+                    soundEffect.playSound();
+                }
+
             }
         }
     }
