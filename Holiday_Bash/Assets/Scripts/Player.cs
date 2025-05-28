@@ -22,20 +22,26 @@ public class Player : MonoBehaviour
 
     public ProjectileBehavior ProjectileItem;
     public float LaunchOffset;
+
+    private Animator animator;
     private void Awake()
     {
         playerControls = new PlayerInputActions();
+        animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
     {
         move = playerControls.Player.Move;
         move.Enable();
+        move.performed += MovePerformed;
+        move.canceled += MoveCancelled;
 
         attack = playerControls.Player.Attack;
         attack.Enable();
         // attack.performed += Attack;
     }
+
     private void OnDisable()
     {
         move.Disable();
@@ -51,7 +57,7 @@ public class Player : MonoBehaviour
     {
         updateTimers();
 
-        moveDirection = move.ReadValue<Vector2>();
+        //moveDirection = move.ReadValue<Vector2>();
 
 
 
@@ -63,6 +69,17 @@ public class Player : MonoBehaviour
 
     }
 
+    private void MovePerformed(InputAction.CallbackContext context)
+    {
+        moveDirection = context.ReadValue<Vector2>();
+        animator.SetBool("isWalking", true);
+    }
+    private void MoveCancelled(InputAction.CallbackContext context)
+    {
+        moveDirection = Vector2.zero;
+        animator.SetBool("isWalking", false);
+    }
+
     private void Shoot()
     {
         Vector2 attackInput = attack.ReadValue<Vector2>();
@@ -72,7 +89,7 @@ public class Player : MonoBehaviour
             shootDirection = attackInput.normalized; // Last active direction
 
             Vector3 center = GetComponent<BoxCollider2D>().bounds.center;
-            Vector3 bulletPosition = new Vector3(center.x + LaunchOffset * shootDirection.x, center.y + (LaunchOffset+0.3f) * shootDirection.y, 0);
+            Vector3 bulletPosition = new Vector3(center.x + LaunchOffset * shootDirection.x, center.y + (LaunchOffset + 0.3f) * shootDirection.y, 0);
 
             var bullet = Instantiate(ProjectileItem, bulletPosition, transform.rotation);
             bullet.Initialize(new Vector3(shootDirection.x, shootDirection.y, 0));
