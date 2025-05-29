@@ -1,56 +1,62 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class AbstractEnemy : MonoBehaviour
 {
-    public float speed = 0.5f;
-
+    /// <summary>
+    /// The time (in secs) all enemies must wait until they become active;
+    /// </summary>
+    public static float initalPause = 1f;
+    protected float intialPauseTimer = 0, attackTimer = .5f, boomTimer = .3f;
+    protected Vector2 moveDirection;
+    protected bool isDead = false, isCharging = false, forwardsCharging = false, initialized = false;
     private bool movingRight = true;
+    [NonSerialized] public float health = 999999999999f;
+    [NonSerialized] public RoomCollection room;
 
+
+    [Header("Enemy Properties")]
+    public float maxHealth = 500f;
+    public float speed = 0.5f;
+    public int damage = 20;
     /// <summary>
     /// Number of seconds between attacks
     /// </summary>
     public float fireRate = .5f;
-
     /// <summary>
     /// Radius enemy senses the player at
     /// </summary>
     public float detectionRadius = 8.5f;
-
     /// <summary>
     /// Radius enemy will attack the player at
     /// </summary>
     public float shootingRange = 5f;
-    public float health = 500f;
     public float bulletSpeed = 4.5f;
 
-    public int damage = 20;
-    protected float attackTimer = .5f;
 
+    [Header("Projectile Attributes")]
+    public ProjectileBehavior projectileItem;
     /// <summary>
     /// Effects shooting accuracy.
     /// Its the amount of variation in shooting vector.
     /// </summary>
     public float fireSpreadDegrees = 5f;
-    public ProjectileBehavior projectileItem;
     protected float launchOffset = 0.5f;
+
+    [Header("References")]
     public Player player;
-
     public Rigidbody2D rb;
-
-    protected Vector2Int moveDirection = Vector2Int.zero;
-
-    protected bool isDead = false;
-
-    public float boomTimer = .3f;
-
+    [SerializeField] protected Animator animator;
     [SerializeField] protected ParticleSystem deathExposion;
+    public SpriteRenderer spriteRenderer;
 
-    protected bool isCharging = false, forwardsCharging = false;
-    private float coastTimer = 0f, coastTime = 2f;
 
-    protected float chargingRadius;
 
-    protected Animator animator;
+    
+
+    /*  METHODS    */
+
 
     /// <summary>
     /// Checks if plyer is within detection range
@@ -82,8 +88,6 @@ public abstract class AbstractEnemy : MonoBehaviour
         return value;
     }
 
-
-
     /// <summary>
     /// Moves the rigidbody of the enemy in a random direction.
     /// </summary>
@@ -91,20 +95,26 @@ public abstract class AbstractEnemy : MonoBehaviour
     {
         var randomizer = Random.Range(0, 1000);
         int extra = 0;
-        if (randomizer < 50 || moveDirection == Vector2Int.zero) //small chance to change directions if its moving
+        if (randomizer < 50) //small chance to change directions if its moving
         {
             moveDirection = Direction2D.eightDirectionsList[Random.Range(0, Direction2D.eightDirectionsList.Count)];
             extra = 10;
         }
 
-        randomizer = Random.Range(0, 100);
+        randomizer = Random.Range(0, 1000);
         randomizer += extra;
-        if (randomizer < 50) //50% chance to not move
+        if (randomizer < 25) //small chance to not move
         {
-            return;
+            moveDirection = Vector2.zero;
         }
 
-        var walkSpeed = 2f + Random.Range(-0.7f, 0.8f);
+        if (!room.roomFloor.Contains(new Vector2Int((int)transform.position.x, (int)transform.position.y)))
+        {
+            moveDirection = room.roomCenter - new Vector2Int((int)transform.position.x, (int)transform.position.y);
+            moveDirection = moveDirection.normalized;
+        }
+
+        var walkSpeed = 1.5f + Random.Range(-0.7f, 0.8f);
         rb.linearVelocity = new Vector2(moveDirection.x * walkSpeed, moveDirection.y * walkSpeed);
     }
 
@@ -113,6 +123,7 @@ public abstract class AbstractEnemy : MonoBehaviour
     /// </summary>
     protected void targetPlayer()
     {
+        if (isCharging) return;
         if (inShootingRange() && !isCharging)
         {
             drift();
@@ -120,17 +131,16 @@ public abstract class AbstractEnemy : MonoBehaviour
         }
         Vector3 dir = player.transform.position - transform.position;
         dir = dir.normalized;
-        moveDirection = new Vector2Int((int)dir.x, (int)dir.y);
+        moveDirection = new Vector2(dir.x, dir.y);
 
-        rb.linearVelocity = new Vector2(dir.x * speed, dir.y * speed);
+        rb.linearVelocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
 
     }
-
 
     protected void updateTimers()
     {
         attackTimer += Time.deltaTime;
-        coastTimer += Time.deltaTime;
+        intialPauseTimer += Time.deltaTime;
     }
 
     protected void checkIfDead()
@@ -187,7 +197,7 @@ public abstract class AbstractEnemy : MonoBehaviour
     /// </summary>
     protected void Charge() //fix this.
     {
-        chargingRadius = 2f;
+        var chargingRadius = 2f;
         Vector3 chargeDirection = player.transform.position - transform.position;
         chargeDirection = chargeDirection.normalized; //gets direction without the magnitude
         float distanceData = Vector3.Distance(transform.position, player.transform.position);
@@ -197,13 +207,13 @@ public abstract class AbstractEnemy : MonoBehaviour
             //isCharging = false;
             forwardsCharging = true;
             attackTimer = -fireRate;
+            moveDirection = new Vector2(chargeDirection.x, chargeDirection.y);
             return;
         }
-        if (forwardsCharging) chargeDirection = rb.linearVelocity.normalized;
-        bulletSpeed = player.moveSpeed * 75;
-        var force = new Vector2(chargeDirection.x * bulletSpeed, chargeDirection.y * bulletSpeed);
-        rb.AddForce(force, ForceMode2D.Force);
-        //rb.linearVelocity = force;
+        if (!forwardsCharging) moveDirection = new Vector2(chargeDirection.x, chargeDirection.y);
+        var force = new Vector2(moveDirection.x * bulletSpeed, moveDirection.y * bulletSpeed);
+        //rb.AddForce(force, ForceMode2D.Force);
+        rb.linearVelocity = force;
     }
 
     /// <summary>
@@ -211,17 +221,44 @@ public abstract class AbstractEnemy : MonoBehaviour
     /// </summary>
     protected void defaultUpdateBehavior()
     {
+
         if (!playerDetected()) drift();
 
-        if (playerDetected() && (coastTimer > coastTime)) targetPlayer();
+        if (playerDetected()) targetPlayer();
 
         if (moveDirection.x >= 0 && !movingRight || moveDirection.x < 0 && movingRight)
         {
             flip();
         }
     }
-    private void flip() {
+
+    protected bool checkInitialized()
+    {
+
+        if (intialPauseTimer < initalPause)
+        {
+            initialized = false;
+            spriteRenderer.color = Color.gray;
+        }
+        else
+        {
+            if (!initialized)
+            {
+                moveDirection = Direction2D.getRandomCardinalDirection();
+                health = maxHealth;
+                initialized = true;
+                spriteRenderer.color = Color.white;
+            }
+        }
+
+
+        return initialized;
+    }
+    private void flip()
+    {
         movingRight = !movingRight;
-        transform.localScale *= -1;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }

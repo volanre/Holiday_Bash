@@ -126,6 +126,7 @@ public class RoomCollection
                         }
                     }
                     var enemy = enemyManager.CreateBaddie(position);
+                    enemy.room = this;
                     enemies.Add(enemy);
 
                 }

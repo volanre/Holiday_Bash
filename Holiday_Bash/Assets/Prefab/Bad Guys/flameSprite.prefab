@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5197906880099771900}
+  - component: {fileID: 8542137653130969406}
   - component: {fileID: 6688447295352612831}
   - component: {fileID: 1113503850533169613}
-  - component: {fileID: 8542137653130969406}
   - component: {fileID: 7318814945973549908}
   m_Layer: 0
   m_Name: flameSprite
@@ -37,6 +37,33 @@ Transform:
   - {fileID: 1095805953952355815}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8542137653130969406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695637514254731660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1a0ebdca2fea14aa7e8144c995a76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 300
+  speed: 3
+  damage: 20
+  fireRate: 0.8
+  detectionRadius: 7
+  shootingRange: 5
+  bulletSpeed: 9
+  projectileItem: {fileID: 7008929205646833749, guid: e0f899a509ca2374487a0b1bf0660bed, type: 3}
+  fireSpreadDegrees: 15
+  player: {fileID: 0}
+  rb: {fileID: 7318814945973549908}
+  animator: {fileID: 0}
+  deathExposion: {fileID: 3556448659331345684}
+  spriteRenderer: {fileID: 6688447295352612831}
+  soundEffect: {fileID: 8037203408117805344}
 --- !u!212 &6688447295352612831
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -138,32 +165,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.7, y: 0.95}
   m_EdgeRadius: 0
---- !u!114 &8542137653130969406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1695637514254731660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c1a0ebdca2fea14aa7e8144c995a76e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  fireRate: 0.8
-  detectionRadius: 7
-  shootingRange: 5
-  health: 500
-  bulletSpeed: 9
-  damage: 20
-  fireSpreadDegrees: 15
-  projectileItem: {fileID: 7008929205646833749, guid: e0f899a509ca2374487a0b1bf0660bed, type: 3}
-  player: {fileID: 0}
-  rb: {fileID: 7318814945973549908}
-  boomTimer: 0.3
-  deathExposion: {fileID: 3556448659331345684}
-  soundEffect: {fileID: 8037203408117805344}
 --- !u!50 &7318814945973549908
 Rigidbody2D:
   serializedVersion: 5

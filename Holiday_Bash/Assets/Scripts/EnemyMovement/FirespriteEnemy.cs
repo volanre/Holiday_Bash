@@ -15,6 +15,9 @@ public class FirespriteEnemy : AbstractEnemy
     // Update is called once per frame
     void Update()
     {
+        updateTimers();
+        if (!checkInitialized()) return;
+
         checkIfDead();
         if (isDead)
         {
@@ -24,7 +27,7 @@ public class FirespriteEnemy : AbstractEnemy
                 suicide();
             }
         }
-        updateTimers();
+        
         if (inShootingRange())
         {
             if (attackTimer >= fireRate)
@@ -42,6 +45,7 @@ public class FirespriteEnemy : AbstractEnemy
 
     private void FixedUpdate()
     {
+        if (!initialized) return;
         defaultUpdateBehavior();
     }
 }

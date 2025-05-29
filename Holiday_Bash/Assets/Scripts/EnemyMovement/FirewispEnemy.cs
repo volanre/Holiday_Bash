@@ -8,13 +8,16 @@ public class FirewispEnemy : AbstractEnemy
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        if(animator == null) animator = GetComponent<Animator>();
     }
 
     void Update()
     {
+        updateTimers();
+        if (!checkInitialized()) return;
+
         if (!isCharging) animator.SetBool("isMoving", false);
-        else if(isCharging) animator.SetBool("isMoving", true);
+        else if (isCharging) animator.SetBool("isMoving", true);
 
         checkIfDead();
         if (isDead)
@@ -25,12 +28,13 @@ public class FirewispEnemy : AbstractEnemy
                 suicide();
             }
         }
-        updateTimers();
+        
         
     }
 
     private void FixedUpdate()
     {
+        if (!initialized) return;
         defaultUpdateBehavior();
 
         if (inShootingRange())
@@ -40,7 +44,7 @@ public class FirewispEnemy : AbstractEnemy
                 if (Random.value > 0.007f)
                 {
                     isCharging = true;
-                    forwardsCharging = true;
+                    forwardsCharging = false;
                 }
             }
             if (isCharging) Charge();
