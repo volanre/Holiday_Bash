@@ -12,6 +12,7 @@ public class RoomData
     public HashSet<Vector2Int> floorInsideMiddle = new HashSet<Vector2Int>();
 
     public HashSet<Vector2Int> floorInPath = new HashSet<Vector2Int>();
+    public List<Vector2Int> accessiblePaths = new List<Vector2Int>();
 
     public RoomData(HashSet<Vector2Int> floorTiles)
     {
@@ -64,7 +65,7 @@ public class RoomData
                 floorInPath.Add(tile);
             }
         }
-        
     }
+    
 }
     

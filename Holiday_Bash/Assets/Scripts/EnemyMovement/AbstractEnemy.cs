@@ -169,7 +169,6 @@ public abstract class AbstractEnemy : MonoBehaviour
     protected void Shoot()
     {
         float maxAngleRadians = fireSpreadDegrees * Mathf.Deg2Rad;
-        attackTimer = 0f;
         Vector3 shootDirection = player.transform.position - transform.position;
         shootDirection = shootDirection.normalized; //gets direction without the magnitude
 

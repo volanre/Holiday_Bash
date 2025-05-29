@@ -18,13 +18,15 @@ public class Player : MonoBehaviour
 
     [Header("Player Properties")]
     [SerializeField] private int maxHealth = 500;
+    [SerializeField] private int damage = 100;
     [SerializeField] private float moveSpeed = 5f, fireRate = 0.3f;
     [SerializeField] private AudioClip defaultImpactSFX;
     [Header("Projectile Attributes")]
     public float LaunchOffset;
     public ProjectileBehavior ProjectileItem;
+    [SerializeField] float bulletSpeed;
     public AudioClip shootingSFX;
-    
+
     [Header("References")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
@@ -32,15 +34,6 @@ public class Player : MonoBehaviour
     public SoundEffectPlayer noiseMaker;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private HealthBarUI healthBar;
-
-
-
-
-
-
-
-    [SerializeField]
-
 
 
     private void Awake()
@@ -109,7 +102,7 @@ public class Player : MonoBehaviour
             Vector3 bulletPosition = new Vector3(center.x + LaunchOffset * shootDirection.x, center.y + (LaunchOffset + 0.3f) * shootDirection.y, 0);
             noiseMaker.PlaySpecificSound(shootingSFX);
             var bullet = Instantiate(ProjectileItem, bulletPosition, transform.rotation);
-            bullet.Initialize(new Vector3(shootDirection.x, shootDirection.y, 0));
+            bullet.Initialize(new Vector3(shootDirection.x, shootDirection.y, 0), damage, bulletSpeed);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
         }
@@ -119,7 +112,7 @@ public class Player : MonoBehaviour
         DamageEffects(damageTaken);
         noiseMaker.source.PlayOneShot(defaultImpactSFX, 0.9f);
 
-        
+
     }
     public void TakeDamage(int damageTaken, AudioClip impactAudio)
     {
@@ -139,7 +132,7 @@ public class Player : MonoBehaviour
         {
             Suicide();
         }
-        
+
     }
     private void Suicide()
     {
@@ -152,7 +145,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        rb.linearVelocity = getVelocity();
     }
     // private void Attack(InputAction.CallbackContext context)
     // {
@@ -169,6 +162,10 @@ public class Player : MonoBehaviour
     public Vector3Int getPosition()
     {
         return Vector3Int.FloorToInt(transform.position);
+    }
+    public Vector2 getVelocity()
+    {
+        return new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
 
 }

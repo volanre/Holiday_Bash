@@ -123,6 +123,9 @@ public class ProceduralGenerationAlgorithms : MonoBehaviour
 
 public static class Direction2D
 {
+    /// <summary>
+    /// Order is Up, Right, Down, Left
+    /// </summary>
     public static List<Vector2Int> cardinalDirectionsList = new List<Vector2Int>
     {
         new Vector2Int(0,1), //up

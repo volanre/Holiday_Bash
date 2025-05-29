@@ -34,6 +34,7 @@ public class FirespriteEnemy : AbstractEnemy
             {
                 // Debug.Log("Firesprite shoots");
                 Shoot();
+                attackTimer = 0f;
                 if (soundEffect != null)
                 {
                     soundEffect.PlayLoadedSound();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -33,6 +34,7 @@ public class RoomCollection
     public int difficulty = 1;
 
     private EnemyManager enemyManager;
+    private List<Vector2Int> accessiblePaths;
 
 
     public static List<string> roomTypeList = new List<string>() { "fight", "treasure", "boss", "elite_fight" };
@@ -49,13 +51,24 @@ public class RoomCollection
         roomBound = bound;
         roomCenter = center;
         roomFloor = floor;
-        roomType = roomTypeList[Random.Range(0, roomTypeList.Count)];
+        //roomType = roomTypeList[Random.Range(0, roomTypeList.Count)]; //turn this back on later
+        roomType = roomTypeList[0]; //sets all of them to fight type rooms
         roomConnections = new HashSet<int>();
         enemyManager = manager;
         propPositions = new HashSet<Vector2Int>();
         propReferences = new List<GameObject>();
-        roomData = new RoomData(floor);
+        roomData = new RoomData(floor); //call the roomdata pathing function 
         //roomCollectionList.Add(this);
+    }
+
+    public void findAccessiblePaths()
+    {
+        RoomGraph roomGraph = new RoomGraph(roomFloor);
+        HashSet<Vector2Int> newFloor = new HashSet<Vector2Int>(roomFloor);
+        newFloor.IntersectWith(roomData.floorInPath);
+
+        Dictionary<Vector2Int, Vector2Int> roomMap = roomGraph.RunBFS(roomFloor.First(), propPositions);
+        accessiblePaths = roomMap.Keys.OrderBy(x => Guid.NewGuid()).ToList();
     }
 
     /// <summary>
@@ -70,30 +83,34 @@ public class RoomCollection
 
     }
 
-
-    public void checkIfAlive()
+    public void CheckEnemiesRemaining()
     {
-        List<int> list = new List<int>();
         for (int i = 0; i < enemies.Count; i++)
         {
             if (enemies[i].health <= 0)
             {
                 enemies.Remove(enemies[i]);
                 i--;
-
             }
         }
-
-    
     }
 
+    public void startBossFight(int FloorOfTheDungeon)
+    {
+        Portal.toggleActive(false);
+        enemies = new List<AbstractEnemy>();
+        var position = accessiblePaths[Random.Range(0, accessiblePaths.Count)];
+        var boss = enemyManager.CreateBaddie(position, FloorOfTheDungeon, true);
+        boss.room = this;
+        enemies.Add(boss);
+    }
 
     /// <summary>
     /// Spawns new wave of enemies if room isn't cleared, no enemies are left, and waves are still leftover
     /// </summary>
     public void spawnNextWave()
     {
-        checkIfAlive();
+        CheckEnemiesRemaining();
         if (status.Equals("cleared"))
         {
             Portal.toggleActive(true);
@@ -116,10 +133,10 @@ public class RoomCollection
                 for (int i = 0; i < badGuyNumber; i++)
                 {
                     bool done = false;
-                    var position = roomCenter;
+                    Vector2Int position = roomCenter;
                     while (!done)
                     {
-                        position = floorList[Random.Range(0, floorList.Count)];
+                        position = accessiblePaths[Random.Range(0, accessiblePaths.Count)];
                         if (!usedTiles.Contains(position))
                         {
                             done = true;
@@ -128,10 +145,7 @@ public class RoomCollection
                     var enemy = enemyManager.CreateBaddie(position);
                     enemy.room = this;
                     enemies.Add(enemy);
-
                 }
-
-
                 wavesLeft--;
             }
         }
@@ -170,6 +184,52 @@ public class RoomCollection
             }
         }
     }
+}
 
+public class RoomGraph
+{
+    Dictionary<Vector2Int, List<Vector2Int>> graph = new Dictionary<Vector2Int, List<Vector2Int>>();
+    public RoomGraph(HashSet<Vector2Int> flooring)
+    {
+        foreach (var pos in flooring)
+        {
+            List<Vector2Int> neightbors = new List<Vector2Int>();
+            foreach (Vector2Int dir in Direction2D.cardinalDirectionsList)
+            {
+                Vector2Int newPos = pos + dir;
+                if (flooring.Contains(newPos))
+                {
+                    neightbors.Add(newPos);
+                }
+            }
+            graph.Add(pos, neightbors);
+        }
+    }
+    public Dictionary<Vector2Int, Vector2Int> RunBFS(Vector2Int startPos, HashSet<Vector2Int> occupiedNodes)
+    {
+        Queue<Vector2Int> nodesToVisit = new Queue<Vector2Int>();
+        nodesToVisit.Enqueue(startPos);
 
+        HashSet<Vector2Int> visitedNodes = new HashSet<Vector2Int>();
+        visitedNodes.Add(startPos);
+
+        Dictionary<Vector2Int, Vector2Int> map = new Dictionary<Vector2Int, Vector2Int>();
+        map.Add(startPos, startPos);
+        while (nodesToVisit.Count > 0)
+        {
+            Vector2Int node = nodesToVisit.Dequeue();
+            List<Vector2Int> neighbors = graph[node];
+            foreach (Vector2Int pos in neighbors)
+            {
+                if (!visitedNodes.Contains(pos) && !occupiedNodes.Contains(pos))
+                {
+                    nodesToVisit.Enqueue(pos);
+                    visitedNodes.Add(pos);
+                    map[pos] = node;
+                }
+            }
+        }
+        return map;
+        
+    }
 }

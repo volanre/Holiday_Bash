@@ -62,6 +62,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         {
             roomColect.setConnections(wayRoomList);
             roomColect.roomData.assignRoomPathing(roomColect.roomFloor, corridorHash);
+            roomColect.findAccessiblePaths();
         }
 
         //creates indiviudal roomlayout
