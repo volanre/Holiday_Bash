@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -6,33 +7,46 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    
 
-    public int health = 500;
-    public float moveSpeed = 5f;
-    public float fireRate = 0.3f;
-    public PlayerInputActions playerControls;
-
-    public float noiseTime = 0.175f;
-
-
+    private float attackTimer = 0f;
     private Vector2 moveDirection = Vector2.zero, shootDirection = Vector2.zero;
     private InputAction move;
     private InputAction attack;
-    private float attackTimer = 0f;
+    private AudioClip currentImpactSFX;
 
+    [NonSerialized] public int health;
+
+    [Header("Player Properties")]
+    [SerializeField] private int maxHealth = 500;
+    [SerializeField] private float moveSpeed = 5f, fireRate = 0.3f;
+    [SerializeField] private AudioClip defaultImpactSFX;
+    [Header("Projectile Attributes")]
+    public float LaunchOffset;
     public ProjectileBehavior ProjectileItem;
+    public AudioClip shootingSFX;
+    
+    [Header("References")]
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
+    public PlayerInputActions playerControls;
+    public SoundEffectPlayer noiseMaker;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private HealthBarUI healthBar;
+
+
+
+
+
+
 
     [SerializeField]
-    private SoundEffectPlayer soundEffect;
-    public float LaunchOffset;
 
-    private Animator animator;
+
+
     private void Awake()
     {
-        playerControls = new PlayerInputActions();
-        animator = GetComponent<Animator>();
+        if (playerControls == null) playerControls = new PlayerInputActions();
+        if (animator == null) animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -55,16 +69,14 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-
+        health = maxHealth;
+        healthBar.setMaxHealth(maxHealth);
+        healthBar.setCurrentHealth(maxHealth);
     }
 
     void Update()
     {
-        updateTimers();
-
-        //moveDirection = move.ReadValue<Vector2>();
-
-
+        UpdateTimers();
 
         if (attackTimer >= fireRate)
         {
@@ -95,18 +107,52 @@ public class Player : MonoBehaviour
 
             Vector3 center = GetComponent<BoxCollider2D>().bounds.center;
             Vector3 bulletPosition = new Vector3(center.x + LaunchOffset * shootDirection.x, center.y + (LaunchOffset + 0.3f) * shootDirection.y, 0);
-            soundEffect.playSoundAtTime(noiseTime);
+            noiseMaker.PlaySpecificSound(shootingSFX);
             var bullet = Instantiate(ProjectileItem, bulletPosition, transform.rotation);
             bullet.Initialize(new Vector3(shootDirection.x, shootDirection.y, 0));
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
         }
     }
+    public void TakeDamage(int damageTaken)
+    {
+        DamageEffects(damageTaken);
+        noiseMaker.source.PlayOneShot(defaultImpactSFX, 0.9f);
+
+        
+    }
+    public void TakeDamage(int damageTaken, AudioClip impactAudio)
+    {
+        DamageEffects(damageTaken);
+        noiseMaker.source.PlayOneShot(impactAudio, 1f);
+    }
+
+    private void DamageEffects(int damage)
+    {
+        health -= damage;
+        spriteRenderer.color = Color.red;
+        Invoke("ResetColor", 0.05f);
+        var clampedHealth = Mathf.Clamp(health, 0, maxHealth);
+        healthBar.setCurrentHealth(clampedHealth);
+
+        if (health <= 0)
+        {
+            Suicide();
+        }
+        
+    }
+    private void Suicide()
+    {
+        Destroy(gameObject);
+    }
+    private void ResetColor()
+    {
+        spriteRenderer.color = Color.white;
+    }
 
     private void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
-
     }
     // private void Attack(InputAction.CallbackContext context)
     // {
@@ -115,7 +161,7 @@ public class Player : MonoBehaviour
     //     Vector3 bulletPosition = (transform.position);
     //     Instantiate(ProjectileItem, transform.position, transform.rotation);
     // }
-    private void updateTimers()
+    private void UpdateTimers()
     {
         attackTimer += Time.deltaTime;
     }

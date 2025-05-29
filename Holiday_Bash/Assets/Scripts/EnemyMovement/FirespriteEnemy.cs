@@ -36,7 +36,7 @@ public class FirespriteEnemy : AbstractEnemy
                 Shoot();
                 if (soundEffect != null)
                 {
-                    soundEffect.playSound();
+                    soundEffect.PlayLoadedSound();
                 }
 
             }

@@ -11,6 +11,8 @@ public class ProjectileBehavior : MonoBehaviour
 
     public int damage = 100;
 
+    public AudioClip playerImpactNoise;
+
     [NonSerialized]
     public bool targetEnemy = true, targetPlayer = true;
 
@@ -47,7 +49,15 @@ public class ProjectileBehavior : MonoBehaviour
         }
         else if (other.CompareTag("Player") && targetPlayer)
         {
-            other.GetComponent<Player>().health -= damage;
+            Player player = other.GetComponent<Player>();
+            if (playerImpactNoise != null)
+            {
+                player.TakeDamage(damage, playerImpactNoise);
+            }
+            else
+            {
+                player.TakeDamage(damage);
+            }
         }
     }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 public class SoundEffectPlayer : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource source;
+    public AudioSource source;
 
     [SerializeField]
     private AudioClip sound;
@@ -11,13 +11,22 @@ public class SoundEffectPlayer : MonoBehaviour
     [SerializeField]
     private float volume = 0.7f;
 
-    public void playSound()
+    public void PlayLoadedSound()
     {
         if (source != null && sound != null)
         {
             source.PlayOneShot(sound, volume);
         }
     }
+    public void PlaySpecificSound(AudioClip noise)
+    {
+        if (source != null)
+        {
+            source.PlayOneShot(noise, volume);
+        }
+        else Debug.Log("Error: No AudioSource connected");
+    }
+
     /// <summary>
     ///Plays at a specifc time
     /// </summary>

@@ -66,7 +66,7 @@ public class FirewispEnemy : AbstractEnemy
         }
         else if (other.CompareTag("Player"))
         {
-            other.GetComponent<Player>().health -= damage;
+            player.TakeDamage(damage);
         }
     }
 }
