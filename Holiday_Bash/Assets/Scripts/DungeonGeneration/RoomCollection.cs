@@ -109,7 +109,8 @@ public class RoomCollection
             if (wavesLeft > 0)
             {
                 List<Vector2Int> floorList = roomFloor.ToList();
-                List<Vector2Int> usedTiles = new List<Vector2Int>();
+                HashSet<Vector2Int> usedTiles = new HashSet<Vector2Int>();
+                usedTiles.UnionWith(propPositions);
                 var badGuyNumber = Random.Range(difficulty * 3, difficulty * 3 + 5);
 
                 for (int i = 0; i < badGuyNumber; i++)

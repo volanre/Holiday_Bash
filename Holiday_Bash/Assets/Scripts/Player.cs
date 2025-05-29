@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     
 
-    [NonSerialized]
     public int health = 500;
     public float moveSpeed = 5f;
     public float fireRate = 0.3f;

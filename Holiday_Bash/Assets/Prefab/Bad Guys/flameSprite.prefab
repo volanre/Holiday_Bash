@@ -150,9 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1a0ebdca2fea14aa7e8144c995a76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  speed: 3
   fireRate: 0.8
-  detectionRadius: 10
+  detectionRadius: 7
   shootingRange: 5
   health: 500
   bulletSpeed: 9

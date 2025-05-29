@@ -3,9 +3,22 @@ using UnityEngine;
 public abstract class AbstractEnemy : MonoBehaviour
 {
     public float speed = 0.5f;
+
+    private bool movingRight = true;
+
+    /// <summary>
+    /// Number of seconds between attacks
+    /// </summary>
     public float fireRate = .5f;
+
+    /// <summary>
+    /// Radius enemy senses the player at
+    /// </summary>
     public float detectionRadius = 8.5f;
 
+    /// <summary>
+    /// Radius enemy will attack the player at
+    /// </summary>
     public float shootingRange = 5f;
     public float health = 500f;
     public float bulletSpeed = 4.5f;
@@ -13,6 +26,10 @@ public abstract class AbstractEnemy : MonoBehaviour
     public int damage = 20;
     protected float attackTimer = .5f;
 
+    /// <summary>
+    /// Effects shooting accuracy.
+    /// Its the amount of variation in shooting vector.
+    /// </summary>
     public float fireSpreadDegrees = 5f;
     public ProjectileBehavior projectileItem;
     protected float launchOffset = 0.5f;
@@ -20,7 +37,7 @@ public abstract class AbstractEnemy : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    private Vector2Int moveDirection = Vector2Int.zero;
+    protected Vector2Int moveDirection = Vector2Int.zero;
 
     protected bool isDead = false;
 
@@ -28,6 +45,12 @@ public abstract class AbstractEnemy : MonoBehaviour
 
     [SerializeField] protected ParticleSystem deathExposion;
 
+    protected bool isCharging = false, forwardsCharging = false;
+    private float coastTimer = 0f, coastTime = 2f;
+
+    protected float chargingRadius;
+
+    protected Animator animator;
 
     /// <summary>
     /// Checks if plyer is within detection range
@@ -36,14 +59,11 @@ public abstract class AbstractEnemy : MonoBehaviour
     protected bool playerDetected()
     {
         bool value = false;
-
         float distanceData = Vector3.Distance(transform.position, player.transform.position);
         if (distanceData < detectionRadius)
         {
             value = true;
         }
-
-
         return value;
     }
 
@@ -54,29 +74,24 @@ public abstract class AbstractEnemy : MonoBehaviour
     protected bool inShootingRange()
     {
         bool value = false;
-
         float distanceData = Vector3.Distance(transform.position, player.transform.position);
         if (distanceData < shootingRange)
         {
             value = true;
         }
-
-
         return value;
     }
 
 
 
     /// <summary>
-    /// Moves the rigidbody of the enemy based on its speed and random variables.
-    /// If player is within range it the function doesn't run.
+    /// Moves the rigidbody of the enemy in a random direction.
     /// </summary>
     protected void drift()
     {
-        if (playerDetected()) return;
         var randomizer = Random.Range(0, 1000);
         int extra = 0;
-        if (randomizer < 50) //small chance to change directions if its moving
+        if (randomizer < 50 || moveDirection == Vector2Int.zero) //small chance to change directions if its moving
         {
             moveDirection = Direction2D.eightDirectionsList[Random.Range(0, Direction2D.eightDirectionsList.Count)];
             extra = 10;
@@ -89,22 +104,25 @@ public abstract class AbstractEnemy : MonoBehaviour
             return;
         }
 
-        var walkSpeed = 1f + Random.Range(-0.7f, 0.8f);
+        var walkSpeed = 2f + Random.Range(-0.7f, 0.8f);
         rb.linearVelocity = new Vector2(moveDirection.x * walkSpeed, moveDirection.y * walkSpeed);
     }
 
     /// <summary>
-    /// Moves towards the player if player is detected and not inside shooting range.
+    /// Moves towards the player
     /// </summary>
-    protected void targetingPlayer()
+    protected void targetPlayer()
     {
-        if (!playerDetected()) return;
-        if (inShootingRange()) return;
-
-        var dir = player.transform.position - transform.position;
+        if (inShootingRange() && !isCharging)
+        {
+            drift();
+            return;
+        }
+        Vector3 dir = player.transform.position - transform.position;
+        dir = dir.normalized;
         moveDirection = new Vector2Int((int)dir.x, (int)dir.y);
 
-        rb.linearVelocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
+        rb.linearVelocity = new Vector2(dir.x * speed, dir.y * speed);
 
     }
 
@@ -112,6 +130,7 @@ public abstract class AbstractEnemy : MonoBehaviour
     protected void updateTimers()
     {
         attackTimer += Time.deltaTime;
+        coastTimer += Time.deltaTime;
     }
 
     protected void checkIfDead()
@@ -160,5 +179,49 @@ public abstract class AbstractEnemy : MonoBehaviour
         bullet.targetEnemy = false;
         bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), damage, bulletSpeed);
         Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+    }
+
+    /// <summary>
+    /// Rapidly move enemy towards the player.
+    /// Homing movement until halfway between charging radius then coasts the rest of the way
+    /// </summary>
+    protected void Charge() //fix this.
+    {
+        chargingRadius = 2f;
+        Vector3 chargeDirection = player.transform.position - transform.position;
+        chargeDirection = chargeDirection.normalized; //gets direction without the magnitude
+        float distanceData = Vector3.Distance(transform.position, player.transform.position);
+        if (distanceData < chargingRadius && forwardsCharging == false)
+        {
+            //coastTimer = 0;
+            //isCharging = false;
+            forwardsCharging = true;
+            attackTimer = -fireRate;
+            return;
+        }
+        if (forwardsCharging) chargeDirection = rb.linearVelocity.normalized;
+        bulletSpeed = player.moveSpeed * 75;
+        var force = new Vector2(chargeDirection.x * bulletSpeed, chargeDirection.y * bulletSpeed);
+        rb.AddForce(force, ForceMode2D.Force);
+        //rb.linearVelocity = force;
+    }
+
+    /// <summary>
+    /// Run this in fixedUpdate to have drifting, player targeting, and sprite image flipping
+    /// </summary>
+    protected void defaultUpdateBehavior()
+    {
+        if (!playerDetected()) drift();
+
+        if (playerDetected() && (coastTimer > coastTime)) targetPlayer();
+
+        if (moveDirection.x >= 0 && !movingRight || moveDirection.x < 0 && movingRight)
+        {
+            flip();
+        }
+    }
+    private void flip() {
+        movingRight = !movingRight;
+        transform.localScale *= -1;
     }
 }

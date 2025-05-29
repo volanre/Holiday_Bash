@@ -9,7 +9,7 @@ public class ProjectileBehavior : MonoBehaviour
     public float extraRotationDegrees = 0;
     private Vector3 direction = Vector3.zero;
 
-    private int damage = 100;
+    public int damage = 100;
 
     [NonSerialized]
     public bool targetEnemy = true, targetPlayer = true;

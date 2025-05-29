@@ -42,7 +42,6 @@ public class FirespriteEnemy : AbstractEnemy
 
     private void FixedUpdate()
     {
-        drift();
-        targetingPlayer();
+        defaultUpdateBehavior();
     }
 }
