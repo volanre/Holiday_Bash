@@ -9,6 +9,7 @@ public class MenuAudio : MonoBehaviour
     private AudioSource source;
 
     private AudioClip currentMusic;
+    public AudioClip clickSFX;
     private bool isPlaying;
 
 
@@ -17,16 +18,21 @@ public class MenuAudio : MonoBehaviour
         source = GetComponent<AudioSource>();
         currentMusic = audioList[Random.Range(0, audioList.Count)];
         isPlaying = source.isPlaying;
-
     }
 
     void Update()
     {
         isPlaying = source.isPlaying;
+        float curVol = 0.7f;
+        if (!Player.isAlive) curVol *= 0.8f;
         if (!isPlaying)
         {
             currentMusic = audioList[Random.Range(0, audioList.Count)];
-            source.PlayOneShot(currentMusic, 0.7f);            
+            source.PlayOneShot(currentMusic, curVol * GameManager.MusicVolume);
         }
+    }
+    public void playClick()
+    {
+        source.PlayOneShot(clickSFX, 0.9f * GameManager.SFXVolume);
     }
 }

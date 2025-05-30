@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -39,5 +40,9 @@ public class ScreenManager : MonoBehaviour
     public static void LoadScene(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
+    }
+    public static void ResetCurrentScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

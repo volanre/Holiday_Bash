@@ -5,6 +5,8 @@ using System;
 using Unity.Collections;
 using System.Linq;
 using Random = UnityEngine.Random;
+using UnityEngine.Rendering;
+using UnityEditor.Rendering;
 
 
 
@@ -60,13 +62,13 @@ public class PropPlacementManager : MonoBehaviour
             .ToList();
 
             placeProps(room, downWallProps, room.roomData.floorNearDownWall, PlacementOrigin.BottomRight);
-            
+
             //Middle
             List<Prop> middleProps = propList
             .Where(x => x.innerMiddle)
             .OrderByDescending(x => x.propSize.x * x.propSize.y)
             .ToList();
-            
+
             placeProps(room, middleProps, room.roomData.floorInsideMiddle, PlacementOrigin.BottomRight);
         }
     }
@@ -245,6 +247,7 @@ public class PropPlacementManager : MonoBehaviour
             placePropAt(room, emptySpots[i], futureProp);
         }
     }
+
 }
 
 public enum PlacementOrigin {

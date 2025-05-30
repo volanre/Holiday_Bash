@@ -12,7 +12,7 @@ public class EnemyManager : MonoBehaviour
 
     public List<AbstractEnemy> enemyTypes = new List<AbstractEnemy>();
 
-    [SerializeField] public Player player;
+    [NonSerialized] public Player player;
 
     [SerializeField] private List<AbstractEnemy> Floor1Bosses = new List<AbstractEnemy>();
 

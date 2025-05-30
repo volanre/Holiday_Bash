@@ -84,12 +84,17 @@ public class WayroomGenerator
             }
             //creates room gates that link to this wayroom
             WallGenerator.CreateGatesForWayroom(tilemapVisualizer, wayroomCorridorList[i], new Vector2Int(center.x, center.y - offset));
-            
-                
-                
+
+
+
 
         }
         Debug.Log(text);
+    }
+    public static void ResetWayRooms()
+    {
+        wayroomBoundsList = new List<BoundsInt>();
+        wayroomCorridorList = new List<HashSet<Vector2Int>>();
     }
 
 }

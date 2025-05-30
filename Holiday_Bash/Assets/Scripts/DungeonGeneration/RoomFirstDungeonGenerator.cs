@@ -40,6 +40,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     {
         WallGenerator.resetWallPositions();
         Portal.resetPortalList();
+        RoomCollection.resetRoomCollectionsList();
+        WayroomGenerator.ResetWayRooms();
 
 
         var roomBoundryList = ProceduralGenerationAlgorithms.PersonalGridSpaceGeneration(new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), maxRoomWidth, maxRoomHeight, maxRoomCount, minRoomCount);

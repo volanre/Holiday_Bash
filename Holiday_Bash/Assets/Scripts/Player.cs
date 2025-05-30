@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     public PlayerInputActions playerControls;
     public SoundEffectPlayer noiseMaker;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private HealthBarUI healthBar;
+    [SerializeField] public HealthBarUI healthBar;
 
     [Header("Audio Noises")]
     public AudioClip shootingSFX;
@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        isAlive = true;
         if (playerControls == null) playerControls = new PlayerInputActions();
         if (animator == null) animator = GetComponent<Animator>();
     }
@@ -83,8 +84,6 @@ public class Player : MonoBehaviour
         {
             Shoot();
         }
-
-
     }
 
     private void MovePerformed(InputAction.CallbackContext context)
@@ -108,7 +107,7 @@ public class Player : MonoBehaviour
 
             Vector3 center = GetComponent<BoxCollider2D>().bounds.center;
             Vector3 bulletPosition = new Vector3(center.x + LaunchOffset * shootDirection.x, center.y + (LaunchOffset + 0.3f) * shootDirection.y, 0);
-            noiseMaker.PlaySpecificSound(shootingSFX, 0.5f);
+            noiseMaker.PlaySpecificSound(shootingSFX, 0.2f);
             var bullet = Instantiate(ProjectileItem, bulletPosition, transform.rotation);
             bullet.Initialize(new Vector3(shootDirection.x, shootDirection.y, 0), damage, bulletSpeed);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
@@ -143,12 +142,20 @@ public class Player : MonoBehaviour
     }
     private void Suicide()
     {
-        isAlive = false;
         rb.linearVelocity = Vector2.zero;
         OnDisable();
         animator.SetBool("isDead", true);
-        noiseMaker.PlaySpecificSound(deathSound, 1.2f);
+        if (isAlive)
+        {
+            noiseMaker.PlayLongSound(deathSound, 1.2f);
+            var time = deathSound.length;
+            Invoke("CompleteDeath", time);
+        }
         //Destroy(gameObject);
+        }
+    private void CompleteDeath()
+    {
+        isAlive = false;
     }
     private void ResetColor()
     {

@@ -37,7 +37,7 @@ public class FirespriteEnemy : AbstractEnemy
                 attackTimer = 0f;
                 if (soundEffect != null)
                 {
-                    soundEffect.PlayLoadedSound(0.7f);
+                    soundEffect.PlayLoadedSound(0.2f);
                 }
 
             }

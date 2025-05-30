@@ -1,26 +1,49 @@
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework.Constraints;
+using Unity.Mathematics;
 using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-
-    [SerializeField]
-    private Player player;
-    [SerializeField]
-    private RoomFirstDungeonGenerator dungeon;
-
-    [SerializeField]
-    private PropPlacementManager propPlacer;
-
     private int FloorOfTheDungeon = 1;
+    [Header("Resources")]
+    [SerializeField] private Player playerPrefab;
+
+    [Header("References")]
+    [SerializeField] private RoomFirstDungeonGenerator dungeon;
+
+    [SerializeField] private PropPlacementManager propPlacer;
+    [SerializeField] private EnemyManager enemyManager;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private GameObject deathScreen;
+    [SerializeField] HealthBarUI HP_Bar_UI;
+
     [Header("Settings")]
-    [SerializeField,Range(0,10)] public static float SFXVolume = 1;
+    [SerializeField, Range(0, 10)] public static float SFXVolume = 1;
+    [SerializeField, Range(0, 10)] public static float MusicVolume = 1;
+
+    private Player player;
 
     void Start()
     {
+        StartGame();
+    }
+
+    private void StartGame()
+    {
+        
+        FloorOfTheDungeon = 1;
+        player = Instantiate(playerPrefab);
+
+        player.healthBar = HP_Bar_UI;
+        mainCamera.transform.SetParent(player.transform, false);
+        enemyManager.player = player;
+
+        deathScreen.SetActive(false);
         dungeon.GenerateDungeon();
         propPlacer.ProcessRooms();
         var startingPosition = setStartingPosition();
@@ -38,33 +61,40 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        foreach (var room in RoomCollection.roomCollectionList)
+        if (Player.isAlive)
         {
-            if (room.roomBound.Contains(player.getPosition()))
+            foreach (var room in RoomCollection.roomCollectionList)
             {
-
-                if (room.status.Equals("empty"))
+                if (room.roomBound.Contains(player.getPosition()))
                 {
-                    Debug.Log("player is in this room: " + room.roomCenter);
-                    if (room.roomType.Equals("fight"))
+
+                    if (room.status.Equals("empty"))
                     {
-                        room.initializeFight();
+                        Debug.Log("player is in this room: " + room.roomCenter);
+                        if (room.roomType.Equals("fight"))
+                        {
+                            room.initializeFight();
+                        }
+                        else if (room.roomType.Equals("boss"))
+                        {
+                            room.startBossFight(FloorOfTheDungeon);
+                        }
+                        else
+                        {
+                            Portal.toggleActive(true);
+                        }
+                        room.status = "occupied";
+
                     }
-                    else if (room.roomType.Equals("boss"))
-                    {
-                        room.startBossFight(FloorOfTheDungeon);
-                    }
-                    else
-                    {
-                        Portal.toggleActive(true);
-                    }
-                    room.status = "occupied";
+
+                    room.spawnNextWave();
 
                 }
-
-                room.spawnNextWave();
-
             }
+        }
+        else
+        {
+            deathScreen.SetActive(true);
         }
     }
     public Vector2Int setStartingPosition() //redo this to not choose the boss room as the starting room
@@ -94,4 +124,28 @@ public class GameManager : MonoBehaviour
             setBossRoom();
         }
     }
+
+    public void LoadScene(int index)
+    {
+        ScreenManager.LoadScene(index);
+    }
+    public void restartGame()
+    {
+        player = null;
+        mainCamera.transform.parent = null;
+        mainCamera.transform.SetSiblingIndex(0);
+        GameObject[] clones = GameObject.FindGameObjectsWithTag("Enemy");
+        clones.Union(GameObject.FindGameObjectsWithTag("Player"));
+        clones.Union(GameObject.FindGameObjectsWithTag("Enemy_Bullet"));
+        clones.Union(GameObject.FindGameObjectsWithTag("Player_Bullet"));
+
+        foreach (GameObject clone in clones)
+        {
+            Destroy(clone);
+        }
+
+        ScreenManager.ResetCurrentScene();
+        StartGame();
+    }
+
 }

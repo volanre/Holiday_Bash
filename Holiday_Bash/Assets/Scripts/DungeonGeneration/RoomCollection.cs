@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Object = UnityEngine.Object;
 
 public class RoomCollection
 {
-    public static List<RoomCollection> roomCollectionList;
+    public static List<RoomCollection> roomCollectionList = new List<RoomCollection>();
 
     public int roomNumber;
     public BoundsInt roomBound;
@@ -184,7 +186,18 @@ public class RoomCollection
             }
         }
     }
-}
+
+    public static void resetRoomCollectionsList() {
+        foreach (var room in roomCollectionList)
+        {
+            foreach (GameObject prop in room.propReferences)
+            {
+                Object.Destroy(prop);
+            }
+        }
+        roomCollectionList = new List<RoomCollection>();
+    }
+}    
 
 public class RoomGraph
 {
