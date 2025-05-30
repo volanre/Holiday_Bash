@@ -12,6 +12,8 @@ public class FatBlazeling : AbstractEnemy
 
     [Header("Boss Properties")]
     [SerializeField] private int BarrageDamage;
+    [SerializeField] private int circlePulseDamage;
+    [SerializeField] private int spinnyTopDamage;
 
     //At half health spawn a burst of enemies.
     //All attacks now deal burning damage.
@@ -88,9 +90,6 @@ public class FatBlazeling : AbstractEnemy
                 shootDirection = (Vector3)possibleShootDirection;
             }
         }
-
-
-
         for (int i = 0; i < barrageCount; i++)
         {
 
@@ -110,13 +109,74 @@ public class FatBlazeling : AbstractEnemy
             var bullet = Instantiate(projectileItem, bulletPosition, transform.rotation);
             bullet.targetPlayer = true;
             bullet.targetEnemy = false;
-            bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), damage, bulletSpeed);
+            bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), damage, bulletSpeed, true);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             yield return new WaitForSeconds(0.095f);
         }
         AttackFinished();
     }
-    
+
+    IEnumerator CirclePulseAttack()
+    {
+        damage = circlePulseDamage;
+        float timeDelta = 0.5f;
+        for (int i = 0; i < 5; i++)
+        {
+            int randomDegree = Random.Range(0, 90);
+            foreach (var dir in Direction2D.eightDirectionsList)
+            {
+                Vector3 direction = (Vector3)(Vector3Int)dir;
+                for (int p = 0; p < 2; p++)
+                {
+                    Vector3 newDirection = Quaternion.Euler(0, 0, (p * 22.5f) + randomDegree) * direction;
+
+                    newDirection = newDirection.normalized;
+
+                    Vector3 center = GetComponent<BoxCollider2D>().bounds.center;
+
+                    Vector3 bulletPosition = new Vector3(center.x + launchOffset * newDirection.x, center.y + launchOffset * newDirection.y, 0);
+
+                    var bullet = Instantiate(projectileItem, bulletPosition, transform.rotation);
+                    bullet.targetPlayer = true;
+                    bullet.targetEnemy = false;
+                    bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), damage, bulletSpeed, false);
+                    bullet.GetComponent<SpriteRenderer>().color = Color.black;
+                    Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+                }
+            }            
+            yield return new WaitForSeconds(timeDelta);
+        }
+        AttackFinished();
+    }
+
+    IEnumerator SpinnyTopAttack() {
+        damage = spinnyTopDamage;
+        float timeDelta = 0.11f;
+        int iterations = Random.Range(30, 45);
+        for (int i = 0; i < iterations; i++)
+        {
+            
+            foreach (var dir in Direction2D.eightDirectionsList)
+            {
+                Vector3 direction = (Vector3)(Vector3Int)dir;
+                Vector3 newDirection = Quaternion.Euler(0, 0, i * 6.3f) * direction;
+                newDirection = newDirection.normalized;
+
+                Vector3 center = GetComponent<BoxCollider2D>().bounds.center;
+
+                Vector3 bulletPosition = new Vector3(center.x + launchOffset * newDirection.x, center.y + launchOffset * newDirection.y, 0);
+
+                var bullet = Instantiate(projectileItem, bulletPosition, transform.rotation);
+                bullet.targetPlayer = true;
+                bullet.targetEnemy = false;
+                bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), damage, bulletSpeed, true);
+                Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            }
+            
+            yield return new WaitForSeconds(timeDelta);
+        }
+        AttackFinished();
+    }
 
     public void Attack()
     {
@@ -129,27 +189,27 @@ public class FatBlazeling : AbstractEnemy
         }
         else if (currentAttackNumber == 2) //
         {
-            StartCoroutine(BarrageAttack());
+            StartCoroutine(CirclePulseAttack());
         }
         else if (currentAttackNumber == 3)
         {
-            StartCoroutine(BarrageAttack());
+            StartCoroutine(SpinnyTopAttack());
         }
     }
     public void AttackFinished()
     {
         SetNewFireRate();
 
-        int randomizer = Random.Range(0, 10);
-        if (randomizer < 5) //50%
+        int randomizer = Random.Range(0, 100);
+        if (randomizer < 50) //50%
         {
             currentAttackNumber = 1;
         }
-        else if (randomizer < 7) //30%
+        else if (randomizer < 85) //35%
         {
             currentAttackNumber = 2;
         }
-        else //20%
+        else //15%
         {
             currentAttackNumber = 3;
         }
@@ -168,30 +228,30 @@ public class FatBlazeling : AbstractEnemy
             fireRateMin = 0.05f;
             fireRateMax = 0.1f;
         }
-        else if (randomizer < 10) //9% chance
+        else if (randomizer < 7) //6% chance
         {
             fireRateMin = 0.1f;
             fireRateMax = 0.5f;
         }
-        else if (randomizer < 30) //20% chance
-        {
-            fireRateMin = 0.5f;
-            fireRateMax = 0.75f;
-        }
-        else if (randomizer < 60) //30% chance
+        else if (randomizer < 20) //13% chance
         {
             fireRateMin = 0.75f;
             fireRateMax = 1f;
         }
-        else if (randomizer < 90) //30% chance
+        else if (randomizer < 45) //25% chance
         {
             fireRateMin = 1f;
-            fireRateMax = 1.25f;
+            fireRateMax = 1.5f;
         }
-        else if (randomizer < 100) //10% cahnce
+        else if (randomizer < 85) //40% chance
         {
-            fireRateMin = 2f;
-            fireRateMax = 2.5f;
+            fireRateMin = 1.5f;
+            fireRateMax = 2f;
+        }
+        else if (randomizer < 100) //15% cahnce
+        {
+            fireRateMin = 3f;
+            fireRateMax = 3.5f;
         }
         fireRate = Random.Range(fireRateMin, fireRateMax);
     }

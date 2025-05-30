@@ -147,7 +147,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -169,3 +169,4 @@ MonoBehaviour:
   extraRotationDegrees: -90
   damage: 100
   playerImpactNoise: {fileID: 8300000, guid: d2a7fc826d0586d439d5ba5cfa519281, type: 3}
+  isTangible: 1

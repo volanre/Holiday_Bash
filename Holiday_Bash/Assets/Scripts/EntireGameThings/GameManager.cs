@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using NUnit.Framework.Constraints;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
     private PropPlacementManager propPlacer;
 
     private int FloorOfTheDungeon = 1;
+    [Header("Settings")]
+    [SerializeField,Range(0,10)] public static float SFXVolume = 1;
 
     void Start()
     {

@@ -63,7 +63,9 @@ MonoBehaviour:
   animator: {fileID: 0}
   deathExposion: {fileID: 7140122860492175389}
   spriteRenderer: {fileID: 817196186464124416}
-  BarrageDamage: 30
+  BarrageDamage: 35
+  circlePulseDamage: 50
+  spinnyTopDamage: 15
 --- !u!50 &4478870933136038522
 Rigidbody2D:
   serializedVersion: 5

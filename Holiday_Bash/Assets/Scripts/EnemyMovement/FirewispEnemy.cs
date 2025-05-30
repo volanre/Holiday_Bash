@@ -61,7 +61,7 @@ public class FirewispEnemy : AbstractEnemy
         GameObject other = collider.gameObject;
         if (other.CompareTag("Player_Bullet"))
         {
-            health -= other.GetComponent<ProjectileBehavior>().damage;
+            TakeDamage(other.GetComponent<ProjectileBehavior>().damage);
             Destroy(other.gameObject);
         }
         else if (other.CompareTag("Player"))

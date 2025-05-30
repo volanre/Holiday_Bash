@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private InputAction move;
     private InputAction attack;
     private AudioClip currentImpactSFX;
+    [NonSerialized] public static bool isAlive = true;
 
     [NonSerialized] public int health;
 
@@ -20,12 +21,12 @@ public class Player : MonoBehaviour
     [SerializeField] private int maxHealth = 500;
     [SerializeField] private int damage = 100;
     [SerializeField] private float moveSpeed = 5f, fireRate = 0.3f;
-    [SerializeField] private AudioClip defaultImpactSFX;
+    
     [Header("Projectile Attributes")]
     public float LaunchOffset;
     public ProjectileBehavior ProjectileItem;
     [SerializeField] float bulletSpeed;
-    public AudioClip shootingSFX;
+    
 
     [Header("References")]
     [SerializeField] private Rigidbody2D rb;
@@ -34,6 +35,12 @@ public class Player : MonoBehaviour
     public SoundEffectPlayer noiseMaker;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private HealthBarUI healthBar;
+
+    [Header("Audio Noises")]
+    public AudioClip shootingSFX;
+    [SerializeField] private  AudioClip deathSound;
+    [SerializeField] private AudioClip defaultImpactSFX;
+
 
 
     private void Awake()
@@ -69,6 +76,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (!isAlive) return;
         UpdateTimers();
 
         if (attackTimer >= fireRate)
@@ -100,7 +108,7 @@ public class Player : MonoBehaviour
 
             Vector3 center = GetComponent<BoxCollider2D>().bounds.center;
             Vector3 bulletPosition = new Vector3(center.x + LaunchOffset * shootDirection.x, center.y + (LaunchOffset + 0.3f) * shootDirection.y, 0);
-            noiseMaker.PlaySpecificSound(shootingSFX);
+            noiseMaker.PlaySpecificSound(shootingSFX, 0.5f);
             var bullet = Instantiate(ProjectileItem, bulletPosition, transform.rotation);
             bullet.Initialize(new Vector3(shootDirection.x, shootDirection.y, 0), damage, bulletSpeed);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
@@ -110,16 +118,15 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damageTaken)
     {
         DamageEffects(damageTaken);
-        noiseMaker.source.PlayOneShot(defaultImpactSFX, 0.9f);
+        noiseMaker.PlaySpecificSound(defaultImpactSFX, 0.9f);
 
 
     }
     public void TakeDamage(int damageTaken, AudioClip impactAudio)
     {
         DamageEffects(damageTaken);
-        noiseMaker.source.PlayOneShot(impactAudio, 1f);
+        noiseMaker.PlaySpecificSound(impactAudio, 1f);
     }
-
     private void DamageEffects(int damage)
     {
         health -= damage;
@@ -136,7 +143,12 @@ public class Player : MonoBehaviour
     }
     private void Suicide()
     {
-        Destroy(gameObject);
+        isAlive = false;
+        rb.linearVelocity = Vector2.zero;
+        OnDisable();
+        animator.SetBool("isDead", true);
+        noiseMaker.PlaySpecificSound(deathSound, 1.2f);
+        //Destroy(gameObject);
     }
     private void ResetColor()
     {
@@ -145,6 +157,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isAlive) return;
         rb.linearVelocity = getVelocity();
     }
     // private void Attack(InputAction.CallbackContext context)

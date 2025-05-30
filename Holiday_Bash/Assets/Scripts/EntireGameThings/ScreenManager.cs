@@ -19,7 +19,7 @@ public class ScreenManager : MonoBehaviour
             // If instance already exists and it's not this, then destroy this to enforce the singleton.
             Destroy(gameObject);
         }
-        
+
         // Set this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
     }
@@ -36,7 +36,7 @@ public class ScreenManager : MonoBehaviour
 
 
     // General method to load scenes based on build index
-    private void LoadScene(int sceneIndex)
+    public static void LoadScene(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
     }

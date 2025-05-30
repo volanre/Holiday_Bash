@@ -53,7 +53,7 @@ public abstract class AbstractEnemy : MonoBehaviour
 
 
 
-    
+
 
     /*  METHODS    */
 
@@ -259,5 +259,16 @@ public abstract class AbstractEnemy : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    public void TakeDamage(int damageTaken)
+    {
+        health -= damageTaken;
+        spriteRenderer.color = Color.red;
+        Invoke("ResetColor", 0.07f);
+    }
+    private void ResetColor()
+    {
+        spriteRenderer.color = Color.white;
     }
 }

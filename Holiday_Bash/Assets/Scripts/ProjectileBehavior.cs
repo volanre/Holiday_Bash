@@ -15,6 +15,7 @@ public class ProjectileBehavior : MonoBehaviour
 
     [NonSerialized]
     public bool targetEnemy = true, targetPlayer = true;
+    [NonSerialized] public bool isTangible;
 
     //private Player player;
 
@@ -31,6 +32,7 @@ public class ProjectileBehavior : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().linearVelocity = direction * speed;
         var velocity = gameObject.GetComponent<Rigidbody2D>().linearVelocity.normalized;
         gameObject.transform.right = Rotate(velocity, extraRotationDegrees);
+        gameObject.GetComponent<Collider2D>().isTrigger = true;
     }
 
     void Update()
@@ -39,13 +41,66 @@ public class ProjectileBehavior : MonoBehaviour
         //gameObject.GetComponent<Rigidbody2D>().linearVelocity = direction * speed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    // private void OnCollisionEnter2D(Collision2D collision) //Runs if its a solid projectile
+    // {
+    //     GameObject other = collision.gameObject;
+    //     Destroy(gameObject);
+    //     if (other.CompareTag("Enemy") && targetEnemy)
+    //     {
+    //         other.GetComponent<AbstractEnemy>().TakeDamage(damage);
+    //     }
+    //     else if (other.CompareTag("Player") && targetPlayer)
+    //     {
+    //         Player player = other.GetComponent<Player>();
+    //         if (playerImpactNoise != null)
+    //         {
+    //             player.TakeDamage(damage, playerImpactNoise);
+    //         }
+    //         else
+    //         {
+    //             player.TakeDamage(damage);
+    //         }
+    //     }
+    // }
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        GameObject other = collision.gameObject;
+        GameObject other = collider.gameObject;
+
+        if (gameObject.CompareTag("Enemy_Bullet"))
+        {
+            if (other.CompareTag("Enemy_Bullet")) return;
+            else if (other.CompareTag("Player_Bullet"))
+            {
+                if (!isTangible)
+                {
+                    return;
+                }
+            }
+            else if (other.CompareTag("Prop"))
+            {
+                if (!isTangible)
+                {
+                    return;
+                }
+            }
+        }
+        else if (gameObject.CompareTag("Player_Bullet"))
+        {
+            if (other.CompareTag("Player_Bullet")) return;
+            else if (other.CompareTag("Enemy_Bullet"))
+            {
+                if (!other.GetComponent<ProjectileBehavior>().isTangible)
+                {
+                    return;
+                }
+            }
+        }
+
         Destroy(gameObject);
+
         if (other.CompareTag("Enemy") && targetEnemy)
         {
-            other.GetComponent<AbstractEnemy>().health -= damage;
+            other.GetComponent<AbstractEnemy>().TakeDamage(damage);
         }
         else if (other.CompareTag("Player") && targetPlayer)
         {
@@ -61,11 +116,12 @@ public class ProjectileBehavior : MonoBehaviour
         }
     }
 
-    public void Initialize(Vector3 direction, int damage = 100, float speed = 7.5f)
+    public void Initialize(Vector3 direction, int damage = 100, float speed = 7.5f, bool tangible = true)
     {
         this.direction = direction;
         this.damage = damage;
         this.speed = speed;
+        this.isTangible = tangible;
     }
     
         

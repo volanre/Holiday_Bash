@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Enemy_Bullet
   - Player_Bullet
+  - Wall
+  - Prop
   layers:
   - Default
   - TransparentFX
