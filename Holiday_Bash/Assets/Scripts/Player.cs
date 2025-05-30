@@ -117,14 +117,14 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damageTaken)
     {
         DamageEffects(damageTaken);
-        noiseMaker.PlaySpecificSound(defaultImpactSFX, 0.9f);
+        noiseMaker.PlaySpecificSound(defaultImpactSFX, 0.75f);
 
 
     }
-    public void TakeDamage(int damageTaken, AudioClip impactAudio)
+    public void TakeDamage(int damageTaken, AudioClip impactAudio, float volume = 0.75f)
     {
         DamageEffects(damageTaken);
-        noiseMaker.PlaySpecificSound(impactAudio, 1f);
+        noiseMaker.PlaySpecificSound(impactAudio, volume);
     }
     private void DamageEffects(int damage)
     {

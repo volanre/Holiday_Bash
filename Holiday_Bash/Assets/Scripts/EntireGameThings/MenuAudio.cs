@@ -23,8 +23,8 @@ public class MenuAudio : MonoBehaviour
     void Update()
     {
         isPlaying = source.isPlaying;
-        float curVol = 0.7f;
-        if (!Player.isAlive) curVol *= 0.8f;
+        float curVol = 0.5f;
+        if (!Player.isAlive) curVol = 0.3f;
         if (!isPlaying)
         {
             currentMusic = audioList[Random.Range(0, audioList.Count)];
@@ -33,6 +33,6 @@ public class MenuAudio : MonoBehaviour
     }
     public void playClick()
     {
-        source.PlayOneShot(clickSFX, 0.9f * GameManager.SFXVolume);
+        source.PlayOneShot(clickSFX, 4f * GameManager.SFXVolume);
     }
 }

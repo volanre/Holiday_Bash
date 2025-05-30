@@ -1,0 +1,2952 @@
+fileFormatVersion: 2
+guid: d807974360dbfb34bb4b256d1888eb9a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 29000314731940964
+    second: WoodenPixelArtGood_0
+  - first:
+      213: 5726211568301656844
+    second: WoodenPixelArtGood_1
+  - first:
+      213: -1339841998833469751
+    second: WoodenPixelArtGood_2
+  - first:
+      213: -4590704398460643649
+    second: WoodenPixelArtGood_3
+  - first:
+      213: -5991528985006721350
+    second: WoodenPixelArtGood_4
+  - first:
+      213: -3219621207044199486
+    second: WoodenPixelArtGood_5
+  - first:
+      213: -3037322362861562711
+    second: WoodenPixelArtGood_6
+  - first:
+      213: 1608587998932984179
+    second: WoodenPixelArtGood_7
+  - first:
+      213: 4113222514788166992
+    second: WoodenPixelArtGood_8
+  - first:
+      213: -2670562943580753445
+    second: WoodenPixelArtGood_9
+  - first:
+      213: 701774885919070101
+    second: WoodenPixelArtGood_10
+  - first:
+      213: -7502284469391387237
+    second: WoodenPixelArtGood_11
+  - first:
+      213: -4798198565444992796
+    second: WoodenPixelArtGood_12
+  - first:
+      213: -2601226077186199996
+    second: WoodenPixelArtGood_13
+  - first:
+      213: 173709488369645503
+    second: WoodenPixelArtGood_14
+  - first:
+      213: -7805455302003581637
+    second: WoodenPixelArtGood_15
+  - first:
+      213: 6001051327678797329
+    second: WoodenPixelArtGood_16
+  - first:
+      213: 1251743865171268208
+    second: WoodenPixelArtGood_17
+  - first:
+      213: 1683081158127930359
+    second: WoodenPixelArtGood_18
+  - first:
+      213: -651853409261070227
+    second: WoodenPixelArtGood_19
+  - first:
+      213: -7105186530305100754
+    second: WoodenPixelArtGood_20
+  - first:
+      213: -137278114118095320
+    second: WoodenPixelArtGood_21
+  - first:
+      213: 2896288143155122133
+    second: WoodenPixelArtGood_22
+  - first:
+      213: 82771847554629310
+    second: WoodenPixelArtGood_23
+  - first:
+      213: -88192447871326637
+    second: WoodenPixelArtGood_24
+  - first:
+      213: -309288118011349676
+    second: WoodenPixelArtGood_25
+  - first:
+      213: -5186986649454921247
+    second: WoodenPixelArtGood_26
+  - first:
+      213: -8275095495668037410
+    second: WoodenPixelArtGood_27
+  - first:
+      213: 6150367938284545745
+    second: WoodenPixelArtGood_28
+  - first:
+      213: 7410881683754060737
+    second: WoodenPixelArtGood_29
+  - first:
+      213: -22448390055247642
+    second: WoodenPixelArtGood_30
+  - first:
+      213: -5939495229022710449
+    second: WoodenPixelArtGood_31
+  - first:
+      213: 5990852048908631664
+    second: WoodenPixelArtGood_32
+  - first:
+      213: -7002108871395473129
+    second: WoodenPixelArtGood_33
+  - first:
+      213: -473971741449069750
+    second: WoodenPixelArtGood_34
+  - first:
+      213: -6283548700996783069
+    second: WoodenPixelArtGood_35
+  - first:
+      213: 7919351687592128765
+    second: WoodenPixelArtGood_36
+  - first:
+      213: 2274398759596037474
+    second: WoodenPixelArtGood_37
+  - first:
+      213: 4129611814283267833
+    second: WoodenPixelArtGood_38
+  - first:
+      213: -7942193715682198848
+    second: WoodenPixelArtGood_39
+  - first:
+      213: 4634812126195664834
+    second: WoodenPixelArtGood_40
+  - first:
+      213: -2042817652877160197
+    second: WoodenPixelArtGood_41
+  - first:
+      213: 2543338971664395198
+    second: WoodenPixelArtGood_42
+  - first:
+      213: -6160056872043380296
+    second: WoodenPixelArtGood_43
+  - first:
+      213: -4780753363667118203
+    second: WoodenPixelArtGood_44
+  - first:
+      213: 4062958025265602079
+    second: WoodenPixelArtGood_45
+  - first:
+      213: 7888509624324103101
+    second: WoodenPixelArtGood_46
+  - first:
+      213: -6567365527952372135
+    second: WoodenPixelArtGood_47
+  - first:
+      213: -3382579982835420293
+    second: WoodenPixelArtGood_48
+  - first:
+      213: -4065725775013681372
+    second: WoodenPixelArtGood_49
+  - first:
+      213: 8689067732134025134
+    second: WoodenPixelArtGood_50
+  - first:
+      213: -5292211018707618314
+    second: WoodenPixelArtGood_51
+  - first:
+      213: -7895647483613860360
+    second: WoodenPixelArtGood_52
+  - first:
+      213: 3212523225682722287
+    second: WoodenPixelArtGood_53
+  - first:
+      213: -1253631278753163951
+    second: WoodenPixelArtGood_54
+  - first:
+      213: -6879916591919565346
+    second: WoodenPixelArtGood_55
+  - first:
+      213: -7027715662562177657
+    second: WoodenPixelArtGood_56
+  - first:
+      213: -5593026023589071520
+    second: WoodenPixelArtGood_57
+  - first:
+      213: -6175512235501307317
+    second: WoodenPixelArtGood_58
+  - first:
+      213: 240619458582910504
+    second: WoodenPixelArtGood_59
+  - first:
+      213: -6739261340754075894
+    second: WoodenPixelArtGood_60
+  - first:
+      213: -7082632526452012453
+    second: WoodenPixelArtGood_61
+  - first:
+      213: 923335786165564806
+    second: WoodenPixelArtGood_62
+  - first:
+      213: -3703665813176432705
+    second: WoodenPixelArtGood_63
+  - first:
+      213: 1086908187608684204
+    second: WoodenPixelArtGood_64
+  - first:
+      213: -1429897325818538436
+    second: WoodenPixelArtGood_65
+  - first:
+      213: -1875261640518359450
+    second: WoodenPixelArtGood_66
+  - first:
+      213: 7228235925976106199
+    second: WoodenPixelArtGood_67
+  - first:
+      213: -8497163647201431989
+    second: WoodenPixelArtGood_68
+  - first:
+      213: -3451236453364862701
+    second: WoodenPixelArtGood_69
+  - first:
+      213: -7284215961406529897
+    second: WoodenPixelArtGood_70
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_0
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 1088
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46cc8f1f1a7076000800000000000000
+      internalID: 29000314731940964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_1
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1088
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0b4a552517977f40800000000000000
+      internalID: 5726211568301656844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_2
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1088
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c6b1640dcce76de0800000000000000
+      internalID: -1339841998833469751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1088
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb61ee41caa8a40c0800000000000000
+      internalID: -4590704398460643649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_4
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 1088
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab6b733f120d9dca0800000000000000
+      internalID: -5991528985006721350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_5
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 1088
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cbe0da029b9153d0800000000000000
+      internalID: -3219621207044199486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_6
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 1088
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a45945476349d5d0800000000000000
+      internalID: -3037322362861562711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_7
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1088
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3716b5a234ad25610800000000000000
+      internalID: 1608587998932984179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 1056
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05d661c951a151930800000000000000
+      internalID: 4113222514788166992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_9
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1056
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd13c8de62140fad0800000000000000
+      internalID: -2670562943580753445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_10
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 1056
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5971f736a843db900800000000000000
+      internalID: 701774885919070101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1056
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b951ffd160882e790800000000000000
+      internalID: -7502284469391387237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_12
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 1056
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e0ccd0a3df596db0800000000000000
+      internalID: -4798198565444992796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_13
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 1056
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44e65d82aa696ebd0800000000000000
+      internalID: -2601226077186199996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_14
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 1056
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb7336cfbd3296200800000000000000
+      internalID: 173709488369645503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_15
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1056
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3d13e502c37da390800000000000000
+      internalID: -7805455302003581637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_16
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 1024
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1165e293364084350800000000000000
+      internalID: 6001051327678797329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_20
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 1024
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e24364ede7e456d90800000000000000
+      internalID: -7105186530305100754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_24
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 992
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 356e1c89f6da6cef0800000000000000
+      internalID: -88192447871326637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_28
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 992
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d6e667cd0f7a5550800000000000000
+      internalID: 6150367938284545745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_32
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 960
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07ebe159238c32350800000000000000
+      internalID: 5990852048908631664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_36
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 960
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df0b15eb66037ed60800000000000000
+      internalID: 7919351687592128765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_40
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 928
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c7c09e8219225040800000000000000
+      internalID: 4634812126195664834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_44
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 928
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5871edf252a57adb0800000000000000
+      internalID: -4780753363667118203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_48
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 896
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b737fb26d69ae01d0800000000000000
+      internalID: -3382579982835420293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_51
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 896
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f536892e1a4e86b0800000000000000
+      internalID: -5292211018707618314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_54
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 864
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15559967ef43a9ee0800000000000000
+      internalID: -1253631278753163951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_57
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 864
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0653574f6749162b0800000000000000
+      internalID: -5593026023589071520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_60
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 832
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0f94d744855972a0800000000000000
+      internalID: -6739261340754075894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_63
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 832
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb74cd6d09fe99cc0800000000000000
+      internalID: -3703665813176432705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_66
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 800
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 666acf7397bb9f5e0800000000000000
+      internalID: -1875261640518359450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_69
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 800
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 311fe492bbeba10d0800000000000000
+      internalID: -3451236453364862701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_72
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 768
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72bb3649afb90744d9bb674a4369b0c3
+      internalID: 278593636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_76
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 768
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 588002ebe81adab43851c46252feb4ad
+      internalID: -1610840923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_80
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 736
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aa1d2c88191b5b4a988ec26fddfe013
+      internalID: 1929195754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_84
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 736
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a84adaaf39f283849a99e3baccb46503
+      internalID: 2004074536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_88
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 704
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d976646532a10bf4688d212ab9f4d049
+      internalID: -336140897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_92
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 704
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c50a943a6efd9f54e89042afa185223c
+      internalID: 1775156166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_96
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 672
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0d800c91cb17bc44b545f688a90ad58
+      internalID: -767901183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_100
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 672
+        width: 128
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b328e2648d82c943b77cd9a94a8099a
+      internalID: 1708071586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_104
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 640
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6062d01d818cb36459235c82230a4eda
+      internalID: 46603517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_107
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 640
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 054f50ce5483bc04a9d78d25b9505b16
+      internalID: -1229862956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_110
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 608
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0fe313e675395c43a8b658748f6c2dd
+      internalID: -1103044279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_113
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 608
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d657199e8901cf14b89e7c46c700ef79
+      internalID: -1514007518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_116
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 576
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9052eea3b9e3eed4a87ea20542f33531
+      internalID: 375675720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_119
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 576
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e272f4a140a998f4aabd625a04fdb6d3
+      internalID: -431039040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_122
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 544
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27eed329ddf2f8443b9c8b1a45b91382
+      internalID: 1489844588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_125
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 544
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e051dc57da3268d44b9092b05a3ce3a6
+      internalID: -1093865654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_128
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d9dc6daa55744b4796c66eb6aca1a9f
+      internalID: 1483260795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_129
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94f2fbcbc631db141acaa436093c3bfc
+      internalID: -1485295420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_130
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8e78cd1e6781e74e806ea12c806d8b3
+      internalID: -88939747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_131
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ef84633307d3744c9e32994f43516c3
+      internalID: 134912760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_132
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b895029fd8560304b848a362ce981002
+      internalID: -1653877455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_133
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2f0fc6809e37b5488d817b541a8ac78
+      internalID: 434662362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_134
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a51325af117b56b4e9923b0e39a6facd
+      internalID: -616209546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_135
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe286f3f7e5568b4b87c454758147e97
+      internalID: -1855200778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_136
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ee88aba385a8e24f885f2186170dbd6
+      internalID: -688842357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_137
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cae4fcc8e0b196a4db2b3f27191415d2
+      internalID: -2108708518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_138
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32e00fe488e0cd8468ad5c0a78e8adcc
+      internalID: 870233542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_139
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ddfa456418284b4d9a2ae72772fc2fb
+      internalID: -2052218104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_140
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 355a637129bd2cf4c88a10216548f8a3
+      internalID: 1249940191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_141
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4493eaa40da92074f893c5328956857b
+      internalID: -1952483577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_142
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f728bd155392f1045835c1895fc2d42e
+      internalID: 617761914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_143
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d98f4bce635e5224f9b8362fbbc17ef7
+      internalID: -1535142185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_144
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ed1bc79e18c66143b95e796cc6e174c
+      internalID: -707053466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_145
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e327213a458912498325adb133f3758
+      internalID: 855393224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_146
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89c3d41f68b29804f9093e535f84fcc8
+      internalID: 828686864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_147
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 833cadeadb1c36a4995f87278b38b90b
+      internalID: -1849963424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_148
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 384
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eea02a439f4abd547abcf5da80db1681
+      internalID: 951785788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_151
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 156f226390fd8614189e2ae6b7d07876
+      internalID: 93723322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_152
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a641d9b8926291428d1ee0b86170e6a
+      internalID: 171843906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_153
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc3f17b4ed49c0544aa55a31c95ed484
+      internalID: -1192046529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_154
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 837911f7b247a1444a990e056cf81a96
+      internalID: 1148415377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_158
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bf7e93efca85a446a385e4d90818f9a
+      internalID: -1082681952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_159
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a2753e855af6cf4f9cc468bae5342e9
+      internalID: -248828058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_160
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fbb2ba509d119b48a83bf596f8abef5
+      internalID: 1589017680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_161
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 688002679a8db054e8e94ded23db490e
+      internalID: 621986563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_162
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c81674efc40f4574490705fc25f75828
+      internalID: -512265754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_166
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7bbc791e76a268438dcc5831fcdb041
+      internalID: -174127481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_167
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 508ce5d543df7924288c4175ce353d90
+      internalID: -1929811781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_168
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69942aeb38273fe41b732471f19b1c1c
+      internalID: -1827520841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_169
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85e41779c46f71242abdfd1253195a70
+      internalID: -1944682117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_170
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dd84c618cc7a9c438832e9b5aee5060
+      internalID: 1000670279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_174
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4aa147db99e495468303883e218a628
+      internalID: 757469554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_175
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 243ce7a95dbadb94bb48a920541090e2
+      internalID: 1170046045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_176
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97afa9fb500a85b468d2f71dfc96847a
+      internalID: 1015297185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_177
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf17974821165fe43b01ef8274f4453c
+      internalID: 1751606901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_178
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb949d3975c5e444e9285a16d5a614ae
+      internalID: 1036552730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_182
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5736e5a0c85a1b94c945dc2c15c8010e
+      internalID: 1609366224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_183
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73c8884a88f65564a8ed9eb9f0b6eb6d
+      internalID: -1752581498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_184
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e661ba48aea81c8478a1d8db1b2e187f
+      internalID: -1787635586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_185
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d41f7de962375743a8d7621f568c751
+      internalID: 413060794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_186
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 044885c140553854ca7f4a0e6fa77796
+      internalID: -1063876594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_190
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41bd9705f0bd41a49938380e9aec36f8
+      internalID: -649581769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_191
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b01aa3f7467717847ae7cf87790f0386
+      internalID: 1518777151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_192
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b136b9bffa6ef4cb379c22a97f9155
+      internalID: 1821199755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_196
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a14800a1fe028fa47994ce5429fe6cf3
+      internalID: 125819812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_197
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e4c71fdbe07fd746ad5224ea262f32c
+      internalID: 1656982719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_198
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 913e9ee8ba8523e40a48d014032385d2
+      internalID: 1815794830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_237
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 32
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a586bdd8f96a903429d564b65a5c9e70
+      internalID: 1608899674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_240
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acd907a884c4a0a4d8c500a75a8beb97
+      internalID: -353921818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_241
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 32
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b248e70da1bb53942ac40c839abf39ea
+      internalID: 1604779486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_244
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b79ba29a4ccc486479b27ef23f67b4cf
+      internalID: -1506740485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_245
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 158a5567c73e73a4e843daf50e25a60e
+      internalID: -282268313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_248
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32283367fa14bb94f930cecf419e5328
+      internalID: 398608639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_249
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26f8a3d4986810745955fd5babea4e21
+      internalID: -70970016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenPixelArtGood_252
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e19a5d05bc33f84f8c6ae1f956d176c
+      internalID: 1246005754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e2c590a0972356c48a74de36af296381
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      WoodenPixelArtGood_0: 29000314731940964
+      WoodenPixelArtGood_1: 5726211568301656844
+      WoodenPixelArtGood_10: 701774885919070101
+      WoodenPixelArtGood_100: 1708071586
+      WoodenPixelArtGood_101: 1454471937
+      WoodenPixelArtGood_102: -861357598
+      WoodenPixelArtGood_103: 1201056515
+      WoodenPixelArtGood_104: 46603517
+      WoodenPixelArtGood_105: -982740167
+      WoodenPixelArtGood_106: -2100429736
+      WoodenPixelArtGood_107: -1229862956
+      WoodenPixelArtGood_108: 2139556732
+      WoodenPixelArtGood_109: -2141676459
+      WoodenPixelArtGood_11: -7502284469391387237
+      WoodenPixelArtGood_110: -1103044279
+      WoodenPixelArtGood_111: -697936708
+      WoodenPixelArtGood_112: -249382409
+      WoodenPixelArtGood_113: -1514007518
+      WoodenPixelArtGood_114: -1983767667
+      WoodenPixelArtGood_115: 1208109114
+      WoodenPixelArtGood_116: 375675720
+      WoodenPixelArtGood_117: 483624504
+      WoodenPixelArtGood_118: 2014177723
+      WoodenPixelArtGood_119: -431039040
+      WoodenPixelArtGood_12: -4798198565444992796
+      WoodenPixelArtGood_120: -1794138350
+      WoodenPixelArtGood_121: 905138216
+      WoodenPixelArtGood_122: 1489844588
+      WoodenPixelArtGood_123: 216209255
+      WoodenPixelArtGood_124: -451253613
+      WoodenPixelArtGood_125: -1093865654
+      WoodenPixelArtGood_126: -766521370
+      WoodenPixelArtGood_127: 510615618
+      WoodenPixelArtGood_128: 1483260795
+      WoodenPixelArtGood_129: -1485295420
+      WoodenPixelArtGood_13: -2601226077186199996
+      WoodenPixelArtGood_130: -88939747
+      WoodenPixelArtGood_131: 134912760
+      WoodenPixelArtGood_132: -1653877455
+      WoodenPixelArtGood_133: 434662362
+      WoodenPixelArtGood_134: -616209546
+      WoodenPixelArtGood_135: -1855200778
+      WoodenPixelArtGood_136: -688842357
+      WoodenPixelArtGood_137: -2108708518
+      WoodenPixelArtGood_138: 870233542
+      WoodenPixelArtGood_139: -2052218104
+      WoodenPixelArtGood_14: 173709488369645503
+      WoodenPixelArtGood_140: 1249940191
+      WoodenPixelArtGood_141: -1952483577
+      WoodenPixelArtGood_142: 617761914
+      WoodenPixelArtGood_143: -1535142185
+      WoodenPixelArtGood_144: -707053466
+      WoodenPixelArtGood_145: 855393224
+      WoodenPixelArtGood_146: 828686864
+      WoodenPixelArtGood_147: -1849963424
+      WoodenPixelArtGood_148: 951785788
+      WoodenPixelArtGood_149: 152306672
+      WoodenPixelArtGood_15: -7805455302003581637
+      WoodenPixelArtGood_150: 1420807948
+      WoodenPixelArtGood_151: 93723322
+      WoodenPixelArtGood_152: 171843906
+      WoodenPixelArtGood_153: -1192046529
+      WoodenPixelArtGood_154: 1148415377
+      WoodenPixelArtGood_155: -916344701
+      WoodenPixelArtGood_156: -977767694
+      WoodenPixelArtGood_157: 1725627095
+      WoodenPixelArtGood_158: -1082681952
+      WoodenPixelArtGood_159: -248828058
+      WoodenPixelArtGood_16: 6001051327678797329
+      WoodenPixelArtGood_160: 1589017680
+      WoodenPixelArtGood_161: 621986563
+      WoodenPixelArtGood_162: -512265754
+      WoodenPixelArtGood_163: 579293178
+      WoodenPixelArtGood_164: 1871545444
+      WoodenPixelArtGood_165: 1111805393
+      WoodenPixelArtGood_166: -174127481
+      WoodenPixelArtGood_167: -1929811781
+      WoodenPixelArtGood_168: -1827520841
+      WoodenPixelArtGood_169: -1944682117
+      WoodenPixelArtGood_17: 1251743865171268208
+      WoodenPixelArtGood_170: 1000670279
+      WoodenPixelArtGood_171: -2030743865
+      WoodenPixelArtGood_172: -1650728065
+      WoodenPixelArtGood_173: -1141890159
+      WoodenPixelArtGood_174: 757469554
+      WoodenPixelArtGood_175: 1170046045
+      WoodenPixelArtGood_176: 1015297185
+      WoodenPixelArtGood_177: 1751606901
+      WoodenPixelArtGood_178: 1036552730
+      WoodenPixelArtGood_179: 1563023744
+      WoodenPixelArtGood_18: 1683081158127930359
+      WoodenPixelArtGood_180: -99658790
+      WoodenPixelArtGood_181: 1460638370
+      WoodenPixelArtGood_182: 1609366224
+      WoodenPixelArtGood_183: -1752581498
+      WoodenPixelArtGood_184: -1787635586
+      WoodenPixelArtGood_185: 413060794
+      WoodenPixelArtGood_186: -1063876594
+      WoodenPixelArtGood_187: -2085210302
+      WoodenPixelArtGood_188: 1664837682
+      WoodenPixelArtGood_189: -401904910
+      WoodenPixelArtGood_19: -651853409261070227
+      WoodenPixelArtGood_190: -649581769
+      WoodenPixelArtGood_191: 1518777151
+      WoodenPixelArtGood_192: 1821199755
+      WoodenPixelArtGood_193: 1594615012
+      WoodenPixelArtGood_194: 1590022918
+      WoodenPixelArtGood_195: 1925612986
+      WoodenPixelArtGood_196: 125819812
+      WoodenPixelArtGood_197: 1656982719
+      WoodenPixelArtGood_198: 1815794830
+      WoodenPixelArtGood_199: -1585880646
+      WoodenPixelArtGood_2: -1339841998833469751
+      WoodenPixelArtGood_20: -7105186530305100754
+      WoodenPixelArtGood_200: 1113650724
+      WoodenPixelArtGood_201: 541323801
+      WoodenPixelArtGood_202: 2135122611
+      WoodenPixelArtGood_203: 1963958213
+      WoodenPixelArtGood_204: 1630891332
+      WoodenPixelArtGood_205: -1048975260
+      WoodenPixelArtGood_206: 1583455267
+      WoodenPixelArtGood_207: 1522841195
+      WoodenPixelArtGood_208: -1429522500
+      WoodenPixelArtGood_209: 413576740
+      WoodenPixelArtGood_21: -137278114118095320
+      WoodenPixelArtGood_210: 1300719788
+      WoodenPixelArtGood_211: -92689026
+      WoodenPixelArtGood_212: -580649359
+      WoodenPixelArtGood_213: 2082889012
+      WoodenPixelArtGood_214: 1022786862
+      WoodenPixelArtGood_215: 1690603397
+      WoodenPixelArtGood_216: 401596293
+      WoodenPixelArtGood_217: -1624590312
+      WoodenPixelArtGood_218: -115592336
+      WoodenPixelArtGood_219: -1135793663
+      WoodenPixelArtGood_22: 2896288143155122133
+      WoodenPixelArtGood_220: 1473481634
+      WoodenPixelArtGood_221: -424659919
+      WoodenPixelArtGood_222: -842299641
+      WoodenPixelArtGood_223: 1166926500
+      WoodenPixelArtGood_224: 730639551
+      WoodenPixelArtGood_225: -1572136260
+      WoodenPixelArtGood_226: 1772568982
+      WoodenPixelArtGood_227: 407988468
+      WoodenPixelArtGood_228: 1921611895
+      WoodenPixelArtGood_229: -292461297
+      WoodenPixelArtGood_23: 82771847554629310
+      WoodenPixelArtGood_230: 1550036027
+      WoodenPixelArtGood_231: -405794221
+      WoodenPixelArtGood_232: -1075796909
+      WoodenPixelArtGood_233: -136703612
+      WoodenPixelArtGood_234: 1855762165
+      WoodenPixelArtGood_235: 899503402
+      WoodenPixelArtGood_236: -1203977517
+      WoodenPixelArtGood_237: 1608899674
+      WoodenPixelArtGood_238: -367285840
+      WoodenPixelArtGood_239: -304456634
+      WoodenPixelArtGood_24: -88192447871326637
+      WoodenPixelArtGood_240: -353921818
+      WoodenPixelArtGood_241: 1604779486
+      WoodenPixelArtGood_242: 971111454
+      WoodenPixelArtGood_243: 1992315053
+      WoodenPixelArtGood_244: -1506740485
+      WoodenPixelArtGood_245: -282268313
+      WoodenPixelArtGood_246: -1640917807
+      WoodenPixelArtGood_247: -1661275095
+      WoodenPixelArtGood_248: 398608639
+      WoodenPixelArtGood_249: -70970016
+      WoodenPixelArtGood_25: -309288118011349676
+      WoodenPixelArtGood_250: -726943947
+      WoodenPixelArtGood_251: -1673829521
+      WoodenPixelArtGood_252: 1246005754
+      WoodenPixelArtGood_26: -5186986649454921247
+      WoodenPixelArtGood_27: -8275095495668037410
+      WoodenPixelArtGood_28: 6150367938284545745
+      WoodenPixelArtGood_29: 7410881683754060737
+      WoodenPixelArtGood_3: -4590704398460643649
+      WoodenPixelArtGood_30: -22448390055247642
+      WoodenPixelArtGood_31: -5939495229022710449
+      WoodenPixelArtGood_32: 5990852048908631664
+      WoodenPixelArtGood_33: -7002108871395473129
+      WoodenPixelArtGood_34: -473971741449069750
+      WoodenPixelArtGood_35: -6283548700996783069
+      WoodenPixelArtGood_36: 7919351687592128765
+      WoodenPixelArtGood_37: 2274398759596037474
+      WoodenPixelArtGood_38: 4129611814283267833
+      WoodenPixelArtGood_39: -7942193715682198848
+      WoodenPixelArtGood_4: -5991528985006721350
+      WoodenPixelArtGood_40: 4634812126195664834
+      WoodenPixelArtGood_41: -2042817652877160197
+      WoodenPixelArtGood_42: 2543338971664395198
+      WoodenPixelArtGood_43: -6160056872043380296
+      WoodenPixelArtGood_44: -4780753363667118203
+      WoodenPixelArtGood_45: 4062958025265602079
+      WoodenPixelArtGood_46: 7888509624324103101
+      WoodenPixelArtGood_47: -6567365527952372135
+      WoodenPixelArtGood_48: -3382579982835420293
+      WoodenPixelArtGood_49: -4065725775013681372
+      WoodenPixelArtGood_5: -3219621207044199486
+      WoodenPixelArtGood_50: 8689067732134025134
+      WoodenPixelArtGood_51: -5292211018707618314
+      WoodenPixelArtGood_52: -7895647483613860360
+      WoodenPixelArtGood_53: 3212523225682722287
+      WoodenPixelArtGood_54: -1253631278753163951
+      WoodenPixelArtGood_55: -6879916591919565346
+      WoodenPixelArtGood_56: -7027715662562177657
+      WoodenPixelArtGood_57: -5593026023589071520
+      WoodenPixelArtGood_58: -6175512235501307317
+      WoodenPixelArtGood_59: 240619458582910504
+      WoodenPixelArtGood_6: -3037322362861562711
+      WoodenPixelArtGood_60: -6739261340754075894
+      WoodenPixelArtGood_61: -7082632526452012453
+      WoodenPixelArtGood_62: 923335786165564806
+      WoodenPixelArtGood_63: -3703665813176432705
+      WoodenPixelArtGood_64: 1086908187608684204
+      WoodenPixelArtGood_65: -1429897325818538436
+      WoodenPixelArtGood_66: -1875261640518359450
+      WoodenPixelArtGood_67: 7228235925976106199
+      WoodenPixelArtGood_68: -8497163647201431989
+      WoodenPixelArtGood_69: -3451236453364862701
+      WoodenPixelArtGood_7: 1608587998932984179
+      WoodenPixelArtGood_70: -7284215961406529897
+      WoodenPixelArtGood_71: -195222857
+      WoodenPixelArtGood_72: 278593636
+      WoodenPixelArtGood_73: 157243036
+      WoodenPixelArtGood_74: -722128362
+      WoodenPixelArtGood_75: 1295125105
+      WoodenPixelArtGood_76: -1610840923
+      WoodenPixelArtGood_77: -1032089849
+      WoodenPixelArtGood_78: 935252476
+      WoodenPixelArtGood_79: 1564044126
+      WoodenPixelArtGood_8: 4113222514788166992
+      WoodenPixelArtGood_80: 1929195754
+      WoodenPixelArtGood_81: 1526989232
+      WoodenPixelArtGood_82: 1035864137
+      WoodenPixelArtGood_83: 959945407
+      WoodenPixelArtGood_84: 2004074536
+      WoodenPixelArtGood_85: -72740027
+      WoodenPixelArtGood_86: 1529489736
+      WoodenPixelArtGood_87: -636693605
+      WoodenPixelArtGood_88: -336140897
+      WoodenPixelArtGood_89: 1508023621
+      WoodenPixelArtGood_9: -2670562943580753445
+      WoodenPixelArtGood_90: -411873596
+      WoodenPixelArtGood_91: 1130471029
+      WoodenPixelArtGood_92: 1775156166
+      WoodenPixelArtGood_93: 607661399
+      WoodenPixelArtGood_94: 1336595627
+      WoodenPixelArtGood_95: 1732302822
+      WoodenPixelArtGood_96: -767901183
+      WoodenPixelArtGood_97: 656093264
+      WoodenPixelArtGood_98: -123592840
+      WoodenPixelArtGood_99: -222343063
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using NUnit.Framework.Constraints;
 using UnityEngine;
 
@@ -8,7 +9,14 @@ public class FatBlazeling : AbstractEnemy
     /// Min is 1, Max is 3. Both inclusive.
     /// </summary>
     private int currentAttackNumber;
+    [SerializeField] private SoundEffectPlayer soundEffectPlayer;
+    [SerializeField] private AudioClip EnragedCue;
+    [SerializeField] private AbstractEnemy minion;
+
+    private List<AbstractEnemy> minionsList = new List<AbstractEnemy>();
     private bool isAttacking = false;
+    private bool isEnraged = false;
+
 
     [Header("Boss Properties")]
     [SerializeField] private int BarrageDamage;
@@ -36,12 +44,22 @@ public class FatBlazeling : AbstractEnemy
             boomTimer -= Time.deltaTime;
             if (boomTimer <= 0)
             {
+                foreach (AbstractEnemy guy in minionsList)
+                {
+                    Destroy(guy);
+                }
                 suicide();
             }
         }
-        //After each attack set the next attack
-        //Then here wait for the condition for that attack
-        if (!isAttacking) {
+
+        if (!isEnraged && health < (maxHealth / 2))
+        {
+            isEnraged = true;
+            EnterEnragedMode();
+        }
+
+        if (!isAttacking)
+        {
             Attack();
         }
         
@@ -256,7 +274,26 @@ public class FatBlazeling : AbstractEnemy
         fireRate = Random.Range(fireRateMin, fireRateMax);
     }
 
-    
+    private void EnterEnragedMode()
+    {
+        //change the sprite to its enraged version
+        soundEffectPlayer.PlaySpecificSound(EnragedCue, 1.5f);
+        isEnraged = true;
+        walkSpeed *= 2;
+        speed *= 1.3f;
+        foreach (var dir in Direction2D.cardinalDirectionsList)
+        {
+            var position = transform.position + new Vector3(1.5f * dir.x, 1.5f * dir.y, 0);
+            var thisMinoin = Instantiate(minion, position, transform.rotation);
+            minionsList.Add(thisMinoin);
+            thisMinoin.player = player;
+            thisMinoin.room = room;
+            thisMinoin.damage /= 2;
+            thisMinoin.speed *= 0.8f;
+            thisMinoin.fireRate *= 1.2f;
+            thisMinoin.detectionRadius = 20f;
+        }
+    }
 
     void FixedUpdate()
     {

@@ -19,6 +19,7 @@ public abstract class AbstractEnemy : MonoBehaviour
     [Header("Enemy Properties")]
     public float maxHealth = 500f;
     public float speed = 0.5f;
+    public float walkSpeed = 1.5f;
     public int damage = 20;
     /// <summary>
     /// Number of seconds between attacks
@@ -114,8 +115,8 @@ public abstract class AbstractEnemy : MonoBehaviour
             moveDirection = moveDirection.normalized;
         }
 
-        var walkSpeed = 1.5f + Random.Range(-0.7f, 0.8f);
-        rb.linearVelocity = new Vector2(moveDirection.x * walkSpeed, moveDirection.y * walkSpeed);
+        var realWalkSpeed = walkSpeed + Random.Range(-0.7f, 0.8f);
+        rb.linearVelocity = new Vector2(moveDirection.x * realWalkSpeed, moveDirection.y * realWalkSpeed);
     }
 
     /// <summary>
