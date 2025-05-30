@@ -127,6 +127,7 @@ public class FatBlazeling : AbstractEnemy
             var bullet = Instantiate(projectileItem, bulletPosition, transform.rotation);
             bullet.targetPlayer = true;
             bullet.targetEnemy = false;
+            if (isEnraged) bullet.effect = "burning";
             bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), damage, bulletSpeed, true);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             yield return new WaitForSeconds(0.095f);

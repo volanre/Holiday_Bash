@@ -30,34 +30,34 @@ public abstract class AbstractEffect
     /// The level of the effect. Higher Levels mean higher effects.
     /// </summary>
     public int power;
-    public int time;
+    public float timeRemaining;
     protected int value;
-    protected float frequency;
+    public float frequency;
     public string description;
-    public AbstractEffect(string name, int power, int time, int value, float frequency, string description)
+    public AbstractEffect(string name, int power, float time, int value, float frequency, string description)
     {
         this.name = name;
         this.power = power;
-        this.time = time;
+        this.timeRemaining = time;
         this.value = value;
         this.description = description;
         this.frequency = frequency;
     }
-    public AbstractEffect(int power, int time)
+    public AbstractEffect(int power, float time)
     {
         this.power = power;
-        this.time = time;
+        this.timeRemaining = time;
+
     }
-    public abstract void DoEffect(Player player, int power);
-    public abstract void DoEffect(AbstractEnemy enemy, int power);
+    public abstract void DoEffect(AbstractCharacter character, int power);
 }
 
 public class BurningEffect : AbstractEffect
 {
-    public BurningEffect(string name, int power, int time, int value, float frequency, string description) : base(name, power, time, value, frequency, description)
+    public BurningEffect(string name, int power, float time, int value, float frequency, string description) : base(name, power, time, value, frequency, description)
     {
     }
-    public BurningEffect(int power, int time) : base(power, time)
+    public BurningEffect(int power, float time) : base(power, time)
     {
         this.name = "burning";
         this.value = 5;
@@ -65,14 +65,9 @@ public class BurningEffect : AbstractEffect
         this.description = "deals continuous fire damage";
     }
 
-    public override void DoEffect(Player player, int power)
+    public override void DoEffect(AbstractCharacter character, int power)
     {
-        player.TakeDamage(value * power);
+        character.TakeDamage(value * power);
         return;
-    }
-    public override void DoEffect(AbstractEnemy enemy, int power)
-    {
-        enemy.TakeDamage(value * power);
-        throw new NotImplementedException();
     }
 }

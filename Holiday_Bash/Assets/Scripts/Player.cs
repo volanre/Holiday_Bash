@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.UIElements;
 
-public class Player : MonoBehaviour
+public class Player : AbstractCharacter
 {
 
     private float attackTimer = 0f;
@@ -13,41 +13,20 @@ public class Player : MonoBehaviour
     private InputAction move;
     private InputAction attack;
     private AudioClip currentImpactSFX;
+
+    [NonSerialized] public Effects effectsObject;
     [NonSerialized] public static bool isAlive = true;
-
-    [NonSerialized] public int health;
-
-    [Header("Player Properties")]
-    [SerializeField] private int maxHealth = 500;
-    [SerializeField] private int damage = 100;
-    [SerializeField] private float moveSpeed = 5f, fireRate = 0.3f;
     
-    [Header("Projectile Attributes")]
-    public float LaunchOffset;
-    public ProjectileBehavior ProjectileItem;
-    [SerializeField] float bulletSpeed;
-    
-
     [Header("References")]
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Animator animator;
     public PlayerInputActions playerControls;
-    public SoundEffectPlayer noiseMaker;
-    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] public HealthBarUI healthBar;
-
-    [Header("Audio Noises")]
-    public AudioClip shootingSFX;
-    [SerializeField] private  AudioClip deathSound;
-    [SerializeField] private AudioClip defaultImpactSFX;
-
-
 
     private void Awake()
     {
         isAlive = true;
         if (playerControls == null) playerControls = new PlayerInputActions();
         if (animator == null) animator = GetComponent<Animator>();
+        effectsObject = new Effects(this);
     }
 
     private void OnEnable()
@@ -114,23 +93,21 @@ public class Player : MonoBehaviour
 
         }
     }
-    public void TakeDamage(int damageTaken)
-    {
-        DamageEffects(damageTaken);
-        noiseMaker.PlaySpecificSound(defaultImpactSFX, 0.75f);
+    // public void TakeDamage(int damageTaken)
+    // {
+    //     DamageEffects(damageTaken);
+    //     noiseMaker.PlaySpecificSound(defaultImpactSFX, 0.75f);
 
 
-    }
-    public void TakeDamage(int damageTaken, AudioClip impactAudio, float volume = 0.75f)
+    // }
+    // public void TakeDamage(int damageTaken, AudioClip impactAudio, float volume = 0.75f)
+    // {
+    //     DamageEffects(damageTaken);
+    //     noiseMaker.PlaySpecificSound(impactAudio, volume);
+    // }
+    public override void DamageEffects(AudioClip impactAudio, float volume = 0.75f)
     {
-        DamageEffects(damageTaken);
         noiseMaker.PlaySpecificSound(impactAudio, volume);
-    }
-    private void DamageEffects(int damage)
-    {
-        health -= damage;
-        spriteRenderer.color = Color.red;
-        Invoke("ResetColor", 0.05f);
         var clampedHealth = Mathf.Clamp(health, 0, maxHealth);
         healthBar.setCurrentHealth(clampedHealth);
 
@@ -138,7 +115,17 @@ public class Player : MonoBehaviour
         {
             Suicide();
         }
+    }
+    public override void DamageEffects()
+    {
+        noiseMaker.PlaySpecificSound(defaultImpactSFX, 0.75f);
+        var clampedHealth = Mathf.Clamp(health, 0, maxHealth);
+        healthBar.setCurrentHealth(clampedHealth);
 
+        if (health <= 0)
+        {
+            Suicide();
+        }
     }
     private void Suicide()
     {
@@ -152,7 +139,7 @@ public class Player : MonoBehaviour
             Invoke("CompleteDeath", time);
         }
         //Destroy(gameObject);
-        }
+    }
     private void CompleteDeath()
     {
         isAlive = false;

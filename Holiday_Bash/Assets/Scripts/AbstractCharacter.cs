@@ -5,27 +5,27 @@ public abstract class AbstractCharacter : MonoBehaviour
 {
     [NonSerialized] public int health = 999999999;
 
-    [Header("Player Properties")]
-    [SerializeField] private int maxHealth = 500;
-    [SerializeField] private int damage = 100;
-    [SerializeField] private float moveSpeed = 5f, fireRate = 0.3f;
+    [Header("Character Properties")]
+    [SerializeField] protected int maxHealth = 500;
+    [SerializeField] protected int damage = 100;
+    [SerializeField] protected float moveSpeed = 5f, fireRate = 0.3f;
 
     [Header("Projectile Attributes")]
     public float LaunchOffset;
     public ProjectileBehavior ProjectileItem;
-    [SerializeField] float bulletSpeed;
+    [SerializeField] protected float bulletSpeed;
 
 
     [Header("References")]
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Animator animator;
+    [SerializeField] protected Rigidbody2D rb;
+    [SerializeField] protected Animator animator;
     public SoundEffectPlayer noiseMaker;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] protected SpriteRenderer spriteRenderer;
 
     [Header("Audio Noises")]
     public AudioClip shootingSFX;
-    [SerializeField] private AudioClip deathSound;
-    [SerializeField] private AudioClip defaultImpactSFX;
+    [SerializeField] protected AudioClip deathSound;
+    [SerializeField] protected AudioClip defaultImpactSFX;
 
     public void TakeDamage(int damageTaken)
     {

@@ -16,6 +16,7 @@ public class ProjectileBehavior : MonoBehaviour
     [NonSerialized]
     public bool targetEnemy = true, targetPlayer = true;
     [NonSerialized] public bool isTangible;
+    internal string effect;
 
     //private Player player;
 
@@ -105,9 +106,14 @@ public class ProjectileBehavior : MonoBehaviour
         else if (other.CompareTag("Player") && targetPlayer)
         {
             Player player = other.GetComponent<Player>();
+            if (effect != null)
+            {
+                player.effectsObject.addEffect("burning", 1, 5);
+            }
             if (playerImpactNoise != null)
             {
                 player.TakeDamage(damage, playerImpactNoise);
+
             }
             else
             {
