@@ -33,6 +33,6 @@ public class MenuAudio : MonoBehaviour
     }
     public void playClick()
     {
-        source.PlayOneShot(clickSFX, 4f * GameManager.SFXVolume);
+        source.PlayOneShot(clickSFX, 4.5f * GameManager.SFXVolume);
     }
 }

@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class FatBlazeling : AbstractEnemy
 {
+    //note to self: playing the enragedcue several times back to back sounds like a dragon
+
+
     /// <summary>
     /// Min is 1, Max is 3. Both inclusive.
     /// </summary>
@@ -17,6 +20,7 @@ public class FatBlazeling : AbstractEnemy
     private List<AbstractEnemy> minionsList = new List<AbstractEnemy>();
     private bool isAttacking = false;
     private bool isEnraged = false;
+    private bool minionsSummoned = false;
 
 
     [Header("Boss Properties")]
@@ -25,13 +29,34 @@ public class FatBlazeling : AbstractEnemy
     [SerializeField] private int spinnyTopAttackValue;
 
     //At half health spawn a burst of enemies.
-    //All attacks now deal burning damage.
-    //The lower the hp the more damage burning does.
+    //Barrage attack now deals burning damage
+    //Spacing between pulse attack shrinks
+    //Spinny attack rotates faster
+    //General stat buffs (speed, firerate)
+
+    //at minion summoning possible add a new laser beam attack
+
+    /*
+    maxHealth = 3000;
+    defense = 100;
+    speed = 3;
+    fireRate = 0.5f;
+    walkSpeed = 1.5f;
+    detectionRadius = 20;
+    shootingRange = 5;
+    */
 
 
     void Start()
     {
         currentAttackNumber = Random.Range(1, 4);
+        if (maxHealth == 0) maxHealth = 3000;
+        if (defense == 0) defense = 100;
+        if (speed == 0) speed = 3;
+        if (fireRate == 0) fireRate = 0.5f;
+        if (walkSpeed == 0) walkSpeed = 1.5f;
+        if (detectionRadius == 0) detectionRadius = 20;
+        if (shootingRange == 0) shootingRange = 5;
     }
 
     void Update()
@@ -56,19 +81,22 @@ public class FatBlazeling : AbstractEnemy
             }
         }
 
-        if (!isEnraged && health < (maxHealth / 2))
+        if (!minionsSummoned && health < (int)(maxHealth * 0.65f))
+        {
+            minionsSummoned = true;
+            SummonMinions();
+        }
+        if (!isEnraged && health < (int)(maxHealth * 0.35f))
         {
             isEnraged = true;
             EnterEnragedMode();
         }
+        
 
         if (!isAttacking)
         {
             Attack();
         }
-
-
-
     }
 
     // public void BarrageAttack()
@@ -140,7 +168,7 @@ public class FatBlazeling : AbstractEnemy
 
     IEnumerator CirclePulseAttack()
     {
-        float timeDelta = 0.5f;
+        float timeDelta = isEnraged ? 0.4f : 0.5f;
         for (int i = 0; i < 5; i++)
         {
             int randomDegree = Random.Range(0, 90);
@@ -180,7 +208,8 @@ public class FatBlazeling : AbstractEnemy
             foreach (var dir in Direction2D.eightDirectionsList)
             {
                 Vector3 direction = (Vector3)(Vector3Int)dir;
-                Vector3 newDirection = Quaternion.Euler(0, 0, i * 6.3f) * direction;
+                float spacing = isEnraged ? 8f : 6.3f;
+                Vector3 newDirection = Quaternion.Euler(0, 0, i * spacing) * direction;
                 newDirection = newDirection.normalized;
 
                 Vector3 center = GetComponent<BoxCollider2D>().bounds.center;
@@ -241,7 +270,8 @@ public class FatBlazeling : AbstractEnemy
 
     private void SetNewFireRate()
     {
-        int randomizer = Random.Range(0, 100);
+        int randomizer = isEnraged ? Random.Range(0,84) : Random.Range(0, 100);
+
         float fireRateMin = 0.025f;
         float fireRateMax = 0.05f;
         if (randomizer < 1) //1% chance
@@ -280,10 +310,18 @@ public class FatBlazeling : AbstractEnemy
     private void EnterEnragedMode()
     {
         //change the sprite to its enraged version
-        soundEffectPlayer.PlaySpecificSound(EnragedCue, 1.5f);
+        soundEffectPlayer.PlaySpecificSound(EnragedCue, 1f);
         isEnraged = true;
         walkSpeed *= 2.3f;
         speed *= 1.2f;
+        shootingRange -= 1f + 1.3f;   
+    }
+
+    private void SummonMinions()
+    {
+        minionsSummoned = true;
+        shootingRange += 1.3f;
+        soundEffectPlayer.PlaySpecificSound(EnragedCue, 0.7f);
         foreach (var dir in Direction2D.cardinalDirectionsList)
         {
             var position = transform.position + new Vector3(1.5f * dir.x, 1.5f * dir.y, 0);
@@ -291,14 +329,14 @@ public class FatBlazeling : AbstractEnemy
             minionsList.Add(thisMinoin);
             thisMinoin.player = player;
             thisMinoin.room = room;
-            thisMinoin.attack /= 2;
-            thisMinoin.speed *= 0.8f;
+            thisMinoin.health = (int)(thisMinoin.health * 0.6f);
+            thisMinoin.attack = (int)(thisMinoin.attack * 0.4f);
+            thisMinoin.speed *= 1.25f;
             thisMinoin.fireRate *= 1.2f;
             thisMinoin.detectionRadius = 20f;
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), thisMinoin.GetComponent<Collider2D>());
         }
     }
-
     void FixedUpdate()
     {
         if (!initialized) return;

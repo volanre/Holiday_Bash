@@ -63,6 +63,8 @@ public abstract class AbstractCharacter : MonoBehaviour
     {
         if (attackedValue <= 0) return 0;
         float currentDamage = (attackedValue * attackedValue) / (attackedValue + GetEffectiveDefense());
+        currentDamage = (int)currentDamage;
+        currentDamage = currentDamage <= 0 ? 1 : currentDamage;
         return (int)currentDamage;
     }
 

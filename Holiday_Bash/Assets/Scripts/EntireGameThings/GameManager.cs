@@ -18,10 +18,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private PropPlacementManager propPlacer;
     [SerializeField] private EnemyManager enemyManager;
+    [SerializeField] private UIManager uiManager;
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private GameObject deathCanvasScreen;
-    [SerializeField] private GameObject settingsCanvasScreen;
-    [SerializeField] private GameObject gameCanvasScreen;
+    // [SerializeField] private GameObject deathCanvasScreen;
+    // [SerializeField] private GameObject settingsCanvasScreen;
+    // [SerializeField] private GameObject gameCanvasScreen;
     [SerializeField] HealthBarUI HP_Bar_UI;
 
     [Header("Settings")]
@@ -45,9 +46,8 @@ public class GameManager : MonoBehaviour
         mainCamera.transform.SetParent(player.transform, false);
         enemyManager.player = player;
 
-        deathCanvasScreen.SetActive(false);
-        settingsCanvasScreen.SetActive(false);
-        gameCanvasScreen.SetActive(true);
+        uiManager.OnGameStart();
+
         dungeon.GenerateDungeon();
         propPlacer.ProcessRooms();
         var startingPosition = setStartingPosition();
@@ -98,9 +98,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            deathCanvasScreen.SetActive(true);
-            gameCanvasScreen.SetActive(false);
-            settingsCanvasScreen.SetActive(false);
+            uiManager.OnGameEnd();
         }
     }
     public Vector2Int setStartingPosition() //redo this to not choose the boss room as the starting room
