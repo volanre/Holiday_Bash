@@ -46,7 +46,12 @@ public class FatBlazeling : AbstractEnemy
             {
                 foreach (AbstractEnemy guy in minionsList)
                 {
-                    Destroy(guy);
+                    foreach (var bullet in guy.shotProjectiles)
+                    {
+                        Destroy(bullet.gameObject);
+                    }
+                    guy.ClearDeadProjectilesList();
+                    Destroy(guy.gameObject);
                 }
                 suicide();
             }
@@ -127,7 +132,7 @@ public class FatBlazeling : AbstractEnemy
             var bullet = Instantiate(projectileItem, bulletPosition, transform.rotation);
             bullet.targetPlayer = true;
             bullet.targetEnemy = false;
-            if (isEnraged) bullet.effect = "burning";
+            if (isEnraged) bullet.setEffect("burning", 1, 5);
             bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), damage, bulletSpeed, true);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             yield return new WaitForSeconds(0.095f);

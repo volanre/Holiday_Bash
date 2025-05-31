@@ -16,7 +16,22 @@ public class ProjectileBehavior : MonoBehaviour
     [NonSerialized]
     public bool targetEnemy = true, targetPlayer = true;
     [NonSerialized] public bool isTangible;
-    internal string effect;
+    private string effect;
+    private int effectPower;
+    private float effectTime;
+    
+    /// <summary>
+    /// Sets the effect that the projectile applies on contact with an enemy
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="power"></param>
+    /// <param name="time"></param>
+    public void setEffect(string name, int power, float time)
+    {
+        effect = name;
+        effectPower = power;
+        effectTime = time;
+    }
 
     //private Player player;
 
@@ -69,7 +84,7 @@ public class ProjectileBehavior : MonoBehaviour
 
         if (gameObject.CompareTag("Enemy_Bullet"))
         {
-            if (other.CompareTag("Enemy_Bullet")) return;
+            if (other.CompareTag("Enemy_Bullet") || other.CompareTag("Enemy")) return;
             else if (other.CompareTag("Player_Bullet"))
             {
                 if (!isTangible)
@@ -108,7 +123,7 @@ public class ProjectileBehavior : MonoBehaviour
             Player player = other.GetComponent<Player>();
             if (effect != null)
             {
-                player.effectsObject.addEffect("burning", 1, 5);
+                player.effectsObject.addEffect(effect, effectPower, effectTime);
             }
             if (playerImpactNoise != null)
             {

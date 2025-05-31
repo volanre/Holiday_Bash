@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public static class EffectLibrary
 {
@@ -9,13 +10,18 @@ public static class EffectLibrary
     /// </summary>
     public static List<string> Library = new List<string>()
     {
-        "burning"
+        "burning",
+        "poison"
     };
-    public static AbstractEffect getEffect(string name, int power, int time)
+    public static AbstractEffect getEffect(string name, int power, float time)
     {
         if (name.Equals("burning"))
         {
             return new BurningEffect(power, time);
+        }
+        else if (name.Equals("poison"))
+        {
+            return new PoisonEffect(power, time);
         }
         else
         {
@@ -23,6 +29,14 @@ public static class EffectLibrary
         }
     }
 }
+/// <summary>
+/// <para>
+///     Passive effects are like debuffs and stack ontop of each other.
+/// </para>
+/// <para>
+/// Active effects are applyed once per each effect type at the given frequency.
+/// </para>
+/// </summary>
 public abstract class AbstractEffect
 {
     public string name;
@@ -31,43 +45,86 @@ public abstract class AbstractEffect
     /// </summary>
     public int power;
     public float timeRemaining;
-    protected int value;
+    protected int damageValue;
+    protected float effectValue;
     public float frequency;
     public string description;
-    public AbstractEffect(string name, int power, float time, int value, float frequency, string description)
-    {
-        this.name = name;
-        this.power = power;
-        this.timeRemaining = time;
-        this.value = value;
-        this.description = description;
-        this.frequency = frequency;
-    }
+    public Tuple<bool, float> effectMultiplier;
+    protected bool effectInPlace = false;
     public AbstractEffect(int power, float time)
     {
         this.power = power;
         this.timeRemaining = time;
-
     }
-    public abstract void DoEffect(AbstractCharacter character, int power);
+    public abstract void DoActiveEffect(AbstractCharacter character, int power);
+    public abstract void DoPassiveEffect(AbstractCharacter character);
+    public abstract void RemoveStatusEffect(AbstractCharacter character);
 }
 
 public class BurningEffect : AbstractEffect
 {
-    public BurningEffect(string name, int power, float time, int value, float frequency, string description) : base(name, power, time, value, frequency, description)
-    {
-    }
+    
     public BurningEffect(int power, float time) : base(power, time)
     {
         this.name = "burning";
-        this.value = 5;
+        this.damageValue = 5;
         this.frequency = 0.5f;
         this.description = "deals continuous fire damage";
     }
 
-    public override void DoEffect(AbstractCharacter character, int power)
+    public override void DoActiveEffect(AbstractCharacter character, int power)
     {
-        character.TakeDamage(value * power);
+        Debug.Log(character.title + " is hit by " + name + " it is of power: " + power);
+        character.TakeDamage(damageValue * power);
         return;
+    }
+
+    public override void DoPassiveEffect(AbstractCharacter character)
+    {
+        return;
+    }
+
+    public override void RemoveStatusEffect(AbstractCharacter character)
+    {
+        return;
+    }
+}
+public class PoisonEffect : AbstractEffect
+{
+    //Poison deals 
+    public PoisonEffect(int power, float time) : base(power, time)
+    {
+        this.name = "poison";
+        this.damageValue = 3;
+        this.effectValue = 10f;
+        this.frequency = 0.5f;
+        this.description = "deals continuous poison damage and weakens enemy defense";
+        this.effectMultiplier = new Tuple<bool, float>(false, effectValue*power);
+        this.effectInPlace = false;
+    }
+
+    public override void DoActiveEffect(AbstractCharacter character, int power)
+    {
+        character.TakeDamage(damageValue * power);
+        return;
+    }
+
+    public override void DoPassiveEffect(AbstractCharacter character)
+    {
+        if (effectInPlace) return;
+        effectInPlace = true;
+        character.defenseMultipliers.Add(effectMultiplier);
+        return;
+    }
+    /// <summary>
+    /// Removes any additional status effects the player may have had.
+    /// </summary>
+    /// <param name="character"></param>
+    public override void RemoveStatusEffect(AbstractCharacter character)
+    {
+        if (!effectInPlace) return;
+        character.defenseMultipliers.Remove(effectMultiplier);
+        effectInPlace = false;
+
     }
 }

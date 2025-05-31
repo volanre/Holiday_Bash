@@ -44,14 +44,15 @@ public class Effects
             effectTimers.Add(key, 0f);
         }
     }
-    public void addEffect(string name, int power, int time)
+    public void addEffect(string name, int power, float time)
     {
         effectsList.Add(EffectLibrary.getEffect(name, power, time));
+        Debug.Log(character.title + " is now afflicted with: " + name);
     }
 
     private void UpdateTimers()
     {
-        foreach (var (key, value) in effectTimers)
+        foreach (var key in EffectLibrary.Library)
         {
             effectTimers[key] += Time.deltaTime;
         }
@@ -60,13 +61,15 @@ public class Effects
     public void UpdateEffects()
     {
         UpdateTimers();
-        foreach (AbstractEffect effect in effectsList)
+        for(int i = 0; i < effectsList.Count; i++)
         {
-
+            var effect = effectsList[i];
             effect.timeRemaining -= Time.deltaTime;
             if (effect.timeRemaining <= 0)
             {
-                effectsList.Remove(effect);
+                effect.RemoveStatusEffect(character);
+                effectsList.RemoveAt(i);
+                i--;
             }
         }
 
@@ -81,15 +84,22 @@ public class Effects
                 continue;
             }
 
+            //Do the active effect if freuqency allows it
             if (effectTimers[key] >= EffectLibrary.getEffect(key, 1, 1).frequency)
             {
                 effectTimers[key] = 0;
+                var powersList = duplicatesList.Select(v => v.power).ToList();
+                int maxPower = powersList.Max();
+
+                duplicatesList[0].DoActiveEffect(character, maxPower);
+            }
+            //Do the passive effect/debuffs
+            foreach (var effectInstance in duplicatesList)
+            {
+                effectInstance.DoPassiveEffect(character);
             }
 
-            var powersList = duplicatesList.Select(v => v.power).ToList();
-            int maxPower = powersList.Max();
-
-            duplicatesList[0].DoEffect(character, maxPower);
+            
         }
 
     }

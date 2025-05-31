@@ -10,8 +10,8 @@ public class Player : AbstractCharacter
 
     private float attackTimer = 0f;
     private Vector2 moveDirection = Vector2.zero, shootDirection = Vector2.zero;
-    private InputAction move;
-    private InputAction attack;
+    private InputAction moveAction;
+    private InputAction attackAction;
     private AudioClip currentImpactSFX;
 
     [NonSerialized] public Effects effectsObject;
@@ -31,25 +31,30 @@ public class Player : AbstractCharacter
 
     private void OnEnable()
     {
-        move = playerControls.Player.Move;
-        move.Enable();
-        move.performed += MovePerformed;
-        move.canceled += MoveCancelled;
+        moveAction = playerControls.Player.Move;
+        moveAction.Enable();
+        moveAction.performed += MovePerformed;
+        moveAction.canceled += MoveCancelled;
 
-        attack = playerControls.Player.Attack;
-        attack.Enable();
+        attackAction = playerControls.Player.Attack;
+        attackAction.Enable();
         // attack.performed += Attack;
     }
 
     private void OnDisable()
     {
-        move.Disable();
-        attack.Disable();
+        moveAction.Disable();
+        attackAction.Disable();
     }
 
     void Start()
     {
         health = maxHealth;
+        // fireRate = maxFireRate;
+        // moveSpeed = maxMoveSpeed;
+        // damage = maxDamage;
+        
+        
         healthBar.setMaxHealth(maxHealth);
         healthBar.setCurrentHealth(maxHealth);
     }
@@ -58,6 +63,7 @@ public class Player : AbstractCharacter
     {
         if (!isAlive) return;
         UpdateTimers();
+        effectsObject.UpdateEffects();
 
         if (attackTimer >= fireRate)
         {
@@ -78,7 +84,7 @@ public class Player : AbstractCharacter
 
     private void Shoot()
     {
-        Vector2 attackInput = attack.ReadValue<Vector2>();
+        Vector2 attackInput = attackAction.ReadValue<Vector2>();
         if (attackInput != Vector2.zero)
         {
             attackTimer = 0f;
@@ -88,7 +94,7 @@ public class Player : AbstractCharacter
             Vector3 bulletPosition = new Vector3(center.x + LaunchOffset * shootDirection.x, center.y + (LaunchOffset + 0.3f) * shootDirection.y, 0);
             noiseMaker.PlaySpecificSound(shootingSFX, 0.2f);
             var bullet = Instantiate(ProjectileItem, bulletPosition, transform.rotation);
-            bullet.Initialize(new Vector3(shootDirection.x, shootDirection.y, 0), damage, bulletSpeed);
+            bullet.Initialize(new Vector3(shootDirection.x, shootDirection.y, 0), GetEffectiveAttack(), bulletSpeed);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
         }
@@ -154,13 +160,6 @@ public class Player : AbstractCharacter
         if (!isAlive) return;
         rb.linearVelocity = getVelocity();
     }
-    // private void Attack(InputAction.CallbackContext context)
-    // {
-    //     //Debug.Log("we fired!!");
-    //     float posX = transform.position.x;
-    //     Vector3 bulletPosition = (transform.position);
-    //     Instantiate(ProjectileItem, transform.position, transform.rotation);
-    // }
     private void UpdateTimers()
     {
         attackTimer += Time.deltaTime;

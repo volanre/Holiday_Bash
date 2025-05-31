@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,6 +9,7 @@ public abstract class AbstractEnemy : MonoBehaviour
     /// The time (in secs) all enemies must wait until they become active;
     /// </summary>
     public static float initalPause = 1f;
+    [NonSerialized]public List<ProjectileBehavior> shotProjectiles = new List<ProjectileBehavior>();
     protected float intialPauseTimer = 0, attackTimer = .5f, boomTimer = .3f;
     protected Vector2 moveDirection;
     protected bool isDead = false, isCharging = false, forwardsCharging = false, initialized = false;
@@ -135,13 +137,13 @@ public abstract class AbstractEnemy : MonoBehaviour
         moveDirection = new Vector2(dir.x, dir.y);
 
         rb.linearVelocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
-
     }
 
     protected void updateTimers()
     {
         attackTimer += Time.deltaTime;
         intialPauseTimer += Time.deltaTime;
+        ClearDeadProjectilesList();
     }
 
     protected void checkIfDead()
@@ -161,6 +163,18 @@ public abstract class AbstractEnemy : MonoBehaviour
     protected void suicide()
     {
         Destroy(gameObject);
+    }
+
+    public void ClearDeadProjectilesList()
+    {
+        for (int i = 0; i < shotProjectiles.Count; i++)
+        {
+            if (shotProjectiles[i] == null)
+            {
+                shotProjectiles.Remove(shotProjectiles[i]);
+                i--;
+            }
+        }
     }
 
     /// <summary>
@@ -185,6 +199,7 @@ public abstract class AbstractEnemy : MonoBehaviour
         Vector3 bulletPosition = new Vector3(center.x + launchOffset * newDirection.x, center.y + launchOffset * newDirection.y, 0);
 
         var bullet = Instantiate(projectileItem, bulletPosition, transform.rotation);
+        shotProjectiles.Add(bullet);
         bullet.targetPlayer = true;
         bullet.targetEnemy = false;
         bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), damage, bulletSpeed);
@@ -230,6 +245,7 @@ public abstract class AbstractEnemy : MonoBehaviour
         {
             flip();
         }
+        
     }
 
     protected bool checkInitialized()

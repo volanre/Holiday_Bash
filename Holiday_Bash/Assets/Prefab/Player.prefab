@@ -50,10 +50,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e9fe8692d75b4f48be401e483263573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: MC_Player
   maxHealth: 500
-  damage: 100
-  moveSpeed: 5
-  fireRate: 0.3
+  maxDamage: 100
+  maxMoveSpeed: 5
+  maxFireRate: 0.3
   LaunchOffset: 1
   ProjectileItem: {fileID: 5638314003847611325, guid: 0f199c03eeab8ab4ab3674301474c32e, type: 3}
   bulletSpeed: 7.5
@@ -61,10 +62,10 @@ MonoBehaviour:
   animator: {fileID: 622009439405352395}
   noiseMaker: {fileID: 1353515763229122294}
   spriteRenderer: {fileID: 5942765396180027407}
-  healthBar: {fileID: 0}
   shootingSFX: {fileID: 8300000, guid: 8f6660f1135cd0b4d9d83a661cac828f, type: 3}
   deathSound: {fileID: 8300000, guid: da60541cc3b28da4093a3761ef7ebb47, type: 3}
   defaultImpactSFX: {fileID: 8300000, guid: d2a7fc826d0586d439d5ba5cfa519281, type: 3}
+  healthBar: {fileID: 0}
 --- !u!114 &2361193887364949801
 MonoBehaviour:
   m_ObjectHideFlags: 0
