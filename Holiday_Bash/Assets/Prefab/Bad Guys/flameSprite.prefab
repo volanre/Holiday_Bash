@@ -49,20 +49,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1a0ebdca2fea14aa7e8144c995a76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 300
-  speed: 3
-  damage: 20
+  title: Blazeling
+  maxHealth: 550
+  attack: 60
+  defense: 30
+  speed: 4
   fireRate: 0.8
-  detectionRadius: 7
-  shootingRange: 5
+  launchOffset: 0.5
   bulletSpeed: 9
   projectileItem: {fileID: 7008929205646833749, guid: e0f899a509ca2374487a0b1bf0660bed, type: 3}
-  fireSpreadDegrees: 15
-  player: {fileID: 0}
   rb: {fileID: 7318814945973549908}
-  animator: {fileID: 0}
+  walkSpeed: 1.5
+  detectionRadius: 7
+  shootingRange: 5
+  fireSpreadDegrees: 15
   deathExposion: {fileID: 3556448659331345684}
-  spriteRenderer: {fileID: 6688447295352612831}
+  player: {fileID: 0}
   soundEffect: {fileID: 8037203408117805344}
 --- !u!212 &6688447295352612831
 SpriteRenderer:

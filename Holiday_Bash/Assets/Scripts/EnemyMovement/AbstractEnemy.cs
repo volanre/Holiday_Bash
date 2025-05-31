@@ -1,32 +1,27 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public abstract class AbstractEnemy : MonoBehaviour
+public abstract class AbstractEnemy : AbstractCharacter
 {
     /// <summary>
     /// The time (in secs) all enemies must wait until they become active;
     /// </summary>
     public static float initalPause = 1f;
-    [NonSerialized]public List<ProjectileBehavior> shotProjectiles = new List<ProjectileBehavior>();
+    
     protected float intialPauseTimer = 0, attackTimer = .5f, boomTimer = .3f;
     protected Vector2 moveDirection;
     protected bool isDead = false, isCharging = false, forwardsCharging = false, initialized = false;
     private bool movingRight = true;
-    [NonSerialized] public float health = 999999999999f;
     [NonSerialized] public RoomCollection room;
 
 
     [Header("Enemy Properties")]
-    public float maxHealth = 500f;
-    public float speed = 0.5f;
+    public ProjectileBehavior projectileItem;
+    [SerializeField] protected Rigidbody2D rb;
     public float walkSpeed = 1.5f;
-    public int damage = 20;
-    /// <summary>
-    /// Number of seconds between attacks
-    /// </summary>
-    public float fireRate = .5f;
     /// <summary>
     /// Radius enemy senses the player at
     /// </summary>
@@ -35,28 +30,13 @@ public abstract class AbstractEnemy : MonoBehaviour
     /// Radius enemy will attack the player at
     /// </summary>
     public float shootingRange = 5f;
-    public float bulletSpeed = 4.5f;
-
-
-    [Header("Projectile Attributes")]
-    public ProjectileBehavior projectileItem;
     /// <summary>
     /// Effects shooting accuracy.
     /// Its the amount of variation in shooting vector.
     /// </summary>
     public float fireSpreadDegrees = 5f;
-    protected float launchOffset = 0.5f;
-
-    [Header("References")]
-    public Player player;
-    public Rigidbody2D rb;
-    [SerializeField] protected Animator animator;
     [SerializeField] protected ParticleSystem deathExposion;
-    public SpriteRenderer spriteRenderer;
-
-
-
-
+    public Player player;
 
     /*  METHODS    */
 
@@ -143,7 +123,6 @@ public abstract class AbstractEnemy : MonoBehaviour
     {
         attackTimer += Time.deltaTime;
         intialPauseTimer += Time.deltaTime;
-        ClearDeadProjectilesList();
     }
 
     protected void checkIfDead()
@@ -163,18 +142,6 @@ public abstract class AbstractEnemy : MonoBehaviour
     protected void suicide()
     {
         Destroy(gameObject);
-    }
-
-    public void ClearDeadProjectilesList()
-    {
-        for (int i = 0; i < shotProjectiles.Count; i++)
-        {
-            if (shotProjectiles[i] == null)
-            {
-                shotProjectiles.Remove(shotProjectiles[i]);
-                i--;
-            }
-        }
     }
 
     /// <summary>
@@ -199,10 +166,9 @@ public abstract class AbstractEnemy : MonoBehaviour
         Vector3 bulletPosition = new Vector3(center.x + launchOffset * newDirection.x, center.y + launchOffset * newDirection.y, 0);
 
         var bullet = Instantiate(projectileItem, bulletPosition, transform.rotation);
-        shotProjectiles.Add(bullet);
         bullet.targetPlayer = true;
         bullet.targetEnemy = false;
-        bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), damage, bulletSpeed);
+        bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), CalculateEffectiveDamage(attack), bulletSpeed);
         Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
@@ -254,7 +220,7 @@ public abstract class AbstractEnemy : MonoBehaviour
         if (intialPauseTimer < initalPause)
         {
             initialized = false;
-            spriteRenderer.color = Color.gray;
+            gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
         }
         else
         {
@@ -263,7 +229,7 @@ public abstract class AbstractEnemy : MonoBehaviour
                 moveDirection = Direction2D.getRandomCardinalDirection();
                 health = maxHealth;
                 initialized = true;
-                spriteRenderer.color = Color.white;
+                gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
 
@@ -278,14 +244,14 @@ public abstract class AbstractEnemy : MonoBehaviour
         transform.localScale = theScale;
     }
 
-    public void TakeDamage(int damageTaken)
-    {
-        health -= damageTaken;
-        spriteRenderer.color = Color.red;
-        Invoke("ResetColor", 0.07f);
-    }
-    private void ResetColor()
-    {
-        spriteRenderer.color = Color.white;
-    }
+    // public void TakeDamage(int damageTaken)
+    // {
+    //     health -= damageTaken;
+    //     spriteRenderer.color = Color.red;
+    //     Invoke("ResetColor", 0.07f);
+    // }
+    // private void ResetColor()
+    // {
+    //     spriteRenderer.color = Color.white;
+    // }
 }

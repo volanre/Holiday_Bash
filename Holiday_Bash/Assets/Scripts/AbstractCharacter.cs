@@ -14,7 +14,7 @@ public abstract class AbstractCharacter : MonoBehaviour
     */
     [NonSerialized] public List<Tuple<bool, float>> damageMultipliers = new List<Tuple<bool, float>>();
     [NonSerialized] public List<Tuple<bool, float>> defenseMultipliers = new List<Tuple<bool, float>>();
-    [NonSerialized] public List<Tuple<bool, float>> moveSpeedMultipliers = new List<Tuple<bool, float>>();
+    [NonSerialized] public List<Tuple<bool, float>> speedMultipliers = new List<Tuple<bool, float>>();
     [NonSerialized] public List<Tuple<bool, float>> fireRateMultipliers = new List<Tuple<bool, float>>();
 
 
@@ -23,51 +23,47 @@ public abstract class AbstractCharacter : MonoBehaviour
     [SerializeField] public string title;
     [SerializeField] protected int maxHealth = 500;
     [SerializeField] public int attack = 100, defense = 100;
-    [SerializeField] public float moveSpeed = 5f, fireRate = 0.3f;
+    [SerializeField] public float speed = 5f;
+
+    /// <summary>
+    /// Number of seconds between attacks
+    /// </summary>
+    [SerializeField] public float fireRate = 0.3f;
 
     [Header("Projectile Attributes")]
-    public float LaunchOffset;
-    public ProjectileBehavior ProjectileItem;
+    public float launchOffset;
     [SerializeField] protected float bulletSpeed;
 
 
-    [Header("References")]
-    [SerializeField] protected Rigidbody2D rb;
-    [SerializeField] protected Animator animator;
-    public SoundEffectPlayer noiseMaker;
-    [SerializeField] protected SpriteRenderer spriteRenderer;
+    
 
-    [Header("Audio Noises")]
-    public AudioClip shootingSFX;
-    [SerializeField] protected AudioClip deathSound;
-    [SerializeField] protected AudioClip defaultImpactSFX;
-
-    public void TakeDamage(int attackedValue)
+    public void TakeDamage(int attackedValue, bool ignoreDefense = false)
     {
-        health -= CalculateEffectiveDamage(attackedValue);
-        spriteRenderer.color = Color.red;
+        int effectiveDamage = ignoreDefense ? attackedValue : CalculateEffectiveDamage(attackedValue);
+        health -= effectiveDamage;
+        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         DamageEffects();
         Invoke("ResetColor", 0.07f);
     }
-    public void TakeDamage(int attackedValue, AudioClip impactAudio, float volume = 0.75f)
-    {
-        health -= CalculateEffectiveDamage(attackedValue);
-        spriteRenderer.color = Color.red;
-        DamageEffects();
-        Invoke("ResetColor", 0.07f);
-    }
+
+    /// <summary>
+    /// Extra events that occur after taking damage
+    /// </summary>
     public abstract void DamageEffects();
-    public abstract void DamageEffects(AudioClip impactAudio, float volume = 0.75f);
     private void ResetColor()
     {
-        spriteRenderer.color = Color.white;
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
+    /// <summary>
+    /// Calculates how much damage is actually dealt to the character using a formula
+    /// </summary>
+    /// <returns></returns>
     public int CalculateEffectiveDamage(int attackedValue)
     {
         if (attackedValue <= 0) return 0;
-        int currentDamage = attackedValue * attackedValue / (attackedValue + defense);
-        return currentDamage;
+        float currentDamage = (attackedValue * attackedValue) / (attackedValue + GetEffectiveDefense());
+        return (int)currentDamage;
     }
 
     /// <summary>
@@ -95,9 +91,9 @@ public abstract class AbstractCharacter : MonoBehaviour
     /// <returns></returns>
     public float GetEffectiveSpeed()
     {
-        float newSpeed = moveSpeed;
-        var multiplicativeOnly = moveSpeedMultipliers.Where(x => x.Item1 == true).ToList();
-        var additiveOnly = moveSpeedMultipliers.Where(x => x.Item1 == false).ToList();
+        float newSpeed = speed;
+        var multiplicativeOnly = speedMultipliers.Where(x => x.Item1 == true).ToList();
+        var additiveOnly = speedMultipliers.Where(x => x.Item1 == false).ToList();
         foreach ((bool type, float value) in multiplicativeOnly)
         {
             newSpeed = newSpeed * value;
@@ -131,20 +127,20 @@ public abstract class AbstractCharacter : MonoBehaviour
     /// Gets the character's effective defense value.
     /// </summary>
     /// <returns></returns>
-    public float GetEffectiveDefense()
+    public int GetEffectiveDefense()
     {
-        float newFire = defense;
+        float newD = defense;
         var multiplicativeOnly = defenseMultipliers.Where(x => x.Item1 == true).ToList();
         var additiveOnly = defenseMultipliers.Where(x => x.Item1 == false).ToList();
         foreach ((bool type, float value) in multiplicativeOnly)
         {
-            newFire = newFire * value;
+            newD = newD * value;
         }
         foreach ((bool type, float value) in additiveOnly)
         {
-            newFire += value;
+            newD += value;
         }
-        return newFire;
+        return (int)newD;
     }
     
 }

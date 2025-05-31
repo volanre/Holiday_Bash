@@ -46,9 +46,19 @@ public abstract class AbstractEffect
     public int power;
     public float timeRemaining;
     protected int damageValue;
+
+
+    
+    
     protected float effectValue;
     public float frequency;
     public string description;
+
+    /// <summary>
+    /// <para>For all multipliers: </para>
+    /// <para>If bool is true then it is an MULTIPLICATIVE bonus </para>
+    /// If bool is false then it is a ADDITIVE bonus
+    /// </summary>
     public Tuple<bool, float> effectMultiplier;
     protected bool effectInPlace = false;
     public AbstractEffect(int power, float time)
@@ -74,8 +84,7 @@ public class BurningEffect : AbstractEffect
 
     public override void DoActiveEffect(AbstractCharacter character, int power)
     {
-        Debug.Log(character.title + " is hit by " + name + " it is of power: " + power);
-        character.TakeDamage(damageValue * power);
+        character.TakeDamage(damageValue * power, true);
         return;
     }
 
@@ -91,7 +100,7 @@ public class BurningEffect : AbstractEffect
 }
 public class PoisonEffect : AbstractEffect
 {
-    //Poison deals 
+    //Poison debuff is additive
     public PoisonEffect(int power, float time) : base(power, time)
     {
         this.name = "poison";
@@ -105,7 +114,7 @@ public class PoisonEffect : AbstractEffect
 
     public override void DoActiveEffect(AbstractCharacter character, int power)
     {
-        character.TakeDamage(damageValue * power);
+        character.TakeDamage(damageValue * power, true);
         return;
     }
 

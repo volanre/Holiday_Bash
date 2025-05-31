@@ -49,20 +49,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4f7ab5460012e4a848e743028e21df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  title: Fire_Wisp
+  maxHealth: 350
+  attack: 100
+  defense: 10
   speed: 3
-  damage: 20
   fireRate: 4
-  detectionRadius: 11
-  shootingRange: 7
-  bulletSpeed: 7.5
+  launchOffset: 0
   projectileItem: {fileID: 0}
-  fireSpreadDegrees: 5
-  player: {fileID: 0}
+  bulletSpeed: 7.5
   rb: {fileID: 3320120699707563308}
   animator: {fileID: 691769817957027308}
-  deathExposion: {fileID: 3459528162079807685}
+  noiseMaker: {fileID: 0}
   spriteRenderer: {fileID: 4277203364590769141}
+  shootingSFX: {fileID: 0}
+  deathSound: {fileID: 0}
+  defaultImpactSFX: {fileID: 0}
+  walkSpeed: 1.5
+  detectionRadius: 11
+  shootingRange: 7
+  fireSpreadDegrees: 5
+  deathExposion: {fileID: 3459528162079807685}
+  player: {fileID: 0}
   soundEffect: {fileID: 0}
 --- !u!70 &7644021276416588456
 CapsuleCollider2D:

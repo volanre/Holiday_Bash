@@ -52,11 +52,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: MC_Player
   maxHealth: 500
-  maxDamage: 100
-  maxMoveSpeed: 5
-  maxFireRate: 0.3
-  LaunchOffset: 1
-  ProjectileItem: {fileID: 5638314003847611325, guid: 0f199c03eeab8ab4ab3674301474c32e, type: 3}
+  attack: 100
+  defense: 50
+  speed: 5
+  fireRate: 0.3
+  launchOffset: 1
+  projectileItem: {fileID: 5638314003847611325, guid: 0f199c03eeab8ab4ab3674301474c32e, type: 3}
   bulletSpeed: 7.5
   rb: {fileID: 473939295389032282}
   animator: {fileID: 622009439405352395}

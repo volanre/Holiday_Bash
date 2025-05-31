@@ -5,6 +5,7 @@ public class FirewispEnemy : AbstractEnemy
 {
     [SerializeField]
     private SoundEffectPlayer soundEffect;
+    [SerializeField] protected Animator animator;
 
     void Start()
     {
@@ -59,14 +60,19 @@ public class FirewispEnemy : AbstractEnemy
     public void OnTriggerEnter2D(Collider2D collider)
     {
         GameObject other = collider.gameObject;
-        if (other.CompareTag("Player_Bullet"))
+        // if (other.CompareTag("Player_Bullet"))
+        // {
+        //     TakeDamage(other.GetComponent<ProjectileBehavior>().damage);
+        //     Destroy(other.gameObject);
+        // }
+        if (other.CompareTag("Player"))
         {
-            TakeDamage(other.GetComponent<ProjectileBehavior>().damage);
-            Destroy(other.gameObject);
+            player.TakeDamage(CalculateEffectiveDamage(attack));
         }
-        else if (other.CompareTag("Player"))
-        {
-            player.TakeDamage(damage);
-        }
+    }
+
+    public override void DamageEffects()
+    {
+        return;
     }
 }

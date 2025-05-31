@@ -49,26 +49,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 193135f2bcc658848871b8c07b202063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5000
-  speed: 0.8
-  damage: 20
+  title: Calcifer
+  maxHealth: 3000
+  attack: 0
+  defense: 100
+  speed: 3
   fireRate: 0.5
-  detectionRadius: 20
-  shootingRange: 5
+  launchOffset: 0.5
   bulletSpeed: 8
   projectileItem: {fileID: 7008929205646833749, guid: e0f899a509ca2374487a0b1bf0660bed, type: 3}
-  fireSpreadDegrees: 8
-  player: {fileID: 0}
   rb: {fileID: 4478870933136038522}
-  animator: {fileID: 0}
+  walkSpeed: 1.5
+  detectionRadius: 20
+  shootingRange: 5
+  fireSpreadDegrees: 8
   deathExposion: {fileID: 7140122860492175389}
-  spriteRenderer: {fileID: 817196186464124416}
+  player: {fileID: 0}
   soundEffectPlayer: {fileID: 2153075453155485884}
   EnragedCue: {fileID: 8300000, guid: dfeede7fbedf0724a9a5ed6ea8d0e4b7, type: 3}
   minion: {fileID: 8542137653130969406, guid: 4f826c35c428d4640980996823d46894, type: 3}
-  BarrageDamage: 35
-  circlePulseDamage: 50
-  spinnyTopDamage: 15
+  barrageAttackValue: 80
+  circlePulseAttackValue: 95
+  spinnyTopAttackValue: 50
 --- !u!50 &4478870933136038522
 Rigidbody2D:
   serializedVersion: 5

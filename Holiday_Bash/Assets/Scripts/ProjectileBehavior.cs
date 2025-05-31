@@ -9,7 +9,7 @@ public class ProjectileBehavior : MonoBehaviour
     public float extraRotationDegrees = 0;
     private Vector3 direction = Vector3.zero;
 
-    public int damage = 100;
+    [NonSerialized] private int damage;
 
     public AudioClip playerImpactNoise;
 
@@ -20,6 +20,13 @@ public class ProjectileBehavior : MonoBehaviour
     private int effectPower;
     private float effectTime;
     
+    public void Initialize(Vector3 direction, int damage, float speed = 7.5f, bool tangible = true)
+    {
+        this.direction = direction;
+        this.damage = damage;
+        this.speed = speed;
+        this.isTangible = tangible;
+    }
     /// <summary>
     /// Sets the effect that the projectile applies on contact with an enemy
     /// </summary>
@@ -32,9 +39,7 @@ public class ProjectileBehavior : MonoBehaviour
         effectPower = power;
         effectTime = time;
     }
-
-    //private Player player;
-
+    
     Vector2 Rotate(Vector2 v, float degrees)
     {
         float radians = degrees * Mathf.Deg2Rad;
@@ -51,33 +56,6 @@ public class ProjectileBehavior : MonoBehaviour
         gameObject.GetComponent<Collider2D>().isTrigger = true;
     }
 
-    void Update()
-    {
-        // transform.position += direction * Time.deltaTime * speed;
-        //gameObject.GetComponent<Rigidbody2D>().linearVelocity = direction * speed;
-    }
-
-    // private void OnCollisionEnter2D(Collision2D collision) //Runs if its a solid projectile
-    // {
-    //     GameObject other = collision.gameObject;
-    //     Destroy(gameObject);
-    //     if (other.CompareTag("Enemy") && targetEnemy)
-    //     {
-    //         other.GetComponent<AbstractEnemy>().TakeDamage(damage);
-    //     }
-    //     else if (other.CompareTag("Player") && targetPlayer)
-    //     {
-    //         Player player = other.GetComponent<Player>();
-    //         if (playerImpactNoise != null)
-    //         {
-    //             player.TakeDamage(damage, playerImpactNoise);
-    //         }
-    //         else
-    //         {
-    //             player.TakeDamage(damage);
-    //         }
-    //     }
-    // }
     private void OnTriggerEnter2D(Collider2D collider)
     {
         GameObject other = collider.gameObject;
@@ -127,7 +105,7 @@ public class ProjectileBehavior : MonoBehaviour
             }
             if (playerImpactNoise != null)
             {
-                player.TakeDamage(damage, playerImpactNoise);
+                player.TakeDamage(damage);
 
             }
             else
@@ -135,16 +113,5 @@ public class ProjectileBehavior : MonoBehaviour
                 player.TakeDamage(damage);
             }
         }
-    }
-
-    public void Initialize(Vector3 direction, int damage = 100, float speed = 7.5f, bool tangible = true)
-    {
-        this.direction = direction;
-        this.damage = damage;
-        this.speed = speed;
-        this.isTangible = tangible;
-    }
-    
-        
-    
+    }    
 }

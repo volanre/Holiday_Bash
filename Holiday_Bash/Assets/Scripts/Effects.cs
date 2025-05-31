@@ -20,22 +20,7 @@ public class Effects
     public Effects(AbstractCharacter character)
     {
         this.character = character;
-        // Effects libaryEntry;
-        // if (!EffectLibrary.library.ContainsKey(name))
-        // {
-        //     throw new Exception("Dictionary Does Not Contain This Effect Name");
-        // }
-        // else
-        // {
-        //     libaryEntry = EffectLibrary.library[name];
-        // }
-        // this.name = name;
-        // this.power = power;
-        // this.time = time;
 
-        // this.value = libaryEntry.value;
-        // this.description = libaryEntry.description;
-        // this.frequency = libaryEntry.frequency;
         effectsList = new List<AbstractEffect>();
         burningTimer = 0;
         effectTimers = new Dictionary<string, float>();
@@ -47,7 +32,6 @@ public class Effects
     public void addEffect(string name, int power, float time)
     {
         effectsList.Add(EffectLibrary.getEffect(name, power, time));
-        Debug.Log(character.title + " is now afflicted with: " + name);
     }
 
     private void UpdateTimers()
@@ -75,9 +59,6 @@ public class Effects
 
         foreach (var key in EffectLibrary.Library)
         {
-            // var duplicatesList = Enumerable.Range(0, effectsList.Count)
-            //     .Where(i => effectsList[i].name == key)
-            //     .ToList();
             var duplicatesList = effectsList.Where(i => i.name == key).ToList();
             if (duplicatesList.Count <= 0)
             {

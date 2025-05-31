@@ -6,13 +6,6 @@ public class FirespriteEnemy : AbstractEnemy
     [SerializeField]
     private SoundEffectPlayer soundEffect;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        fireRate = fireRate * 0.75f;
-    }
-
-    // Update is called once per frame
     void Update()
     {
         updateTimers();
@@ -48,5 +41,10 @@ public class FirespriteEnemy : AbstractEnemy
     {
         if (!initialized) return;
         defaultUpdateBehavior();
+    }
+
+    public override void DamageEffects()
+    {
+        return;
     }
 }

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class FatBlazeling : AbstractEnemy
-{   
+{
     /// <summary>
     /// Min is 1, Max is 3. Both inclusive.
     /// </summary>
@@ -19,9 +20,9 @@ public class FatBlazeling : AbstractEnemy
 
 
     [Header("Boss Properties")]
-    [SerializeField] private int BarrageDamage;
-    [SerializeField] private int circlePulseDamage;
-    [SerializeField] private int spinnyTopDamage;
+    [SerializeField] private int barrageAttackValue;
+    [SerializeField] private int circlePulseAttackValue;
+    [SerializeField] private int spinnyTopAttackValue;
 
     //At half health spawn a burst of enemies.
     //All attacks now deal burning damage.
@@ -44,15 +45,13 @@ public class FatBlazeling : AbstractEnemy
             boomTimer -= Time.deltaTime;
             if (boomTimer <= 0)
             {
-                foreach (AbstractEnemy guy in minionsList)
+                GameObject[] clones = GameObject.FindGameObjectsWithTag("Enemy");
+                clones.Union(GameObject.FindGameObjectsWithTag("Enemy_Bullet"));
+                foreach (GameObject clone in clones)
                 {
-                    foreach (var bullet in guy.shotProjectiles)
-                    {
-                        Destroy(bullet.gameObject);
-                    }
-                    guy.ClearDeadProjectilesList();
-                    Destroy(guy.gameObject);
+                    Destroy(clone);
                 }
+
                 suicide();
             }
         }
@@ -67,8 +66,8 @@ public class FatBlazeling : AbstractEnemy
         {
             Attack();
         }
-        
-        
+
+
 
     }
 
@@ -86,12 +85,11 @@ public class FatBlazeling : AbstractEnemy
     IEnumerator BarrageAttack()
     {
         bool attackLeading = Random.value < .5f ? true : false;
-        damage = BarrageDamage;
         int barrageCount = Random.Range(0, 4);
         barrageCount += 6;
         Vector3 shootDirection = Vector3.zero;
         float maxAngleRadians = fireSpreadDegrees * Mathf.Deg2Rad;
-        
+
         if (attackLeading)
         {
             ///float timeDelta = ((Vector2)player.transform.position - (Vector2)transform.position) / (//bullet velocity - playervelocity);
@@ -133,7 +131,7 @@ public class FatBlazeling : AbstractEnemy
             bullet.targetPlayer = true;
             bullet.targetEnemy = false;
             if (isEnraged) bullet.setEffect("burning", 1, 5);
-            bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), damage, bulletSpeed, true);
+            bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), CalculateEffectiveDamage(barrageAttackValue), bulletSpeed, true);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             yield return new WaitForSeconds(0.095f);
         }
@@ -142,7 +140,6 @@ public class FatBlazeling : AbstractEnemy
 
     IEnumerator CirclePulseAttack()
     {
-        damage = circlePulseDamage;
         float timeDelta = 0.5f;
         for (int i = 0; i < 5; i++)
         {
@@ -163,23 +160,23 @@ public class FatBlazeling : AbstractEnemy
                     var bullet = Instantiate(projectileItem, bulletPosition, transform.rotation);
                     bullet.targetPlayer = true;
                     bullet.targetEnemy = false;
-                    bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), damage, bulletSpeed, false);
+                    bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), CalculateEffectiveDamage(circlePulseAttackValue), bulletSpeed, false);
                     bullet.GetComponent<SpriteRenderer>().color = Color.black;
                     Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
                 }
-            }            
+            }
             yield return new WaitForSeconds(timeDelta);
         }
         AttackFinished();
     }
 
-    IEnumerator SpinnyTopAttack() {
-        damage = spinnyTopDamage;
+    IEnumerator SpinnyTopAttack()
+    {
         float timeDelta = 0.11f;
         int iterations = Random.Range(30, 45);
         for (int i = 0; i < iterations; i++)
         {
-            
+
             foreach (var dir in Direction2D.eightDirectionsList)
             {
                 Vector3 direction = (Vector3)(Vector3Int)dir;
@@ -193,10 +190,10 @@ public class FatBlazeling : AbstractEnemy
                 var bullet = Instantiate(projectileItem, bulletPosition, transform.rotation);
                 bullet.targetPlayer = true;
                 bullet.targetEnemy = false;
-                bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), damage, bulletSpeed, true);
+                bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), CalculateEffectiveDamage(spinnyTopAttackValue), bulletSpeed, true);
                 Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             }
-            
+
             yield return new WaitForSeconds(timeDelta);
         }
         AttackFinished();
@@ -207,11 +204,11 @@ public class FatBlazeling : AbstractEnemy
         if (attackTimer < fireRate) return;
         if (isAttacking) return;
         isAttacking = true;
-        if (currentAttackNumber == 1) //Fireball Barrage
+        if (currentAttackNumber == 1)
         {
             StartCoroutine(BarrageAttack());
         }
-        else if (currentAttackNumber == 2) //
+        else if (currentAttackNumber == 2)
         {
             StartCoroutine(CirclePulseAttack());
         }
@@ -237,7 +234,7 @@ public class FatBlazeling : AbstractEnemy
         {
             currentAttackNumber = 3;
         }
-        
+
         attackTimer = 0f;
         isAttacking = false;
     }
@@ -285,8 +282,8 @@ public class FatBlazeling : AbstractEnemy
         //change the sprite to its enraged version
         soundEffectPlayer.PlaySpecificSound(EnragedCue, 1.5f);
         isEnraged = true;
-        walkSpeed *= 2;
-        speed *= 1.3f;
+        walkSpeed *= 2.3f;
+        speed *= 1.2f;
         foreach (var dir in Direction2D.cardinalDirectionsList)
         {
             var position = transform.position + new Vector3(1.5f * dir.x, 1.5f * dir.y, 0);
@@ -294,10 +291,11 @@ public class FatBlazeling : AbstractEnemy
             minionsList.Add(thisMinoin);
             thisMinoin.player = player;
             thisMinoin.room = room;
-            thisMinoin.damage /= 2;
+            thisMinoin.attack /= 2;
             thisMinoin.speed *= 0.8f;
             thisMinoin.fireRate *= 1.2f;
             thisMinoin.detectionRadius = 20f;
+            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), thisMinoin.GetComponent<Collider2D>());
         }
     }
 
@@ -306,4 +304,12 @@ public class FatBlazeling : AbstractEnemy
         if (!initialized) return;
         defaultUpdateBehavior();
     }
+
+    public override void DamageEffects()
+    {
+        return;
+    }
+
+
+    
 }

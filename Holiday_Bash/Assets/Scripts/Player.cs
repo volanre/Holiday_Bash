@@ -16,10 +16,22 @@ public class Player : AbstractCharacter
 
     [NonSerialized] public Effects effectsObject;
     [NonSerialized] public static bool isAlive = true;
-    
+
+    [Header("Audio Noises")]
+    public AudioClip shootingSFX;
+    [SerializeField] protected AudioClip deathSound;
+    [SerializeField] protected AudioClip defaultImpactSFX;
+
     [Header("References")]
+    public ProjectileBehavior projectileItem;
+    public SoundEffectPlayer noiseMaker;
+    [SerializeField] protected Rigidbody2D rb;
+    [SerializeField] protected Animator animator;
+
     public PlayerInputActions playerControls;
     [SerializeField] public HealthBarUI healthBar;
+
+    
 
     private void Awake()
     {
@@ -49,11 +61,7 @@ public class Player : AbstractCharacter
 
     void Start()
     {
-        health = maxHealth;
-        // fireRate = maxFireRate;
-        // moveSpeed = maxMoveSpeed;
-        // damage = maxDamage;
-        
+        health = maxHealth;        
         
         healthBar.setMaxHealth(maxHealth);
         healthBar.setCurrentHealth(maxHealth);
@@ -91,9 +99,9 @@ public class Player : AbstractCharacter
             shootDirection = attackInput.normalized; // Last active direction
 
             Vector3 center = GetComponent<BoxCollider2D>().bounds.center;
-            Vector3 bulletPosition = new Vector3(center.x + LaunchOffset * shootDirection.x, center.y + (LaunchOffset + 0.3f) * shootDirection.y, 0);
+            Vector3 bulletPosition = new Vector3(center.x + launchOffset * shootDirection.x, center.y + (launchOffset + 0.3f) * shootDirection.y, 0);
             noiseMaker.PlaySpecificSound(shootingSFX, 0.2f);
-            var bullet = Instantiate(ProjectileItem, bulletPosition, transform.rotation);
+            var bullet = Instantiate(projectileItem, bulletPosition, transform.rotation);
             bullet.Initialize(new Vector3(shootDirection.x, shootDirection.y, 0), GetEffectiveAttack(), bulletSpeed);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
@@ -103,25 +111,6 @@ public class Player : AbstractCharacter
     // {
     //     DamageEffects(damageTaken);
     //     noiseMaker.PlaySpecificSound(defaultImpactSFX, 0.75f);
-
-
-    // }
-    // public void TakeDamage(int damageTaken, AudioClip impactAudio, float volume = 0.75f)
-    // {
-    //     DamageEffects(damageTaken);
-    //     noiseMaker.PlaySpecificSound(impactAudio, volume);
-    // }
-    public override void DamageEffects(AudioClip impactAudio, float volume = 0.75f)
-    {
-        noiseMaker.PlaySpecificSound(impactAudio, volume);
-        var clampedHealth = Mathf.Clamp(health, 0, maxHealth);
-        healthBar.setCurrentHealth(clampedHealth);
-
-        if (health <= 0)
-        {
-            Suicide();
-        }
-    }
     public override void DamageEffects()
     {
         noiseMaker.PlaySpecificSound(defaultImpactSFX, 0.75f);
@@ -150,11 +139,6 @@ public class Player : AbstractCharacter
     {
         isAlive = false;
     }
-    private void ResetColor()
-    {
-        spriteRenderer.color = Color.white;
-    }
-
     private void FixedUpdate()
     {
         if (!isAlive) return;
@@ -171,7 +155,7 @@ public class Player : AbstractCharacter
     }
     public Vector2 getVelocity()
     {
-        return new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        return new Vector2(moveDirection.x * GetEffectiveSpeed(), moveDirection.y * GetEffectiveSpeed());
     }
 
 }
