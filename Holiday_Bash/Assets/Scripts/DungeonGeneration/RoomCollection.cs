@@ -197,7 +197,7 @@ public class RoomCollection
         }
         roomCollectionList = new List<RoomCollection>();
     }
-}    
+}
 
 public class RoomGraph
 {
@@ -243,6 +243,81 @@ public class RoomGraph
             }
         }
         return map;
-        
+
+    }
+    /// <summary>
+    /// Runs Breadth For Search Algorithms
+    /// </summary>
+    /// <param name="startPos"></param>
+    /// <param name="occupiedNodes"></param>
+    /// <returns>a map of every reachable position in the room and its cost (distance from the start)</returns>
+    public Dictionary<Vector2Int, int> RunWeightedBFS(Vector2Int startPos, HashSet<Vector2Int> occupiedNodes)
+    {
+        int cost = 0;
+        Queue<Vector2Int> nodesToVisit = new Queue<Vector2Int>();
+        nodesToVisit.Enqueue(startPos);
+
+        HashSet<Vector2Int> visitedNodes = new HashSet<Vector2Int>();
+        visitedNodes.Add(startPos);
+
+        Dictionary<Vector2Int, int> map = new Dictionary<Vector2Int, int>();
+        map.Add(startPos, cost);
+        cost = 1;
+        while (nodesToVisit.Count > 0)
+        {
+            Vector2Int node = nodesToVisit.Dequeue();
+            List<Vector2Int> neighbors = graph[node];
+            foreach (Vector2Int pos in neighbors)
+            {
+                if (!visitedNodes.Contains(pos) && !occupiedNodes.Contains(pos))
+                {
+                    nodesToVisit.Enqueue(pos);
+                    visitedNodes.Add(pos);
+                    map[pos] = cost;
+                }
+            }
+            cost++;
+        }
+        return map;
+
+    }
+    /// <summary>
+    /// Creates a clearence map for the max size sprite that can go into each tile of the bfsMap parameter
+    /// </summary>
+    /// <param name="bfsMap"></param>
+    /// <returns></returns>
+    public Dictionary<Vector2Int, int> CreateClearenceMap(Dictionary<Vector2Int, int> bfsMap)
+    {
+        Dictionary<Vector2Int, int> map = new Dictionary<Vector2Int, int>();
+        foreach ((var tilePos, var tileCost) in bfsMap)
+        {
+            int maxSize = 1;
+            if (tileCost >= 9999) //if its a solid block
+            {
+                maxSize = 0;
+            }
+            else
+            {
+                for (int i = 1; i < 5; i++)
+                {
+                    bool good = false;
+                    Vector2Int newPos = tilePos + (Vector2Int.up * i);
+                    Vector2Int newPosAlt = tilePos + (Vector2Int.right * i);
+                    if (bfsMap.ContainsKey(newPos) && bfsMap.ContainsKey(newPosAlt))
+                    {
+                        if (bfsMap[newPos] <= 999 && bfsMap[newPosAlt] <= 999)
+                        {
+                            good = true;
+                        }
+                    }
+
+                    if (good) maxSize++;
+                    else i = 20;
+                }
+            }
+            map[tilePos] = maxSize;
+        }
+        return map;
     }
 }
+

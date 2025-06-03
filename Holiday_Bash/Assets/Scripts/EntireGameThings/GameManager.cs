@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour
             {
                 if (room.roomBound.Contains(player.getPosition()))
                 {
+                    player.currentRoom = room;
+                    player.UpdateFloodField();
 
                     if (room.status.Equals("empty"))
                     {
@@ -90,7 +92,7 @@ public class GameManager : MonoBehaviour
                         room.status = "occupied";
 
                     }
-
+                    
                     room.spawnNextWave();
 
                 }
@@ -120,8 +122,8 @@ public class GameManager : MonoBehaviour
         {
             RoomCollection.roomCollectionList[randInt].roomType = "boss";
             Debug.Log("Boss Room Number: " + RoomCollection.roomCollectionList[randInt].roomNumber);
-            var tempCenter = RoomCollection.roomCollectionList[randInt].roomCenter;
-            player.transform.position = new Vector3(tempCenter.x, tempCenter.y, 0);
+             var tempCenter = RoomCollection.roomCollectionList[randInt].roomCenter;
+             player.transform.position = new Vector3(tempCenter.x, tempCenter.y, 0);
         }
         else
         {

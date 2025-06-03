@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -11,6 +12,7 @@ public abstract class AbstractEnemy : AbstractCharacter
     /// </summary>
     public static float initalPause = 1f;
     
+    
     protected float intialPauseTimer = 0, attackTimer = .5f, boomTimer = .3f;
     protected Vector2 moveDirection;
     protected bool isDead = false, isCharging = false, forwardsCharging = false, initialized = false;
@@ -21,6 +23,11 @@ public abstract class AbstractEnemy : AbstractCharacter
     [Header("Enemy Properties")]
     public ProjectileBehavior projectileItem;
     [SerializeField] protected Rigidbody2D rb;
+
+    /// <summary>
+    /// the number of tiles it takes up, its always a square
+    /// </summary>
+    public int size = 1;
     public float walkSpeed = 1.5f;
     /// <summary>
     /// Radius enemy senses the player at
@@ -100,7 +107,8 @@ public abstract class AbstractEnemy : AbstractCharacter
         var realWalkSpeed = walkSpeed + Random.Range(-0.7f, 0.8f);
         rb.linearVelocity = new Vector2(moveDirection.x * realWalkSpeed, moveDirection.y * realWalkSpeed);
     }
-
+    /*
+    
     /// <summary>
     /// Moves towards the player
     /// </summary>
@@ -112,12 +120,108 @@ public abstract class AbstractEnemy : AbstractCharacter
             drift();
             return;
         }
-        Vector3 dir = player.transform.position - transform.position;
-        dir = dir.normalized;
-        moveDirection = new Vector2(dir.x, dir.y);
+        //Vector2Int currentPosition = new Vector2Int((int)transform.position.x, (int)transform.position.y);
+        Vector2 bottomLeft = gameObject.GetComponent<Collider2D>().bounds.min;
+        Vector2Int currentPosition = Vector2Int.FloorToInt(bottomLeft);
+        //player.playerFloodField[currentPosition];
+        Vector2Int targetPosition = Vector2Int.zero;
 
-        rb.linearVelocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
+        float bestDot = float.NegativeInfinity;
+        Vector2 bestDir = Vector2.zero;
+        bool betterOneExists = false;
+        foreach (var direction in Direction2D.cardinalDirectionsList)
+        {
+            Vector2Int offset = direction;
+            if (direction == Vector2Int.up || direction == Vector2Int.right)
+            {
+                offset = direction * size;
+            }
+            Vector2Int nextPos = currentPosition + offset;
+
+            if (!room.roomFloor.Contains(nextPos)) continue;
+            if (player.playerFloodField[nextPos] < player.playerFloodField[currentPosition])
+            {
+                betterOneExists = true;
+                targetPosition = nextPos;
+            }
+            else if (player.playerFloodField[nextPos] == player.playerFloodField[currentPosition])
+            {
+                if (!betterOneExists)
+                {
+                    Vector2 dirVector = direction;
+                    float dot = Vector2.Dot(dirVector.normalized, rb.linearVelocity.normalized);
+                    if (dot > bestDot)
+                    {
+                        bestDot = dot;
+                        bestDir = dirVector;
+                    }
+                }
+            }
+        }
+        if (!betterOneExists) //in case all neighboring costs are equal
+        {
+            moveDirection = bestDir.normalized;
+        }
+        else
+        {
+            moveDirection = targetPosition - currentPosition;
+            moveDirection = moveDirection.normalized;
+        }
+
+        // Vector2 dir = currentPosition - targetPosition;
+        // dir = dir.normalized;
+
+
+        //rb.linearVelocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
+        rb.linearVelocity = moveDirection * speed;
     }
+
+    */
+    protected void targetPlayer()
+    {
+        if (isCharging) return;
+        if (inShootingRange() && !isCharging)
+        {
+            drift();
+            return;
+        }
+        Vector2 bottomLeft = gameObject.GetComponent<Collider2D>().bounds.min;
+        Vector2Int currentPosition = Vector2Int.FloorToInt(bottomLeft);
+
+        moveDirection = GradientDescent(currentPosition);
+        
+        //rb.linearVelocity = moveDirection * speed;
+        rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, moveDirection * speed, 0.8f);
+        
+    }
+
+    /// <summary>
+    /// Gets the normalized vector of the lowest cost direction in the players FloodField
+    /// </summary>
+    /// <param name="currentPosition"></param>
+    /// <returns></returns>
+    Vector2 GradientDescent(Vector2Int currentPosition)
+    {
+        List<float> costValues = new List<float>();
+        foreach (var dir in Direction2D.cardinalDirectionsList)
+        {
+            Vector2Int newPos = currentPosition + dir;
+            if (player.playerFloodField.ContainsKey(newPos) && player.playerClearenceMap[newPos] >= size)
+            {
+                costValues.Add(player.playerFloodField[newPos]);
+            }
+            else {
+                costValues.Add(9999);
+            }
+        }
+
+        // Compute gradient (negative for descent)
+        //Vector2 gradient = new Vector2(left - right, down - up);
+        Vector2 gradient = new Vector2(costValues[3] - costValues[1], costValues[2] - costValues[0]);
+
+        return gradient.normalized;
+    }
+
 
     protected void updateTimers()
     {
