@@ -91,6 +91,7 @@ public class Player : AbstractCharacter
     void Start()
     {
         health = maxHealth;
+        attack = 5000;
 
         healthBar.setMaxHealth(maxHealth);
         healthBar.setCurrentHealth(maxHealth);
@@ -180,6 +181,12 @@ public class Player : AbstractCharacter
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
         }
+    }
+    public void Heal(int healingAmount)
+    {
+        health += healingAmount;
+        var clampedHealth = Mathf.Clamp(health, 0, maxHealth);
+        healthBar.setCurrentHealth(clampedHealth);
     }
     // public void TakeDamage(int damageTaken)
     // {

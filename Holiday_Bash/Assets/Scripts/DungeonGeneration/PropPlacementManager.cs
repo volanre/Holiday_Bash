@@ -212,6 +212,7 @@ public class PropPlacementManager : MonoBehaviour
         prop.transform.localPosition = (Vector2)position;
 
         spriteRenderer.transform.localPosition = (Vector2)futureProp.propSize * 0.5f;
+        spriteRenderer.sortingLayerName = "Objects";
 
         room.propPositions.Add(position);
         room.propReferences.Add(prop);

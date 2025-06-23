@@ -56,15 +56,10 @@ MonoBehaviour:
   speed: 3
   fireRate: 4
   launchOffset: 0
-  projectileItem: {fileID: 0}
   bulletSpeed: 7.5
+  projectileItem: {fileID: 0}
   rb: {fileID: 3320120699707563308}
-  animator: {fileID: 691769817957027308}
-  noiseMaker: {fileID: 0}
-  spriteRenderer: {fileID: 4277203364590769141}
-  shootingSFX: {fileID: 0}
-  deathSound: {fileID: 0}
-  defaultImpactSFX: {fileID: 0}
+  size: 1
   walkSpeed: 1.5
   detectionRadius: 11
   shootingRange: 7
@@ -72,6 +67,7 @@ MonoBehaviour:
   deathExposion: {fileID: 3459528162079807685}
   player: {fileID: 0}
   soundEffect: {fileID: 0}
+  animator: {fileID: 691769817957027308}
 --- !u!70 &7644021276416588456
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -172,9 +168,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 11
+  m_SortingLayerID: -1002814183
+  m_SortingLayer: 3
+  m_SortingOrder: 15
   m_Sprite: {fileID: 7330236518002246493, guid: 0c4dd25b42fe5c64d8311323ea819cac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

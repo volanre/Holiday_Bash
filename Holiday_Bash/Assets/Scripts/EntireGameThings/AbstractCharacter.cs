@@ -21,7 +21,7 @@ public abstract class AbstractCharacter : MonoBehaviour
 
     [Header("Character Properties")]
     [SerializeField] public string title;
-    [SerializeField] protected int maxHealth = 500;
+    [SerializeField] public int maxHealth = 500;
     [SerializeField] public int attack = 100, defense = 100;
     [SerializeField] public float speed = 5f;
 

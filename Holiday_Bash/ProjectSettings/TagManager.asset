@@ -9,6 +9,7 @@ TagManager:
   - Player_Bullet
   - Wall
   - Prop
+  - Object
   layers:
   - Default
   - TransparentFX
@@ -45,6 +46,18 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 4105502207
+    locked: 0
+  - name: Objects
+    uniqueID: 1327515051
+    locked: 0
+  - name: Characters
+    uniqueID: 3292153113
+    locked: 0
+  - name: Front
+    uniqueID: 1115813173
     locked: 0
   m_RenderingLayers:
   - Default
