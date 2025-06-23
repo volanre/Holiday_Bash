@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -15,6 +14,9 @@ public class RoomCollection
 
     public static UIManager uiManager;
     public static ChestManager chestManager;
+    public SpecialPortal specialPortal; //only used in boss rooms
+    public static Player player;
+    public string roomName = "Room"; //only used in special rooms
 
     public int roomNumber;
     public BoundsInt roomBound;
@@ -25,7 +27,7 @@ public class RoomCollection
     public RoomData roomData;
 
     /// <summary>
-    /// Possible types include: "starting", "fight", "treasure", "boss", "elite_fight"
+    /// Possible types include: "starting", "fight", "treasure", "boss", "elite_fight", "special"
     /// </summary>
     public string roomType;
 
@@ -128,6 +130,7 @@ public class RoomCollection
             uiManager.FlashClearScreen();
             chestManager.SpawnChest(this);
             Portal.toggleActive(true);
+            if (roomType == "boss") CreateSpecialPortal();
             return;
         }
         if (enemies.Count == 0)
@@ -159,6 +162,15 @@ public class RoomCollection
             }
         }
     }
+    private void CreateSpecialPortal()
+    {
+        Vector3 position = new Vector3(roomCenter.x, roomCenter.y);
+        SpecialPortal portal = UnityEngine.Object.Instantiate(specialPortal, position, Quaternion.identity);
+        portal.player = player;
+        portal.enemyManager = enemyManager;
+    }
+    
+
     public string getData()
     {
         return "RoomNumber: " + roomNumber +

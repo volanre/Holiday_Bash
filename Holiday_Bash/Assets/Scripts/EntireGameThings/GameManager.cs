@@ -20,10 +20,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EnemyManager enemyManager;
     [SerializeField] private ChestManager chestManager;
     [SerializeField] private UIManager uiManager;
+    [SerializeField] private TilemapVisualizer tilemapVisualizer;
     [SerializeField] private Camera mainCamera;
     // [SerializeField] private GameObject deathCanvasScreen;
     // [SerializeField] private GameObject settingsCanvasScreen;
     // [SerializeField] private GameObject gameCanvasScreen;
+    [SerializeField] private SpecialPortal redPortal;
     [SerializeField] HealthBarUI HP_Bar_UI;
 
     [Header("Settings")]
@@ -49,6 +51,8 @@ public class GameManager : MonoBehaviour
         mainCamera.transform.SetParent(player.transform, false);
         enemyManager.player = player;
         chestManager.player = player;
+        RoomCollection.player = player;
+        redPortal.tilemapVisualizer = tilemapVisualizer;
 
         uiManager.OnGameStart();
 
@@ -92,6 +96,7 @@ public class GameManager : MonoBehaviour
                     {
                         if (room.status.Equals("inactive"))
                         {
+                            room.specialPortal = redPortal;
                             room.startBossFight(FloorOfTheDungeon);
                             room.status = "active";
                         }

@@ -26,10 +26,8 @@ public class TreasureChest : MonoBehaviour
         {
             if (IsInRange())
             {
-                Debug.Log("interactions: " + player.GetInteraction());
                 if (player.GetInteraction())
                 {
-                    Debug.Log("button pressed!!!");
                     OpenChest();
                 }
             }
