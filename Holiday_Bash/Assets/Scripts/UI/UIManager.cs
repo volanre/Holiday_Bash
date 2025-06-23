@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] public GameObject inventoryCanvas;
     [SerializeField] public GameObject gameOverlayCanvas;
     [SerializeField] public GameObject deathScreenCanvas;
+    [SerializeField] public GameObject gameTextCanvas;
+
+    [SerializeField] public GameObject roomClearText;
 
     void Awake()
     {
@@ -37,6 +41,15 @@ public class UIManager : MonoBehaviour
         pauseMenuToggle.Disable();
         inventoryToggle.Disable();
         gameOverlayToggle.Disable();
+    }
+    public void FlashClearScreen()
+    {
+        roomClearText.SetActive(true);
+        Invoke("EndClearScreen", 2f);
+    }
+    private void EndClearScreen()
+    {
+        roomClearText.SetActive(false);
     }
 
     private void PauseGame(InputAction.CallbackContext context)

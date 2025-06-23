@@ -7,10 +7,14 @@ using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Object = UnityEngine.Object;
+using UnityEngine.UI;
 
 public class RoomCollection
 {
     public static List<RoomCollection> roomCollectionList = new List<RoomCollection>();
+
+    public static UIManager uiManager;
+    public static ChestManager chestManager;
 
     public int roomNumber;
     public BoundsInt roomBound;
@@ -26,9 +30,9 @@ public class RoomCollection
     public string roomType;
 
     /// <summary>
-    /// Possible statuses include: "empty", "occupied", "cleared"
+    /// Possible statuses include: "inactive", "active", "cleared"
     /// </summary>
-    public string status = "empty";
+    public string status = "inactive";
 
     /// <summary>
     /// Ranges from 1 - 5
@@ -36,7 +40,7 @@ public class RoomCollection
     public int difficulty = 1;
 
     private EnemyManager enemyManager;
-    private List<Vector2Int> accessiblePaths;
+    public List<Vector2Int> accessiblePaths;
 
 
     public static List<string> roomTypeList = new List<string>() { "fight", "treasure", "boss", "elite_fight" };
@@ -112,15 +116,18 @@ public class RoomCollection
     /// </summary>
     public void spawnNextWave()
     {
-        CheckEnemiesRemaining();
         if (status.Equals("cleared"))
         {
             Portal.toggleActive(true);
             return;
         }
+        CheckEnemiesRemaining();
         if (wavesLeft == 0 && enemies.Count == 0)
         {
             status = "cleared";
+            uiManager.FlashClearScreen();
+            chestManager.SpawnChest(this);
+            Portal.toggleActive(true);
             return;
         }
         if (enemies.Count == 0)

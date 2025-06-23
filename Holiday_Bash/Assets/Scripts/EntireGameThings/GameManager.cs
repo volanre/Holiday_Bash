@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private PropPlacementManager propPlacer;
     [SerializeField] private EnemyManager enemyManager;
+    [SerializeField] private ChestManager chestManager;
     [SerializeField] private UIManager uiManager;
     [SerializeField] private Camera mainCamera;
     // [SerializeField] private GameObject deathCanvasScreen;
@@ -38,6 +39,8 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
+        RoomCollection.uiManager = uiManager;
+        RoomCollection.chestManager = chestManager;
         
         FloorOfTheDungeon = 1;
         player = Instantiate(playerPrefab);
@@ -45,6 +48,7 @@ public class GameManager : MonoBehaviour
         player.healthBar = HP_Bar_UI;
         mainCamera.transform.SetParent(player.transform, false);
         enemyManager.player = player;
+        chestManager.player = player;
 
         uiManager.OnGameStart();
 
@@ -74,26 +78,56 @@ public class GameManager : MonoBehaviour
                     player.currentRoom = room;
                     player.UpdateFloodField();
 
-                    if (room.status.Equals("empty"))
+                    if (room.roomType.Equals("fight"))
                     {
-                        Debug.Log("player is in this room: " + room.roomCenter);
-                        if (room.roomType.Equals("fight"))
+                        if (room.status.Equals("inactive"))
                         {
                             room.initializeFight();
+                            room.status = "active";
+
                         }
-                        else if (room.roomType.Equals("boss"))
+                        room.spawnNextWave();
+                    }
+                    else if (room.roomType.Equals("boss"))
+                    {
+                        if (room.status.Equals("inactive"))
                         {
                             room.startBossFight(FloorOfTheDungeon);
+                            room.status = "active";
                         }
-                        else
-                        {
-                            Portal.toggleActive(true);
-                        }
-                        room.status = "occupied";
-
+                        room.spawnNextWave();
                     }
+                    else
+                    {
+                        if (room.status.Equals("inactive"))
+                        {
+                            room.status = "active";
+                        }
+                        Portal.toggleActive(true);
+                    }
+
+
+
+                    // if (room.status.Equals("empty"))
+                    // {
+                    //     Debug.Log("player is in this room: " + room.roomCenter);
+                    //     if (room.roomType.Equals("fight"))
+                    //     {
+                    //         room.initializeFight();
+                    //     }
+                    //     else if (room.roomType.Equals("boss"))
+                    //     {
+                    //         room.startBossFight(FloorOfTheDungeon);
+                    //     }
+                    //     else
+                    //     {
+                    //         Portal.toggleActive(true);
+                    //     }
+                    //     room.status = "occupied";
+
+                    // }
                     
-                    room.spawnNextWave();
+                    // room.spawnNextWave();
 
                 }
             }
@@ -142,6 +176,7 @@ public class GameManager : MonoBehaviour
         mainCamera.transform.SetSiblingIndex(0);
         GameObject[] clones = GameObject.FindGameObjectsWithTag("Enemy");
         clones.Union(GameObject.FindGameObjectsWithTag("Player"));
+        clones.Union(GameObject.FindGameObjectsWithTag("Object"));
         clones.Union(GameObject.FindGameObjectsWithTag("Enemy_Bullet"));
         clones.Union(GameObject.FindGameObjectsWithTag("Player_Bullet"));
 

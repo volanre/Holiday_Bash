@@ -14,6 +14,7 @@ public class Player : AbstractCharacter
     private Vector2 moveDirection = Vector2.zero, shootDirection = Vector2.zero;
     private InputAction moveAction;
     private InputAction attackAction;
+    private InputAction interactAction;
     private AudioClip currentImpactSFX;
     [NonSerialized] public Dictionary<Vector2Int,int> playerFloodField;
     [NonSerialized] public Dictionary<Vector2Int,int> playerClearenceMap;
@@ -56,6 +57,9 @@ public class Player : AbstractCharacter
         moveAction.performed += MovePerformed;
         moveAction.canceled += MoveCancelled;
 
+        interactAction = playerControls.Player.Interact;
+        interactAction.Enable();
+
         attackAction = playerControls.Player.Attack;
         attackAction.Enable();
         // attack.performed += Attack;
@@ -65,6 +69,11 @@ public class Player : AbstractCharacter
     {
         moveAction.Disable();
         attackAction.Disable();
+        interactAction.Disable();
+    }
+    public bool GetInteraction()
+    {
+        return interactAction.IsPressed();
     }
 
     void Start()
