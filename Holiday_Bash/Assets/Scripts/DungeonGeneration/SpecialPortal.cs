@@ -45,9 +45,9 @@ public class SpecialPortal : MonoBehaviour
         int locationX = -100;
         int locationY = 100;
         int offset = 1;
-        BoundsInt room = new BoundsInt(locationX, locationY, 0, 30, 30, 1);
-        int randWidth = 15;
-        int randHeight = 20;
+        BoundsInt room = new BoundsInt(locationX, locationY, 0, 50, 50, 1);
+        int randWidth = 35;
+        int randHeight = 35;
 
         int xOff = (room.size.x - (2 * offset) - randWidth) / 2;
         int yOff = (room.size.y - (2 * offset) - randHeight) / 2;

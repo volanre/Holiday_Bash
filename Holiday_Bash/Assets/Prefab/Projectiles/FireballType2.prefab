@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4314443348813128205}
   m_Layer: 0
   m_Name: FireballType2
-  m_TagString: Untagged
+  m_TagString: Enemy_Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,9 +77,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1002814183
+  m_SortingLayer: 3
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: f57c15212cb7bab47b532fdf4b7e42e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1477f478a30044246aa033f547419769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraRotationDegrees: 0
+  extraRotationDegrees: 180
   playerImpactNoise: {fileID: 8300000, guid: d2a7fc826d0586d439d5ba5cfa519281, type: 3}
 --- !u!95 &4314443348813128205
 Animator:

@@ -159,7 +159,7 @@ public class FatBlazeling : AbstractEnemy
             bullet.targetPlayer = true;
             bullet.targetEnemy = false;
             if (isEnraged) bullet.setEffect("burning", 1, 5);
-            bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), CalculateEffectiveDamage(barrageAttackValue), bulletSpeed, true);
+            bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), barrageAttackValue, bulletSpeed, true);
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             yield return new WaitForSeconds(0.095f);
         }
@@ -188,7 +188,7 @@ public class FatBlazeling : AbstractEnemy
                     var bullet = Instantiate(projectileItem, bulletPosition, transform.rotation);
                     bullet.targetPlayer = true;
                     bullet.targetEnemy = false;
-                    bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), CalculateEffectiveDamage(circlePulseAttackValue), bulletSpeed, false);
+                    bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), circlePulseAttackValue, bulletSpeed, false);
                     bullet.GetComponent<SpriteRenderer>().color = Color.black;
                     Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
                 }
@@ -219,7 +219,7 @@ public class FatBlazeling : AbstractEnemy
                 var bullet = Instantiate(projectileItem, bulletPosition, transform.rotation);
                 bullet.targetPlayer = true;
                 bullet.targetEnemy = false;
-                bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), CalculateEffectiveDamage(spinnyTopAttackValue), bulletSpeed, true);
+                bullet.Initialize(new Vector3(newDirection.x, newDirection.y, 0), spinnyTopAttackValue, bulletSpeed, true);
                 Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             }
 
