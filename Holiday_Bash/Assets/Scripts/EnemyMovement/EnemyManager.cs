@@ -9,12 +9,14 @@ public class EnemyManager : MonoBehaviour
     //public static List<AbstractEnemy> enemyTypes = new List<AbstractEnemy>();
 
     [SerializeField]
-
+    [Header("Enemies")]
     public List<AbstractEnemy> enemyTypes = new List<AbstractEnemy>();
 
     [NonSerialized] public Player player;
+    [Header("Bosses")]
 
     [SerializeField] private List<AbstractEnemy> Floor1Bosses = new List<AbstractEnemy>();
+    [SerializeField] private Ifrit ifrit;
 
     internal AbstractEnemy CreateBaddie(Vector2Int position, int FloorOfTheDungeon = 1, bool isBoss = false)
     {
@@ -33,6 +35,10 @@ public class EnemyManager : MonoBehaviour
         if (FloorOfTheDungeon == 1)
         {
             return Floor1Bosses[UnityEngine.Random.Range(0, Floor1Bosses.Count)];
+        }
+        else if (FloorOfTheDungeon == 99)
+        {
+            return ifrit;
         }
         else
         {

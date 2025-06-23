@@ -6,16 +6,18 @@ using Random = UnityEngine.Random;
 public class SpecialPortal : MonoBehaviour
 {
     [NonSerialized] public Player player;
-    public TilemapVisualizer tilemapVisualizer;
+    [NonSerialized] public static TilemapVisualizer tilemapVisualizer; 
     private Vector3 destination;
     public bool playerInside = false;
-    public EnemyManager enemyManager;
+    private bool teleportTriggered = false;
+    [NonSerialized] public EnemyManager enemyManager;
     void Update()
     {
         if (playerInside)
         {
-            if (player.GetInteraction())
+            if (!teleportTriggered && player.GetInteraction())
             {
+                teleportTriggered = true;
                 Debug.Log("buttonpressedoinside");
                 Teleport();
             }
@@ -61,9 +63,15 @@ public class SpecialPortal : MonoBehaviour
         }
 
 
-        var thisCollection = new RoomCollection(999, room, (Vector2Int)Vector3Int.RoundToInt(room.center), floor, enemyManager);
+        RoomCollection thisCollection = new RoomCollection(999, room, (Vector2Int)Vector3Int.RoundToInt(room.center), floor, enemyManager);
         thisCollection.roomType = "special";
         thisCollection.roomName = "IfritRoom";
+        thisCollection.findAccessiblePaths();
+        if (tilemapVisualizer == null)
+        {
+            Debug.Log("f;ousb;uab");
+            return;
+        }
 
         tilemapVisualizer.paintFloorTiles(floor);
         WallGenerator.CreateWalls(floor, tilemapVisualizer);

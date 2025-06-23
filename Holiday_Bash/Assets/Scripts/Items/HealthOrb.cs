@@ -9,7 +9,6 @@ public class HealthOrb : MonoBehaviour
     public Vector2 moveDirection = Vector2.zero;
     [NonSerialized] public Player player;
     private Rigidbody2D rb;
-    private bool initialSpreading = true;
     private float spreadTimer = 0f;
     public float spreadTime = 1f;
     public float speed = 1f;

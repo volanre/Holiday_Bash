@@ -52,7 +52,8 @@ public class GameManager : MonoBehaviour
         enemyManager.player = player;
         chestManager.player = player;
         RoomCollection.player = player;
-        redPortal.tilemapVisualizer = tilemapVisualizer;
+        SpecialPortal.tilemapVisualizer = tilemapVisualizer;
+        redPortal.enemyManager = enemyManager;
 
         uiManager.OnGameStart();
 
@@ -101,6 +102,19 @@ public class GameManager : MonoBehaviour
                             room.status = "active";
                         }
                         room.spawnNextWave();
+                    }
+                    else if (room.roomType.Equals("special"))
+                    {
+                        if (room.roomName.Equals("IfritRoom"))
+                        {
+                            if (room.status.Equals("inactive"))
+                            {
+                                room.status = "active";
+                                int num = 99;
+                                room.startBossFight(num);
+                            }
+                            room.spawnNextWave();
+                        }
                     }
                     else
                     {

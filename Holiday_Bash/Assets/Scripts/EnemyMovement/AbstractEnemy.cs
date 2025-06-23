@@ -10,7 +10,7 @@ public abstract class AbstractEnemy : AbstractCharacter
     /// <summary>
     /// The time (in secs) all enemies must wait until they become active;
     /// </summary>
-    public static float initalPause = 1f;
+    public float initalPause = 1f;
     
     
     protected float intialPauseTimer = 0, attackTimer = .5f, boomTimer = .3f;
@@ -177,7 +177,7 @@ public abstract class AbstractEnemy : AbstractCharacter
     }
 
     */
-    protected void targetPlayer()
+    protected virtual void targetPlayer()
     {
         if (isCharging) return;
         if (inShootingRange() && !isCharging)

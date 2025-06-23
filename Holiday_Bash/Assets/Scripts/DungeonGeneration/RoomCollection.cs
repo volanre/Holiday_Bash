@@ -107,7 +107,27 @@ public class RoomCollection
     {
         Portal.toggleActive(false);
         enemies = new List<AbstractEnemy>();
-        var position = accessiblePaths[Random.Range(0, accessiblePaths.Count)];
+        Vector2Int position = roomCenter;
+        bool done = false;
+        for (int i = 5; i > 1; i--)
+        {
+            if (done) break;
+            position = roomCenter + i * Vector2Int.up;
+            if (accessiblePaths.Contains(position) &&
+                accessiblePaths.Contains(position + Vector2Int.up) &&
+                accessiblePaths.Contains(position + Vector2Int.down) &&
+                accessiblePaths.Contains(position + Vector2Int.right) &&
+                accessiblePaths.Contains(position + Vector2Int.left) &&
+                accessiblePaths.Contains(position + Vector2Int.left + Vector2Int.up) &&
+                accessiblePaths.Contains(position + Vector2Int.left + Vector2Int.down) &&
+                accessiblePaths.Contains(position + Vector2Int.right + Vector2Int.up) &&
+                accessiblePaths.Contains(position + Vector2Int.right + Vector2Int.down))
+            {
+                done = true;
+            }
+        }
+        if(done == false) position = accessiblePaths[Random.Range(0, accessiblePaths.Count)];
+
         var boss = enemyManager.CreateBaddie(position, FloorOfTheDungeon, true);
         boss.room = this;
         enemies.Add(boss);
