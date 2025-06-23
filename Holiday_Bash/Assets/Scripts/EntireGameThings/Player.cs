@@ -10,11 +10,15 @@ using UnityEngine.UIElements;
 public class Player : AbstractCharacter
 {
 
-    private float attackTimer = 0f;
-    private Vector2 moveDirection = Vector2.zero, shootDirection = Vector2.zero;
+    private float attackTimer = 0f, dashTimer = 0f;
+    private Vector2 moveDirection = Vector2.zero, shootDirection = Vector2.zero, dashDirection = Vector2.left;
+    private Vector2Int lastPosition = Vector2Int.zero;
+    private bool dashAvailable = true, isDashing = false;
     private InputAction moveAction;
     private InputAction attackAction;
     private InputAction interactAction;
+    private InputAction dashAction;
+    private InputAction meleeAction;
     private AudioClip currentImpactSFX;
     [NonSerialized] public Dictionary<Vector2Int,int> playerFloodField;
     [NonSerialized] public Dictionary<Vector2Int,int> playerClearenceMap;
@@ -27,18 +31,16 @@ public class Player : AbstractCharacter
     [SerializeField] protected AudioClip defaultImpactSFX;
 
     [Header("References")]
-    public ProjectileBehavior projectileItem;
-    public SoundEffectPlayer noiseMaker;
+    [SerializeField] public ProjectileBehavior projectileItem;
+    [SerializeField] public SoundEffectPlayer noiseMaker;
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected Animator animator;
-
-    public PlayerInputActions playerControls;
-
-    
+    [SerializeField] public PlayerInputActions playerControls;
     [SerializeField] public HealthBarUI healthBar;
-
-    public RoomCollection currentRoom;
-    private Vector2Int lastPosition = Vector2Int.zero;
+    [SerializeField] public RoomCollection currentRoom;
+    [Header("Extra Player Items")]
+    [SerializeField] public float dashCooldown = 0.27f;
+    [SerializeField] public float dashLength = 0.15f;
 
 
 
@@ -60,6 +62,14 @@ public class Player : AbstractCharacter
         interactAction = playerControls.Player.Interact;
         interactAction.Enable();
 
+        dashAction = playerControls.Player.Dash;
+        dashAction.Enable();
+        dashAction.performed += DashPerformed;
+        dashAction.canceled += DashCancelled;
+
+        meleeAction = playerControls.Player.Melee;
+        meleeAction.Enable();
+
         attackAction = playerControls.Player.Attack;
         attackAction.Enable();
         // attack.performed += Attack;
@@ -70,6 +80,8 @@ public class Player : AbstractCharacter
         moveAction.Disable();
         attackAction.Disable();
         interactAction.Disable();
+        dashAction.Disable();
+        meleeAction.Disable();
     }
     public bool GetInteraction()
     {
@@ -95,16 +107,61 @@ public class Player : AbstractCharacter
             Shoot();
         }
     }
+    private void FixedUpdate()
+    {
+        if (!isAlive) return;
+        if (!isDashing)
+        {
+            rb.linearVelocity = getVelocity();
+        }
+    }
 
     private void MovePerformed(InputAction.CallbackContext context)
     {
         moveDirection = context.ReadValue<Vector2>();
+        dashDirection = moveDirection;
         animator.SetBool("isWalking", true);
     }
     private void MoveCancelled(InputAction.CallbackContext context)
     {
         moveDirection = Vector2.zero;
         animator.SetBool("isWalking", false);
+    }
+
+    private void DashPerformed(InputAction.CallbackContext context)
+    {
+        if (dashAvailable && (dashTimer > dashCooldown))
+        {
+            Vector2 attackInput = attackAction.ReadValue<Vector2>();
+            if (attackInput != Vector2.zero)
+            {
+                return; //no dashing while attacking
+            }
+
+            attackAction.Disable();
+            meleeAction.Disable();
+            dashAvailable = false;
+            isDashing = true;
+            dashTimer = -100f;
+            float dashSpeed = speed * 4;
+            Vector2 dashVelocity = new Vector2(dashDirection.x * dashSpeed, dashDirection.y * dashSpeed);
+            rb.linearVelocity = dashVelocity;
+            Invoke("EndDash", dashLength);
+            
+            //animator.SetBool("isWalking", true);
+        }
+    }
+    private void EndDash()
+    {
+        attackAction.Enable();
+        meleeAction.Enable();
+        dashTimer = 0f;
+        isDashing = false;
+        rb.linearVelocity = getVelocity();
+    }
+    private void DashCancelled(InputAction.CallbackContext context)
+    {
+        dashAvailable = true;
     }
 
     private void Shoot()
@@ -156,14 +213,10 @@ public class Player : AbstractCharacter
     {
         isAlive = false;
     }
-    private void FixedUpdate()
-    {
-        if (!isAlive) return;
-        rb.linearVelocity = getVelocity();
-    }
     private void UpdateTimers()
     {
         attackTimer += Time.deltaTime;
+        dashTimer += Time.deltaTime;
     }
 
     public Vector3Int getPosition()
