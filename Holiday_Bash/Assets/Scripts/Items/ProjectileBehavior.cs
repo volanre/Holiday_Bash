@@ -77,6 +77,13 @@ public class ProjectileBehavior : MonoBehaviour
                     return;
                 }
             }
+            else if (other.CompareTag("Object"))
+            {
+                if (!isTangible)
+                {
+                    return;
+                }
+            }
         }
         else if (gameObject.CompareTag("Player_Bullet"))
         {

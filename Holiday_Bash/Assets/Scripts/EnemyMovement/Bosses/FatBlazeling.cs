@@ -63,6 +63,7 @@ public class FatBlazeling : AbstractEnemy
     {
         updateTimers();
         if (!checkInitialized()) return;
+        health = 0; //////delete later
 
         checkIfDead();
         if (isDead)

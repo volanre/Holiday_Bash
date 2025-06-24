@@ -1,23 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework.Constraints;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Ifrit : AbstractEnemy
 {
     private int currentAttackNumber;
     [SerializeField] private ProjectileBehavior bulletType1;
+    [SerializeField] private skybeam beam;
     [SerializeField] private SoundEffectPlayer soundEffectPlayer;
     [SerializeField] private AudioClip EnragedCue;
+    [SerializeField] private AudioClip finalCue;
+    [SerializeField] private AudioClip SpawningAudio;
+    [SerializeField] private GameObject screenDarken;
+    [NonSerialized] public MenuAudio musicPlayer;
     private bool isAttacking = false;
     private bool isEnraged = false;
-    
+    private bool finalAttack = false;
+
 
     void Start()
     {
-        initalPause = 1.75f;
+        musicPlayer.PauseBGMusic();
+        soundEffectPlayer.PlaySpecificSound(SpawningAudio, 2f);
+        screenDarken.GetComponent<SpriteRenderer>().color = new Color(20f, 2f, 0f, 0.7f);
+        screenDarken.SetActive(true);
+
+        initalPause = 30.75f;
         currentAttackNumber = Random.Range(1, 4);
+        player.FreezeMovement(false);
+        Invoke("BeginFight", 13f);
     }
     void FixedUpdate()
     {
@@ -48,8 +63,11 @@ public class Ifrit : AbstractEnemy
         }
         if (!isEnraged && health < (int)(maxHealth * 0.35f))
         {
-            isEnraged = true;
             EnterEnragedMode();
+        }
+        if (!finalAttack && health < (int)(maxHealth * 0.1f))
+        {
+            BeginFinalAttack();
         }
 
 
@@ -65,37 +83,104 @@ public class Ifrit : AbstractEnemy
         if (attackTimer < fireRate) return;
         if (isAttacking) return;
         isAttacking = true;
-        currentAttackNumber = 4; //delete later
+        if (finalAttack) currentAttackNumber = 1;
         if (currentAttackNumber == 1)
         {
-            StartCoroutine(HellRain());
+            Debug.Log("Hellrain attack!");
+            bool val = Random.Range(0, 10) <= 7 ? true : false;
+            if (finalAttack) val = false;
+            StartCoroutine(HellRain(val));
         }
         else if (currentAttackNumber == 2)
         {
+            Debug.Log("FireFan attack!");
             StartCoroutine(FireFan());
         }
         else if (currentAttackNumber == 3)
         {
+            Debug.Log("MagmaShot attack!");
             StartCoroutine(MagmaShot());
         }
         else if (currentAttackNumber == 4)
         {
+            Debug.Log("Portalballs attack!");
             StartCoroutine(PortalBalls());
         }
+    }
+    IEnumerator HellRain(bool clustered)
+    {
+        float timeDelta = .25f;
+        int iterations = 1;
+
+        if (clustered)
+        {
+            iterations = Random.Range(7, 15);
+            timeDelta = isEnraged ? Random.Range(.03f, .07f) : Random.Range(.2f, .3f);
+            if (isEnraged) iterations += 10;
+        }
+        else
+        {
+            iterations = (int)Random.Range(0.1f * room.roomFloor.Count, 0.3f * room.roomFloor.Count);
+            timeDelta = isEnraged ? Random.Range(.003f, .01f) : Random.Range(.03f, .07f);
+            if (isEnraged) iterations += 15;
+        }
+
+        HashSet<Vector2Int> usedSpots = new HashSet<Vector2Int>();
+        for (int i = 0; i < iterations; i++)
+        {
+            bool done = false;
+            Vector2Int position = room.roomCenter;
+
+            int index = 0;
+            while (!done)
+            {
+                int randomIndex;
+                int randomDegree;
+                if (clustered)
+                {
+                    randomDegree = Random.Range(-90, 90);
+                    randomIndex = Random.Range(0, 5);
+                }
+                else
+                {
+                    randomDegree = Random.Range(0, 360);
+                    randomIndex = Random.Range(0, 15);
+                }
+                var newDirection = Quaternion.Euler(0, 0, randomDegree) * player.getVelocity().normalized;
+                Vector2 pos = player.transform.position + newDirection.normalized * randomIndex;
+                position = new Vector2Int((int)pos.x, (int)pos.y);
+
+                if (!usedSpots.Contains(position) && room.roomFloor.Contains(position))
+                {
+                    done = true;
+                    position = position + 4 * Vector2Int.up;
+                    usedSpots.Add(position);
+                }
+                else if (index >= 80)
+                {
+                    yield break;
+                }
+                index++;
+            }
+            var newBeam = Instantiate(beam, new Vector3(position.x, position.y), Quaternion.identity);
+            newBeam.damage = 20;
+            newBeam.player = player;
+            yield return new WaitForSeconds(timeDelta);
+        }
+        AttackFinished();
     }
 
     IEnumerator FireFan()
     {
-        return null;
-    }
-
-    IEnumerator HellRain()
-    {
-        return null;
+        float timeDelta = .05f;
+        yield return new WaitForSeconds(timeDelta);
+        AttackFinished();
     }
     IEnumerator MagmaShot()
     {
-        return null;
+        float timeDelta = .05f;
+        yield return new WaitForSeconds(timeDelta);
+        AttackFinished();
     }
     IEnumerator PortalBalls()
     {
@@ -124,7 +209,7 @@ public class Ifrit : AbstractEnemy
                     yield break;
                 }
             }
-            Debug.Log("Portal at: " + spawnPoint + ", player at: " + player.transform.position);
+            //Debug.Log("Portal at: " + spawnPoint + ", player at: " + player.transform.position);
 
             int missileCount = Random.Range(4, 7);
             for (int p = 0; p < missileCount; p++)
@@ -139,7 +224,7 @@ public class Ifrit : AbstractEnemy
                 missile.targetPlayer = true;
                 missile.targetEnemy = false;
                 float missileSpeed = isEnraged ? 10.5f : 9f;
-                missile.Initialize(-newDirection.normalized, 90, missileSpeed, false);
+                missile.Initialize(-newDirection.normalized, (int)(GetEffectiveAttack() * 0.7f), missileSpeed, false);
                 Physics2D.IgnoreCollision(missile.GetComponent<Collider2D>(), GetComponent<Collider2D>());
                 yield return new WaitForSeconds(0.095f);
             }
@@ -214,10 +299,24 @@ public class Ifrit : AbstractEnemy
             fireRateMax = 3.5f;
         }
         fireRate = Random.Range(fireRateMin, fireRateMax);
+        if (finalAttack) fireRate = 0.05f;
     }
     private void EnterEnragedMode()
     {
-        throw new System.NotImplementedException();
+        if (isEnraged) return;
+        isEnraged = true;
+        damageMultipliers.Add(new Tuple<bool, float>(true, 1.5f));
+
+        soundEffectPlayer.PlaySpecificSound(EnragedCue, 2f);
+        walkSpeed *= 2.8f;
+        speed *= 1.2f;
+        shootingRange += 2f;
+    }
+    private void BeginFinalAttack()
+    {
+        if (finalAttack) return;
+        finalAttack = true;
+        soundEffectPlayer.PlaySpecificSound(finalCue, 2f);
     }
     protected override void targetPlayer()
     {
@@ -236,5 +335,19 @@ public class Ifrit : AbstractEnemy
     public override void DamageEffects()
     {
         return;
+    }
+    public void BeginFight()
+    {
+        Animator animator = GetComponent<Animator>();
+        animator.SetBool("spawn", true);
+        Invoke("BrightenScreen", 3f);
+    }
+    private void BrightenScreen()
+    {
+        player.FreezeMovement(true);
+        musicPlayer.UnpauseBGMusic();
+        intialPauseTimer = 0f;
+        initalPause = 1.8f;
+        screenDarken.SetActive(false);
     }
 }

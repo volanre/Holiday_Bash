@@ -46,8 +46,11 @@ public class RoomCollection
 
 
     public static List<string> roomTypeList = new List<string>() { "fight", "treasure", "boss", "elite_fight" };
-
-    private List<AbstractEnemy> enemies = new List<AbstractEnemy>();
+    
+    /// <summary>
+    /// List of enemies currently present in the room
+    /// </summary>
+    public List<AbstractEnemy> enemies = new List<AbstractEnemy>();
 
     public int wavesLeft;
     public HashSet<Vector2Int> propPositions;
@@ -109,7 +112,7 @@ public class RoomCollection
         enemies = new List<AbstractEnemy>();
         Vector2Int position = roomCenter;
         bool done = false;
-        for (int i = 5; i > 1; i--)
+        for (int i = 4; i > 1; i--)
         {
             if (done) break;
             position = roomCenter + i * Vector2Int.up;

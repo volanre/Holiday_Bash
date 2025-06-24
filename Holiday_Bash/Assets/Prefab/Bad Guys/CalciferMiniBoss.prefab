@@ -58,6 +58,7 @@ MonoBehaviour:
   fireRate: 0.5
   launchOffset: 0.5
   bulletSpeed: 8
+  initalPause: 1
   projectileItem: {fileID: 7008929205646833749, guid: e0f899a509ca2374487a0b1bf0660bed, type: 3}
   rb: {fileID: 4478870933136038522}
   size: 2
@@ -70,9 +71,9 @@ MonoBehaviour:
   soundEffectPlayer: {fileID: 2153075453155485884}
   EnragedCue: {fileID: 8300000, guid: dfeede7fbedf0724a9a5ed6ea8d0e4b7, type: 3}
   minion: {fileID: 8542137653130969406, guid: 4f826c35c428d4640980996823d46894, type: 3}
-  barrageAttackValue: 80
-  circlePulseAttackValue: 95
-  spinnyTopAttackValue: 50
+  barrageAttackValue: 40
+  circlePulseAttackValue: 75
+  spinnyTopAttackValue: 30
 --- !u!50 &4478870933136038522
 Rigidbody2D:
   serializedVersion: 5

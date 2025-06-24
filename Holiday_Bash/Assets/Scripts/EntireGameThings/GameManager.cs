@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIManager uiManager;
     [SerializeField] private TilemapVisualizer tilemapVisualizer;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private MenuAudio menuAudio;
     // [SerializeField] private GameObject deathCanvasScreen;
     // [SerializeField] private GameObject settingsCanvasScreen;
     // [SerializeField] private GameObject gameCanvasScreen;
@@ -112,6 +113,7 @@ public class GameManager : MonoBehaviour
                                 room.status = "active";
                                 int num = 99;
                                 room.startBossFight(num);
+                                ((Ifrit)room.enemies[0]).musicPlayer = menuAudio;
                             }
                             room.spawnNextWave();
                         }

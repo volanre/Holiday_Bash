@@ -20,8 +20,8 @@ public class Player : AbstractCharacter
     private InputAction dashAction;
     private InputAction meleeAction;
     private AudioClip currentImpactSFX;
-    [NonSerialized] public Dictionary<Vector2Int,int> playerFloodField;
-    [NonSerialized] public Dictionary<Vector2Int,int> playerClearenceMap;
+    [NonSerialized] public Dictionary<Vector2Int, int> playerFloodField;
+    [NonSerialized] public Dictionary<Vector2Int, int> playerClearenceMap;
     [NonSerialized] public Effects effectsObject;
     [NonSerialized] public static bool isAlive = true;
 
@@ -91,8 +91,6 @@ public class Player : AbstractCharacter
     void Start()
     {
         health = maxHealth;
-        attack = 5000;
-
         healthBar.setMaxHealth(maxHealth);
         healthBar.setCurrentHealth(maxHealth);
     }
@@ -148,7 +146,7 @@ public class Player : AbstractCharacter
             Vector2 dashVelocity = new Vector2(dashDirection.x * dashSpeed, dashDirection.y * dashSpeed);
             rb.linearVelocity = dashVelocity;
             Invoke("EndDash", dashLength);
-            
+
             //animator.SetBool("isWalking", true);
         }
     }
@@ -249,5 +247,13 @@ public class Player : AbstractCharacter
             }
         }
     }
-
+    /// <summary>
+    /// <para>Disables and enables the players functions</para>
+    /// <para>False disables, true enables</para>
+    /// </summary>
+    /// <param name="value"></param>
+    public void FreezeMovement(bool value)
+    {
+        enabled = value;
+    }
 }
