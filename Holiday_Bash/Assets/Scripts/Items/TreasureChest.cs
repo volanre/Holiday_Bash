@@ -11,7 +11,7 @@ public class TreasureChest : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     public HealthOrb healthOrb;
-    private float interactRange = 1.5f;
+    private float interactRange = 1f;
     public int level;
     [NonSerialized] public Player player;
     [NonSerialized] public bool isOpened = false;
@@ -52,7 +52,21 @@ public class TreasureChest : MonoBehaviour
             orb.player = player;
             orb.speed = Random.Range(7.5f, 9);
             orb.room = room;
-            orb.spreadTime = Random.Range(0.25f, .75f);
+            orb.spreadTime = Random.Range(0.25f, .6f);
+        }
+
+        numberOfOrbs = 5 + Random.Range(0, room.difficulty * 5);
+        for (int i = 0; i < numberOfOrbs; i++)
+        {
+            int randomDegree = Random.Range(0, 360);
+            Vector3 newDirection = Quaternion.Euler(0, 0, randomDegree) * Vector3.up;
+            HealthOrb orb = Instantiate(healthOrb, transform.position, Quaternion.identity);
+            orb.moveDirection = newDirection;
+            orb.xpMode = true;
+            orb.player = player;
+            orb.speed = Random.Range(7.5f, 9);
+            orb.room = room;
+            orb.spreadTime = Random.Range(0.2f, .5f);
         }
 
         animator.SetBool("opened", true);

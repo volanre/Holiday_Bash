@@ -37,10 +37,16 @@ public class Player : AbstractCharacter
     [SerializeField] protected Animator animator;
     [SerializeField] public PlayerInputActions playerControls;
     [SerializeField] public HealthBarUI healthBar;
+    [SerializeField] public HealthBarUI xpBar;
+    [SerializeField] public HealthBarUI dashBar;
+
     [SerializeField] public RoomCollection currentRoom;
     [Header("Extra Player Items")]
     [SerializeField] public float dashCooldown = 0.27f;
     [SerializeField] public float dashLength = 0.15f;
+    [SerializeField] public float currentXP = 0f;
+    [SerializeField] public float maxXP = 100f;
+    [SerializeField] public int level = 1;
 
 
 
@@ -93,12 +99,26 @@ public class Player : AbstractCharacter
         health = maxHealth;
         healthBar.setMaxHealth(maxHealth);
         healthBar.setCurrentHealth(maxHealth);
+        dashBar.setMaxHealth(dashCooldown);
+        dashBar.setCurrentHealth(dashCooldown);
+        xpBar.setMaxHealth(maxXP);
+        xpBar.setCurrentHealth(currentXP);
+
+        healthBar.ToggleText(false);
+        dashBar.ToggleText(false);
+        xpBar.ToggleText(false);
     }
 
     void Update()
     {
         if (!isAlive) return;
         UpdateTimers();
+        if (dashTimer >= 0 && dashTimer <= dashCooldown) {
+            var curDash = dashTimer / dashCooldown;
+            var clampedDash = Mathf.Clamp(curDash, 0, dashCooldown);
+            dashBar.setCurrentHealth(clampedDash);
+        }
+        LevelUp();
         effectsObject.UpdateEffects();
 
         if (attackTimer >= fireRate)
@@ -141,6 +161,7 @@ public class Player : AbstractCharacter
             meleeAction.Disable();
             dashAvailable = false;
             isDashing = true;
+            dashBar.setCurrentHealth(0);
             dashTimer = -100f;
             float dashSpeed = speed * 4;
             Vector2 dashVelocity = new Vector2(dashDirection.x * dashSpeed, dashDirection.y * dashSpeed);
@@ -183,8 +204,33 @@ public class Player : AbstractCharacter
     public void Heal(int healingAmount)
     {
         health += healingAmount;
+        if (health > maxHealth) health = maxHealth;
         var clampedHealth = Mathf.Clamp(health, 0, maxHealth);
         healthBar.setCurrentHealth(clampedHealth);
+    }
+    public void GainXP(int amount)
+    {
+        currentXP += amount;
+        var clampedXP = Mathf.Clamp(currentXP, 0, maxXP);
+        xpBar.setCurrentHealth(clampedXP);
+    }
+    public void LevelUp()
+    {
+        if (currentXP >= maxXP)
+        {
+            currentXP = currentXP - maxXP;
+            if (currentXP < 0) currentXP = 0;
+            maxXP = maxXP * 1.25f;
+            xpBar.setMaxHealth(maxXP);
+            level++;
+            GainXP(0);
+
+            maxHealth = maxHealth + 25;
+            healthBar.setMaxHealth(maxHealth);
+            Heal((int)(maxHealth/3f));
+            attack = attack + 5;
+            defense = defense + 2;
+        }
     }
     // public void TakeDamage(int damageTaken)
     // {

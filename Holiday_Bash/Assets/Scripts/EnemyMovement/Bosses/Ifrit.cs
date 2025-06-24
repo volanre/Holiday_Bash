@@ -124,7 +124,7 @@ public class Ifrit : AbstractEnemy
         }
         else
         {
-            iterations = (int)Random.Range(0.1f * room.roomFloor.Count, 0.3f * room.roomFloor.Count);
+            iterations = (int)Random.Range(0.1f * room.roomFloor.Count, 0.2f * room.roomFloor.Count);
             timeDelta = isEnraged ? Random.Range(.003f, .01f) : Random.Range(.03f, .07f);
             if (isEnraged) iterations += 15;
         }
@@ -314,11 +314,13 @@ public class Ifrit : AbstractEnemy
         int randomizer = Random.Range(0, 100);
         if (randomizer < 25) //25%
         {
-            currentAttackNumber = 1;
+            if(currentAttackNumber == 1) { currentAttackNumber = 4; }
+            else{currentAttackNumber = 1;}
         }
         else if (randomizer < 60) //35%
         {
-            currentAttackNumber = 2;
+            if(currentAttackNumber == 2) { currentAttackNumber = 3; }
+            else{currentAttackNumber = 2;}
         }
         else if (randomizer < 80) //20%
         {

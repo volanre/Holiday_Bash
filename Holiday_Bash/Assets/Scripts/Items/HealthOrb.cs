@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HealthOrb : MonoBehaviour
 {
+    //its called a health orb but it also funcitons as an xp orb
     public RoomCollection room;
     private float detectionRange = 5f;
     public Vector2 moveDirection = Vector2.zero;
@@ -12,13 +13,18 @@ public class HealthOrb : MonoBehaviour
     private float spreadTimer = 0f;
     public float spreadTime = 1f;
     public float speed = 1f;
+    [NonSerialized] public bool xpMode = false;
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
     void Update()
     {
-        if (!room.roomFloor.Contains(new Vector2Int((int)transform.position.x,(int)transform.position.y)))
+        if (xpMode)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5f, 1, 0);
+        }
+        if (!room.roomFloor.Contains(new Vector2Int((int)transform.position.x, (int)transform.position.y)))
         {
             Destroy(gameObject);
             return;
@@ -65,9 +71,16 @@ public class HealthOrb : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Destroy(gameObject);
-            int healingAmount = (int)(player.maxHealth * 0.01);
-            if (healingAmount <= 0) healingAmount = 1;
-            player.Heal(healingAmount);
+            if (!xpMode)
+            {
+                int healingAmount = (int)(player.maxHealth * 0.015);
+                if (healingAmount <= 0) healingAmount = 1;
+                player.Heal(healingAmount);
+            }
+            else
+            {
+                player.GainXP(UnityEngine.Random.Range(10,17));
+            }
         }
         
 

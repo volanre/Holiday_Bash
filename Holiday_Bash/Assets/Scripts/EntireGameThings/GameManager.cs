@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     // [SerializeField] private GameObject gameCanvasScreen;
     [SerializeField] private SpecialPortal redPortal;
     [SerializeField] HealthBarUI HP_Bar_UI;
+    [SerializeField] HealthBarUI XP_Bar_UI;
+    [SerializeField] HealthBarUI Dash_Bar_UI;
 
     [Header("Settings")]
     [SerializeField, Range(0, 10)] public static float SFXVolume = 1;
@@ -49,6 +51,9 @@ public class GameManager : MonoBehaviour
         player = Instantiate(playerPrefab);
 
         player.healthBar = HP_Bar_UI;
+        player.xpBar = XP_Bar_UI;
+        player.dashBar = Dash_Bar_UI;
+
         mainCamera.transform.SetParent(player.transform, false);
         enemyManager.player = player;
         chestManager.player = player;
