@@ -111,7 +111,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -189,16 +189,19 @@ MonoBehaviour:
   size: 2
   walkSpeed: 1.5
   detectionRadius: 25
-  shootingRange: 5
+  shootingRange: 9
   fireSpreadDegrees: 3
   deathExposion: {fileID: 8325858401554520467}
   player: {fileID: 0}
   bulletType1: {fileID: 1633568961597397807, guid: a80e7194c1bd9b6469cffea27b95392c, type: 3}
   beam: {fileID: 232861622684991645, guid: a106c31da2144834599a1ffcf8794832, type: 3}
+  breath: {fileID: 6121782190034793519, guid: e38f353f4ad392148881e70bf5fac530, type: 3}
   soundEffectPlayer: {fileID: 2442614409660646335}
-  EnragedCue: {fileID: 8300000, guid: 5a679bde9f4b2ab45bbe13d65256b94e, type: 3}
+  EnragedCue: {fileID: 8300000, guid: dfeede7fbedf0724a9a5ed6ea8d0e4b7, type: 3}
+  finalCue: {fileID: 8300000, guid: 5a679bde9f4b2ab45bbe13d65256b94e, type: 3}
   SpawningAudio: {fileID: 8300000, guid: 81b8cdfac48f3a841a1c13dc6aa051db, type: 3}
   screenDarken: {fileID: 4179924604929092764}
+  teleportSignal: {fileID: 6533282892286139082, guid: a13a56b1e6daab14cba2b52a43c45eec, type: 3}
 --- !u!95 &3798466922118359170
 Animator:
   serializedVersion: 7

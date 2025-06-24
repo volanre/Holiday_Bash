@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class skybeam : MonoBehaviour
+public class skybeam : TempObject
 {
     public int damage;
      
@@ -25,10 +25,6 @@ public class skybeam : MonoBehaviour
             }
 
         }
-    }
-    public void Suicide()
-    {
-        Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {

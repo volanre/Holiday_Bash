@@ -254,6 +254,7 @@ public class Player : AbstractCharacter
     /// <param name="value"></param>
     public void FreezeMovement(bool value)
     {
+        rb.linearVelocity = Vector2.zero;
         enabled = value;
     }
 }
